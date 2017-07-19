@@ -2,8 +2,35 @@ const hummus = require('hummus');
 
 exports.createPage = function createPage(pageWidth, pageHeight) {
     this.pages = this.pages || [];
-    pageWidth = pageWidth || this.default.pageWidth;
-    pageHeight = pageHeight || this.default.pageHeght;
+    if (!pageWidth && !pageHeight) {
+        pageWidth = pageWidth || this.default.pageWidth;
+        pageHeight = pageHeight || this.default.pageHeght;
+    } else
+    if (pageWidth && !isNaN(pageWidth) && pageHeight && !isNaN(pageHeight)) {
+        pageWidth = pageWidth || this.default.pageWidth;
+        pageHeight = pageHeight || this.default.pageHeght;
+    } else
+    if (pageWidth && typeof(pageWidth) == 'string') {
+        const type = pageWidth;
+        const rotate = pageHeight;
+        let pageType = this.default.paperSizeTypes[pageWidth];
+
+        if (pageType) {
+            pageWidth = pageType.pageWidth;
+            pageHeight = pageType.pageHeght;
+        } else {
+            // use default
+            pageWidth = this.default.pageWidth;
+            pageHeight = this.default.pageHeght;
+        }
+        if (rotate && !isNaN(rotate)) {
+            if (rotate % 180 != 0) {
+                let temp = pageHeight;
+                pageHeight = pageWidth;
+                pageWidth = temp;
+            }
+        }
+    }
     // from 0
     this.metadata.pageCount += 1;
     const pageNumber = this.metadata.pageCount;
@@ -28,7 +55,7 @@ exports.createPage = function createPage(pageWidth, pageHeight) {
 
 exports.endPage = function endPage(pageNumber) {
     if (!this.page) return this;
-    
+
     if (this.page.endContext) {
         this.page.endContext();
         this.page.writePage();

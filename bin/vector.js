@@ -128,8 +128,16 @@ exports._getPathOptions = function _getPathOptions(options = {}) {
         underline: false,
         color: transformColor(), //0xFF000000,
         colorspace: 'rgb', // gray rgb cmyk
-        width: 4
+        width: 4,
+        align: options.align
     };
+    if (options.font) {
+        const matchedFont = this.fonts[options.font.toLowerCase()];
+        if (matchedFont) {
+            pathOptions.font = this.writer.getFontForFile(matchedFont);
+        }
+    }
+
     if (options.size || options.fontSize) {
         pathOptions.size = options.size || options.fontSize;
     }
