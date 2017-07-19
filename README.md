@@ -18,42 +18,60 @@ npm i hummus-recipe --save
 
 ```javascript
 const HummusRecipe = require('hummus-recipe');
-const pdf = new HummusRecipe('new', 'output.pdf');
-pdf
-    // create the 1st page with width and height
-    .createPage(1920, 1080)
-    // draw a rectangle
-    .rectangle(20, 20, 40, 100, { color: '#d23421', lineWidth: 5})
-    // draw a polygon
-    .polygon([ [31, 31], [31, 532], [45, 780], [90, 300], [31,31] ])
-    // draw a circle
-    .circle(150, 300, 20, { stroke: '#3b7721', fill: '#eee000', lineWidth:3 })
-    // draw lines
-    .moveTo(300, 300)
-    .lineTo(400, 450)
-    .lineTo(400, 600)
-    // write a text
-    .text('asdjflkasdjfl;ads', 100, 100, {size: 14, underline: true})
-    // write a comment annotation
-    .comment('yoyoyo', 50, 50)
+const pdfDoc = new HummusRecipe('new', 'output.pdf');
+pdfDoc
+    // 1st Page
+    .createPage('letter-size')
+    .circle('center', 100, 30, { stroke: '#3b7721', fill: '#eee000' })
+    .polygon([
+        [50, 250],
+        [100, 200],
+        [512, 200],
+        [562, 250],
+        [512, 300],
+        [100, 300],
+        [50, 250]
+    ], {
+        color: [153, 143, 32],
+        lineWidth: 5
+    })
+    .rectangle(240, 400, 50, 50, {
+        color: [255, 0, 255]
+    })
+    .rectangle(322, 400, 50, 50, {
+        stroke: [0, 0, 140],
+        width: 6
+    })
+    .rectangle(240, 476, 50, 50, {
+        fill: [255, 0, 0]
+    })
+    .rectangle(322, 476, 50, 50, {
+        stroke: '#3b7721',
+        fill: '#eee000'
+    })
+    .moveTo(200, 600)
+    .lineTo('center', 650)
+    .lineTo(412, 600)
+    .text('Welcome to Hummus-Recipe', 'center', 250, {
+        color: '066099',
+        fontSize: 30,
+        align: 'center center'
+    })
+    .comment('Feel free to open issues to help us!', 'center', 100)
     .endPage()
-
-    // create a 2nd page
-    .createPage(600, 300)
+    // 2nd page
+    .createPage('A4', 90)
     .circle(150, 150, 300)
     .endPage()
-    // write to disk
-    .endPDF(()=>{
-        // done!
-    });
+    .endPDF(done);
 ```
 
 ### Modify an existing PDF
 
 ```javascript
 const HummusRecipe = require('hummus-recipe');
-const pdf = new HummusRecipe('input.pdf', 'output.pdf');
-pdf
+const pdfDoc = new HummusRecipe('input.pdf', 'output.pdf');
+pdfDoc
     .editPage(1)
     .text('Add some texts to an existing pdf file', 150, 300)
     .rectangle(20, 20, 40, 100)
@@ -67,4 +85,38 @@ pdf
     .endPDF(()=>{
         // done!
     });
+```
+
+### Options
+
+#### Vector Options
+
+```bash
+    color: HexColor or RGB
+    storke: HexColor or RGB
+    fill: HexColor or RGB
+
+    width: Integer # stroke width
+    opacity: # coming soon
+```
+
+NOTE: stroke or fill will overwrite the color properties.
+
+#### Text Options
+
+```bash
+    color: HexColor or RGB
+    size: Integer
+    font: # coming soon
+    align: 'center center' # 'x y' - center, right, bottom
+```
+
+#### Annotation Options
+
+```bash
+    title: String
+    date: Date
+    open: Boolean
+    flag: String # 'readonly', 'norotate' ...
+    richText: # coming soon
 ```
