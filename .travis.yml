@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "node"
+  - "iojs"
+  - "7"
+  - "6"
+
+before_script:
+  - npm install -g mocha
+install:
+  - npm install
+script: 
+  - npm test
