@@ -1,5 +1,7 @@
 # Hummus Recipe
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/chunyenHuang/hummusRecipe.svg)](https://greenkeeper.io/)
+
 This is an easy recipe for [HummusJS](https://github.com/galkahana/HummusJS) with a high level class.
 
 I hope this repo will bring more attentions from the community to help [HummusJS](https://github.com/galkahana/HummusJS) to grow faster. Please visit and fork [HummusJS](https://github.com/galkahana/HummusJS).
