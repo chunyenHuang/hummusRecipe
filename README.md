@@ -40,7 +40,7 @@ pdfDoc
     })
     .rectangle(322, 400, 50, 50, {
         stroke: [0, 0, 140],
-        width: 6
+        lineWidth: 6
     })
     .rectangle(240, 476, 50, 50, {
         fill: [255, 0, 0]
@@ -96,7 +96,7 @@ pdfDoc
     storke: HexColor or RGB
     fill: HexColor or RGB
 
-    width: Integer # stroke width
+    lineWidth: Integer
     opacity: # coming soon
 ```
 
