@@ -1,3 +1,4 @@
+[![NPM version](http://img.shields.io/npm/v/hummus.svg?style=flat)](https://www.npmjs.org/package/hummus-recipe)
 [![Build Status](https://travis-ci.org/chunyenHuang/hummusRecipe.svg?branch=master)](https://travis-ci.org/chunyenHuang/hummusRecipe)
 # Hummus Recipe
 
