@@ -6,7 +6,7 @@ This is an easy recipe for [HummusJS](https://github.com/galkahana/HummusJS) wit
 
 I hope this repo will bring more attentions from the community to help [HummusJS](https://github.com/galkahana/HummusJS) to grow faster. 
 
-This repo is still under construction. Feel free to open issues in here or in [HummusJS](https://github.com/galkahana/HummusJS).
+This repo is still under construction. Feel free to open issues to help us!
 
 ## GetStarted
 
