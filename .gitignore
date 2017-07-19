@@ -1,6 +1,6 @@
 build
 .DS_Store
-tests/output
+tests/output/**/*.pdf
 
 node_modules
 etc
