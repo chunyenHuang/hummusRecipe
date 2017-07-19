@@ -1,7 +1,7 @@
 {
   "name": "hummus-recipe",
   "version": "1.0.0",
-  "description": "This is an easy recipe for [HummusJS](https://github.com/galkahana/HummusJS) with a high level class.",
+  "description": "A powerful PDF tool for NodeJS based on HummusJS",
   "main": "index.js",
   "engine": [
     "node >= v6.9.0"
