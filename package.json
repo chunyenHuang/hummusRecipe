@@ -1,0 +1,28 @@
+{
+  "name": "hummus-recipe",
+  "version": "1.0.0",
+  "description": "This is an easy recipe for [HummusJS](https://github.com/galkahana/HummusJS) with a high level class.",
+  "main": "index.js",
+  "engine": [
+    "node >= v6.9.0"
+  ],
+  "scripts": {
+    "test": "mocha ./tests/*.js --timeout 300000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chunyenHuang/hummusRecipe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chunyenHuang/hummusRecipe/issues"
+  },
+  "homepage": "https://github.com/chunyenHuang/hummusRecipe#readme",
+  "dependencies": {
+    "hummus": "^1.0.77"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2"
+  }
+}
