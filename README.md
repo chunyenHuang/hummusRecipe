@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/chunyenHuang/hummusRecipe.svg?branch=master)](https://travis-ci.org/chunyenHuang/hummusRecipe)
 # Hummus Recipe
 
 This is an easy recipe for [HummusJS](https://github.com/galkahana/HummusJS) with a high level class.
