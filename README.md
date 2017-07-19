@@ -14,7 +14,7 @@ This repo is still under construction. Feel free to open issues to help us!
 npm i hummus-recipe --save
 ```
 
-### Create a new PDF
+## Create a new PDF
 
 ```javascript
 const HummusRecipe = require('hummus-recipe');
@@ -66,7 +66,7 @@ pdfDoc
     .endPDF(done);
 ```
 
-### Modify an existing PDF
+## Modify an existing PDF
 
 ```javascript
 const HummusRecipe = require('hummus-recipe');
@@ -76,6 +76,7 @@ pdfDoc
     .text('Add some texts to an existing pdf file', 150, 300)
     .rectangle(20, 20, 40, 100)
     .comment('Add 1st comment annotaion', 200, 300)
+    .image('/path/to/image.jpg', {width: 300, keepAspectRatio: true})
     .endPage()
 
     .editPage(2)
@@ -87,31 +88,31 @@ pdfDoc
     });
 ```
 
-### Options
+## Options
 
-#### Vector Options
+### Vector Options
 
 ```bash
     color: HexColor or RGB
     storke: HexColor or RGB
     fill: HexColor or RGB
 
-    lineWidth: Integer
+    lineWidth: Float
     opacity: # coming soon
 ```
 
 NOTE: stroke or fill will overwrite the color properties.
 
-#### Text Options
+### Text Options
 
 ```bash
     color: HexColor or RGB
-    size: Integer
+    size: Float
     font: # coming soon
     align: 'center center' # 'x y' - center, right, bottom
 ```
 
-#### Annotation Options
+### Annotation Options
 
 ```bash
     title: String
@@ -119,4 +120,22 @@ NOTE: stroke or fill will overwrite the color properties.
     open: Boolean
     flag: String # 'readonly', 'norotate' ...
     richText: # coming soon
+```
+
+### Image Options
+
+```bash
+    width: Float
+    height: Float
+    scale: Float
+    keepAspectRatio: Boolean # default: true
+    align: 'center center' # alignment from the x, y
+```
+
+NOTE: scale will use the original width and height.
+
+### Overlay Options
+
+```bash
+
 ```

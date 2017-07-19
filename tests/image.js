@@ -13,12 +13,11 @@ describe('Recipe', () => {
             .image(myCats, 'center', 'center', {
                 width: 300,
                 height: 300,
-                keepAspectRatio: true,
+                keepAspectRatio: false,
                 align: 'center center'
             })
             .image(myCats, 'center', 100, {
                 scale: 0.1,
-                keepAspectRatio: true,
                 align: 'center center'
             })
             .endPage()

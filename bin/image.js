@@ -21,6 +21,9 @@ exports.image = function image(imgSrc, x, y, options = {}) {
 exports._getImgOffset = function _getImgOffset(imgSrc = '', options = {}) {
     let offsetX = 0;
     let offsetY = 0;
+    // set default to true
+    options.keepAspectRatio = (options.keepAspectRatio == void 0) ?
+        true : options.keepAspectRatio;
     const dimensions = this.writer.getImageDimensions(imgSrc);
     const ratio = dimensions.width / dimensions.height;
 
