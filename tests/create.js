@@ -51,6 +51,7 @@ describe('Create', () => {
             .text('Welcome to Hummus-Recipe', 'center', 250, {
                 color: '066099',
                 fontSize: 30,
+                font: 'Courier New',
                 align: 'center center'
             })
             .comment('Feel free to open issues to help us!', 'center', 100)

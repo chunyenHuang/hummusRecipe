@@ -63,7 +63,7 @@ pdfDoc
     .createPage('A4', 90)
     .circle(150, 150, 300)
     .endPage()
-    .endPDF(done);
+    .endPDF(()=>{ /* done! */ });
 ```
 
 ## Modify an existing PDF

@@ -2,14 +2,21 @@ const fs = require('fs');
 const path = require('path');
 
 exports._loadFonts = function _loadFonts(fontSrcPath) {
-    const fonts = {};
     fs.readdirSync(fontSrcPath).forEach((file) => {
         const fontName = file.replace('.ttf', '');
-        fonts[fontName] = path.join(fontSrcPath, file);
+        return this._registerFont(fontName, path.join(fontSrcPath, file));
     });
-
-    this.fonts = fonts;
 };
+
+exports._registerFont = function _registerFont(fontName, fontSrcPath) {
+    this.fonts = this.fonts || {};
+    // check fontSrcPath
+    this.fonts[fontName.toLowerCase()] = fontSrcPath;
+}
+
+exports.registerFont = function registerFont(fontName, fontSrcPath) {
+    return this._registerFont(fontName, fontSrcPath);
+}
 
 exports.text = function text(text = '', x, y, options = {}) {
     if (!this.pageContext) return this;
