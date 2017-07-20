@@ -4,14 +4,22 @@ const HummusRecipe = require('../bin');
 describe('Create', () => {
     it('blank pdf', (done) => {
         const output = path.join(__dirname, 'output/blank.pdf');
-        const recipe = new HummusRecipe('new', output);
+        const recipe = new HummusRecipe('new', output, {
+            version: 1.6,
+            author: 'someone',
+            title: 'No title',
+            subject: 'Blank PDF',
+            keywords: ['hummus', 'js', '??', '234']
+        });
         recipe
+            .custom('myValue', 123)
             .createPage()
             .endPage()
             .createPage()
             .endPage()
             .endPDF(done);
     });
+
     it('new pdf', (done) => {
         const output = path.join(__dirname, 'output/new.pdf');
         const recipe = new HummusRecipe('new', output);

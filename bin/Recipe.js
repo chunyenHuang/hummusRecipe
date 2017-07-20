@@ -5,6 +5,7 @@ module.exports = class Recipe {
     constructor(src, output, options = {}) {
         this.src = src;
         this.output = output;
+        this.options = options;
 
         this.logFile = 'hummus-error.log';
 
@@ -13,6 +14,8 @@ module.exports = class Recipe {
         this.vectorsToWrite = [];
 
         this.xObjects = [];
+
+        this.needToEncrypt = false;
 
         this._setParameters(options = {});
         const fontSrcPath = options.fontSrcPath || path.join(__dirname, '../fonts');
@@ -23,9 +26,14 @@ module.exports = class Recipe {
     _createWriter() {
         if (this.src.toLowerCase() == 'new') {
             this.isNewPDF = true;
-            this.writer = hummus.createWriter(this.output);
-            // this.createPage(1);
+
+            this.writer = hummus.createWriter(this.output, {
+                version: this._getVerion(this.options.version)
+            });
+            this.info(this.options);
         } else {
+            this.isNewPDF = false;
+
             this.read();
             try {
                 this.writer = hummus.createWriterToModify(
@@ -39,6 +47,18 @@ module.exports = class Recipe {
                 console.log(err);
             }
         }
+    }
+
+    _getVerion(version) {
+        const supportedVersions = [
+            1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7
+        ];
+        if (!supportedVersions.includes(version)) {
+            version = 1.7;
+        }
+        version = hummus[`ePDFVersion${version*10}`];
+
+        return version;
     }
 
     get position() {
@@ -120,14 +140,19 @@ module.exports = class Recipe {
         this.writer.end();
         // This is a temporary work around for copying context will overwrite the current one
         // write annotations at the end.
-        this.writer = hummus.createWriterToModify(
-            this.output, {
-                modifiedFilePath: this.output,
-                log: this.logFile
-            }
-        );
-        this._writeAnnotations();
-        this.writer.end();
+        // if (this.annotations && this.annotations.length > 0) {
+        //     this.writer = hummus.createWriterToModify(
+        //         this.output, {
+        //             modifiedFilePath: this.output,
+        //             log: this.logFile
+        //         }
+        //     );
+        //     this._writeAnnotations();
+        //     this.writer.end();
+        // }
+        if(this.needToEncrypt){
+            this._encrypt();
+        }
 
         if (callback) {
             return callback();

@@ -1,16 +1,17 @@
 const hummus = require('hummus');
 
 exports.pauseContext = function pauseContext() {
-    if (this.page.endContext) {
+    if (this.page && this.page.endContext) {
         this.page.endContext();
         // this.writer.pausePageContentContext(this.pageContext);
-    } else {
+    } else
+    if (this.pageContext) {
         this.writer.pausePageContentContext(this.pageContext);
     }
 }
 
 exports.resumeContext = function resumeContext() {
-    if (!this.isNewPDF) {
+    if (!this.isNewPDF && this.page) {
         this.pageContext = this.page.startContext().getContext();
     }
 }
@@ -68,7 +69,9 @@ exports.createPage = function createPage(pageWidth, pageHeight) {
         height: pageHeight
     };
 
-    const page = this.writer.createPage(0, 0, pageWidth, pageHeight);
+    const page = this.writer.createPage();
+    page.mediaBox = [0, 0, pageWidth, pageHeight];
+
     this.page = page;
     this.pageNumber = pageNumber;
     this.pageContext = this.writer.startPageContentContext(this.page);

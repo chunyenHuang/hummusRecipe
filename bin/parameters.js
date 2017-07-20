@@ -21,5 +21,5 @@ exports._setParameters = function _setParameters(options = {}) {
 
     this._position = { x: 0, y: 0 };
 
-    Object.assign(this, options);
+    // Object.assign(this, options);
 }
