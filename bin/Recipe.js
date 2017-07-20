@@ -7,8 +7,10 @@ module.exports = class Recipe {
         this.output = output;
 
         this.logFile = 'hummus-error.log';
+
         this.annotationsToWrite = [];
         this.annotations = [];
+        this.vectorsToWrite = [];
 
         this._setParameters(options = {});
         const fontSrcPath = options.fontSrcPath || path.join(__dirname, '../fonts');
@@ -34,7 +36,6 @@ module.exports = class Recipe {
             } catch (err) {
                 console.log(err);
             }
-
         }
     }
 
@@ -109,9 +110,13 @@ module.exports = class Recipe {
         };
     }
 
+    /**
+     * TODO: To avoid duplicate context and annotations,
+     * Write when endPDF instead of writing line by line
+     */
     endPDF(callback) {
         this.writer.end();
-        // This is a work around for copying context will overwrite the current one
+        // This is a temporary work around for copying context will overwrite the current one
         // write annotations at the end.
         this.writer = hummus.createWriterToModify(
             this.output, {

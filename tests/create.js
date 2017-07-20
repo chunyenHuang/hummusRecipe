@@ -15,6 +15,7 @@ describe('Create', () => {
     it('new pdf', (done) => {
         const output = path.join(__dirname, 'output/new.pdf');
         const recipe = new HummusRecipe('new', output);
+        const myCats = path.join(__dirname, 'materials/myCats.jpg');
         recipe
             // 1st Page
             .createPage('letter-size')
@@ -31,8 +32,15 @@ describe('Create', () => {
                 color: [153, 143, 32],
                 lineWidth: 5
             })
+            .image(myCats, 'center', 450, {
+                width: 250,
+                height: 250,
+                opacity: 0.5,
+                align: 'center center'
+            })
             .rectangle(240, 400, 50, 50, {
-                color: [255, 0, 255]
+                color: [255, 0, 255],
+                opacity: 0.2
             })
             .rectangle(322, 400, 50, 50, {
                 stroke: [0, 0, 140],
@@ -43,7 +51,8 @@ describe('Create', () => {
             })
             .rectangle(322, 476, 50, 50, {
                 stroke: '#3b7721',
-                fill: '#eee000'
+                fill: '#eee000',
+                opacity: 0.5
             })
             .moveTo(200, 600)
             .lineTo('center', 650)

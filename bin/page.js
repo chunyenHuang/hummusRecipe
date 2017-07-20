@@ -1,7 +1,30 @@
 const hummus = require('hummus');
 
+exports.pauseContext = function pauseContext() {
+    if (this.page.endContext) {
+        this.page.endContext();
+        // this.writer.pausePageContentContext(this.pageContext);
+    } else {
+        this.writer.pausePageContentContext(this.pageContext);
+    }
+}
+
+exports.resumeContext = function resumeContext() {
+    if (!this.isNewPDF) {
+        this.pageContext = this.page.startContext().getContext();
+    }
+}
+
+exports.getPageInfo = function getPageInfo() {
+    const info = this.writer.getDocumentContext().getInfoDictionary();
+    return info;
+}
+
 exports.createPage = function createPage(pageWidth, pageHeight) {
-    this.pages = this.pages || [];
+    if (this.pageNumber) {
+        this.endPage(this.pageNumber);
+    }
+
     if (!pageWidth && !pageHeight) {
         pageWidth = pageWidth || this.default.pageWidth;
         pageHeight = pageHeight || this.default.pageHeght;
@@ -49,6 +72,7 @@ exports.createPage = function createPage(pageWidth, pageHeight) {
     this.page = page;
     this.pageNumber = pageNumber;
     this.pageContext = this.writer.startPageContentContext(this.page);
+
     this.moveTo(0, 0);
     return this;
 };
@@ -62,8 +86,8 @@ exports.endPage = function endPage(pageNumber) {
     } else {
         this.writer.writePage(this.page);
     }
-    this.page = null;
-    this.pageContext = null;
+    // this.page = null;
+    // this.pageContext = null;
     // this.pageNumber = 0;
 
     return this;
@@ -76,6 +100,7 @@ exports.editPage = function editPage(pageNumber) {
     this.page = pageModifier;
     this.pageNumber = pageNumber;
     this.pageContext = pageModifier.startContext().getContext();
+
     const { layout, rotate, width, height, offsetX, offsetY } = this.metadata[pageNumber];
 
     switch (rotate) {

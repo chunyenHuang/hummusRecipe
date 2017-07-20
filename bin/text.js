@@ -23,6 +23,7 @@ exports.text = function text(text = '', x, y, options = {}) {
     const pathOptions = this._getPathOptions(options);
     const { offsetX, offsetY } = this._getTextOffset(text, pathOptions);
     const { nx, ny } = this._calibrateCoorinate(x, y, offsetX, offsetY);
+
     const context = this.pageContext;
     context.writeText(text, nx, ny, pathOptions);
     return this;

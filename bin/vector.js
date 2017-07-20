@@ -1,3 +1,4 @@
+const xObjectForm = require('./xObjectForm');
 /**
  * move the current position to target position
  */
@@ -26,6 +27,7 @@ exports.lineTo = function lineTo(x, y, options = {}) {
 
 /**
  * Draw a polygon
+ * TODO: fill polygon
  */
 exports.polygon = function polygon(coordinates = [], options = {}) {
     coordinates.forEach((coord, index) => {
@@ -43,18 +45,33 @@ exports.polygon = function polygon(coordinates = [], options = {}) {
  */
 exports.circle = function circle(x, y, radius, options = {}) {
     const { nx, ny } = this._calibrateCoorinate(x, y);
-    const context = this.pageContext;
     if (options.stroke || options.color) {
         const pathOptions = this._getPathOptions(options);
         pathOptions.type = 'stroke';
         pathOptions.color = pathOptions.stroke || pathOptions.color;
+        const context = this.pageContext;
         context.drawCircle(nx, ny, radius, pathOptions);
     }
     if (options.fill || options.color) {
         const pathOptions = this._getPathOptions(options);
         pathOptions.type = 'fill';
         pathOptions.color = pathOptions.fill || pathOptions.color;
-        context.drawCircle(nx, ny, radius, pathOptions);
+
+        this.pauseContext();
+        const xObject = new xObjectForm(this.writer, radius * 2, radius * 2);
+        xObject.getContentContext()
+            .q()
+            .gs(xObject.getGsName(pathOptions.fillGsId))
+            .drawCircle(radius, radius, radius, pathOptions)
+            .Q();
+        xObject.end();
+        this.resumeContext();
+        const context = this.pageContext;
+        context.q()
+            .cm(1, 0, 0, 1, nx - radius, ny - radius)
+            .doXObject(xObject)
+            .Q();
+        // context.drawCircle(nx, ny, radius, pathOptions);
     }
     return this;
 }
@@ -64,18 +81,37 @@ exports.circle = function circle(x, y, radius, options = {}) {
  */
 exports.rectangle = function rectangle(x, y, width, height, options = {}) {
     const { nx, ny } = this._calibrateCoorinate(x, y, 0, -height);
-    const context = this.pageContext;
-    if (options.stroke || options.color) {
+
+    if (options.stroke) {
         const pathOptions = this._getPathOptions(options);
         pathOptions.type = 'stroke';
         pathOptions.color = pathOptions.stroke || pathOptions.color;
+        const context = this.pageContext;
+        context.q();
+        // context.gs(options.strokeGsName);
         context.drawRectangle(nx, ny, width, height, pathOptions);
+        context.Q();
     }
     if (options.fill || options.color) {
         const pathOptions = this._getPathOptions(options);
         pathOptions.type = 'fill';
         pathOptions.color = pathOptions.fill || pathOptions.color;
-        context.drawRectangle(nx, ny, width, height, pathOptions);
+
+        this.pauseContext();
+        const xObject = new xObjectForm(this.writer, width, height);
+        xObject.getContentContext()
+            .q()
+            .gs(xObject.getGsName(pathOptions.fillGsId))
+            .drawRectangle(0, 0, width, height, pathOptions)
+            .Q();
+        xObject.end();
+        this.resumeContext();
+
+        const context = this.pageContext;
+        context.q()
+            .cm(1, 0, 0, 1, nx, ny)
+            .doXObject(xObject)
+            .Q();
     }
 
     return this;
@@ -114,68 +150,4 @@ exports.stroke = function stroke(color) {
  */
 exports.fillAndStroke = function fillAndStroke(color) {
     return this;
-}
-
-/**
- * get options for drawings
- */
-exports._getPathOptions = function _getPathOptions(options = {}) {
-    const defaultFont = this.writer.getFontForFile(this.fonts['arial']);
-
-    const pathOptions = {
-        font: defaultFont,
-        size: 14,
-        underline: false,
-        color: transformColor(), //0xFF000000,
-        colorspace: 'rgb', // gray rgb cmyk
-        width: 4,
-        align: options.align
-    };
-    if (options.font) {
-        const matchedFont = this.fonts[options.font.toLowerCase()];
-        if (matchedFont) {
-            pathOptions.font = this.writer.getFontForFile(matchedFont);
-        }
-    }
-
-    if (options.size || options.fontSize) {
-        pathOptions.size = options.size || options.fontSize;
-    }
-    if (options.width || options.lineWidth) {
-        pathOptions.width = options.width || options.lineWidth;
-    }
-    if (options.stroke) {
-        pathOptions.stroke = transformColor(options.stroke);
-    }
-    if (options.fill) {
-        pathOptions.fill = transformColor((options.fill));
-    }
-    if (options.color || options.colour) {
-        // DarkMagenta
-        // transform color from rgb hex to 0x
-        pathOptions.color = transformColor((options.color || options.colour));
-    }
-    return pathOptions;
-}
-
-function transformColor(code = '1777d1') {
-    // 0x1777d1
-    if (Array.isArray(code)) {
-        code = rgbToHexCode(code);
-    } else {
-        code = code.replace('#', '');
-    }
-    code = `0x${code.toUpperCase()}`;
-    const number = parseInt(code, 16);
-    return number;
-}
-
-function rgbToHexCode(rgb = []) {
-    let code = '';
-    rgb.forEach((item) => {
-        let hex = item.toString(16);
-        hex = (hex.length == 1) ? '0' + hex : hex;
-        code += hex;
-    });
-    return code;
 }

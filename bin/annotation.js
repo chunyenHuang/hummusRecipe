@@ -97,8 +97,8 @@ exports._annot = function _annot(subtype, args = {}, pageNumber) {
         .writeLiteralStringValue(this.writer.createPDFDate(params.date).toString())
         .writeKey('Open')
         .writeBooleanValue(params.open)
-    // .writeKey('F')
-    // .writeIntegerValue(getFlagBitNumberByName(params.flag))
+        // .writeKey('F')
+        // .writeNumberValue(getFlagBitNumberByName(params.flag))
     // Comment, Key, Note, Help, NewParagraph, Paragraph, Insert       
     if (params.icon) {
         this.dictionaryContext

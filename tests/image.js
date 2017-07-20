@@ -13,6 +13,7 @@ describe('Recipe', () => {
             .image(myCats, 'center', 'center', {
                 width: 300,
                 height: 300,
+                opacity: 0.5,
                 keepAspectRatio: false,
                 align: 'center center'
             })

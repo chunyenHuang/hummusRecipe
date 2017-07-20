@@ -1,10 +1,10 @@
+const xObjectForm = require('./xObjectForm');
 /**
  * Draw Image
- * TODO: imageXObject, rotation
+ * TODO: imageXObject, rotation, Reusable forms
  */
 exports.image = function image(imgSrc, x, y, options = {}) {
     const { width, height, offsetX, offsetY } = this._getImgOffset(imgSrc, options);
-    const context = this.pageContext;
     const imgOptions = {
         transformation: {
             fit: 'always',
@@ -14,7 +14,25 @@ exports.image = function image(imgSrc, x, y, options = {}) {
         }
     };
     const { nx, ny } = this._calibrateCoorinate(x, y, offsetX, offsetY);
-    context.drawImage(nx, ny, imgSrc, imgOptions);
+
+    const gsId = this._getPathOptions(options).fillGsId;
+    this.pauseContext();
+    const xObject = new xObjectForm(this.writer, width, height);
+    xObject.getContentContext()
+        .q()
+        .gs(xObject.getGsName(gsId))
+        .drawImage(0, 0, imgSrc, imgOptions)
+        .Q();
+    xObject.end();
+    this.resumeContext();
+
+    const context = this.pageContext;
+    context.q()
+        .cm(1, 0, 0, 1, nx, ny)
+        .doXObject(xObject)
+        .Q();
+
+    // context.drawImage(nx, ny, imgSrc, imgOptions);
     return this;
 }
 

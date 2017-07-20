@@ -5,7 +5,7 @@ loadPrototypes();
 module.exports = Recipe;
 
 function loadPrototypes() {
-    const ignores = ['Recipe.js', 'index.js'];
+    const ignores = ['Recipe.js', 'index.js', 'xObjectForm.js'];
     fs.readdirSync(__dirname)
         .filter((file) => {
             return file[0] != '.' && !ignores.includes(file);

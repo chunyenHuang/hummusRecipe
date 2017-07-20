@@ -9,9 +9,12 @@ describe('Recipe', () => {
         recipe
             .editPage(1)
             .text('Add some texts to an existing pdf file', 150, 300)
-            .rectangle(20, 20, 40, 100)
-            .rectangle(25, 25, 40, 100)
-            .rectangle(30, 30, 40, 100)
+            .circle('center', 100, 60, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4})
+            .circle('center', 100, 30, { stroke: '#0032FF' })
+            .rectangle('center', 'center', 450, 450, {
+                color: [255, 0, 255],
+                opacity: 0.2
+            }) 
             .comment('Add 1st comment annotaion', 200, 300)
             .endPage()
         recipe
