@@ -12,6 +12,8 @@ module.exports = class Recipe {
         this.annotations = [];
         this.vectorsToWrite = [];
 
+        this.xObjects = [];
+
         this._setParameters(options = {});
         const fontSrcPath = options.fontSrcPath || path.join(__dirname, '../fonts');
         this._loadFonts(fontSrcPath);

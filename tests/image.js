@@ -1,7 +1,7 @@
 const path = require('path');
 const HummusRecipe = require('../bin');
 
-describe('Recipe', () => {
+describe('Modify', () => {
     it('Add images', (done) => {
         const src = path.join(__dirname, 'materials/test.pdf')
         const output = path.join(__dirname, `output/Add images.pdf`);

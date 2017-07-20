@@ -16,19 +16,32 @@ exports.image = function image(imgSrc, x, y, options = {}) {
     const { nx, ny } = this._calibrateCoorinate(x, y, offsetX, offsetY);
 
     const gsId = this._getPathOptions(options).fillGsId;
-    this.pauseContext();
-    const xObject = new xObjectForm(this.writer, width, height);
-    xObject.getContentContext()
-        .q()
-        .gs(xObject.getGsName(gsId))
-        .drawImage(0, 0, imgSrc, imgOptions)
-        .Q();
-    xObject.end();
-    this.resumeContext();
+
+    let xObject = this.xObjects.find((element) => {
+        return element.get('name') == imgSrc;
+    });
+    if (!xObject) {
+        this.pauseContext();
+        xObject = new xObjectForm(this.writer, width, height);
+        xObject.getContentContext()
+            .q()
+            .gs(xObject.getGsName(gsId))
+            .drawImage(0, 0, imgSrc, imgOptions)
+            .Q();
+        xObject.end();
+        xObject.set('type', 'image');
+        xObject.set('name', imgSrc);
+        xObject.set('width', width);
+        xObject.set('height', height);
+        this.xObjects.push(xObject);
+        this.resumeContext();
+    }
 
     const context = this.pageContext;
+    const ratioX = width / xObject.get('width');
+    const ratioY = height / xObject.get('height');
     context.q()
-        .cm(1, 0, 0, 1, nx, ny)
+        .cm(ratioX, 0, 0, ratioY, nx, ny)
         .doXObject(xObject)
         .Q();
 
@@ -37,8 +50,6 @@ exports.image = function image(imgSrc, x, y, options = {}) {
 }
 
 exports._getImgOffset = function _getImgOffset(imgSrc = '', options = {}) {
-    let offsetX = 0;
-    let offsetY = 0;
     // set default to true
     options.keepAspectRatio = (options.keepAspectRatio == void 0) ?
         true : options.keepAspectRatio;
@@ -74,6 +85,9 @@ exports._getImgOffset = function _getImgOffset(imgSrc = '', options = {}) {
             }
         }
     }
+    let offsetX = 0;
+    let offsetY = -height;
+
     if (options.align) {
         const alignments = options.align.split(' ');
         if (alignments[0]) {

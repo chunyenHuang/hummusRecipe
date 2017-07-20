@@ -1,7 +1,7 @@
 const path = require('path');
 const HummusRecipe = require('../bin');
 
-describe('Recipe', () => {
+describe('Modify', () => {
     it('Add Overlay from other PDF', (done) => {
         const src = path.join(__dirname, 'materials/test2.pdf')
         const overlayPDF = path.join(__dirname, 'materials/test3.pdf');

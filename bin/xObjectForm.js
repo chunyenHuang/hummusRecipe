@@ -4,7 +4,19 @@ module.exports = class xObjectForm {
         xObject.pdfWriter = pdfWriter;
         xObject.getGsName = this.getGsName;
         xObject.end = this.end;
+        xObject.get = this.get;
+        xObject.set = this.set;
         return xObject;
+    }
+
+    set(key, value) {
+        this._values = this._values || {};
+        this._values[key] = value;
+    }
+
+    get(key) {
+        this._values = this._values || {};
+        return this._values[key];
     }
 
     getGsName(gsId) {
