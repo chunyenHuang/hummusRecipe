@@ -7,7 +7,18 @@ This is an easy recipe for [HummusJS](https://github.com/galkahana/HummusJS) wit
 
 I hope this repo will bring more attentions from the community to help [HummusJS](https://github.com/galkahana/HummusJS) to grow faster. 
 
-This repo is still under construction. Feel free to open issues to help us!
+Feel free to open issues to help us!
+
+## Features
+* High performance creation, modification and parsing of PDF files and streams
+* Easy to create and modify PDF files.
+* Reusable components.
+
+## Instructions
+* [GetStarted](#getstarted)
+* [Create a new PDF](#create-a-new-pdf)
+* [Modify an existing PDF](#modify-an-existing-pdf)
+* [Options](#options)
 
 ## GetStarted
 
