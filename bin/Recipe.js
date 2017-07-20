@@ -17,6 +17,8 @@ module.exports = class Recipe {
 
         this.needToEncrypt = false;
 
+        this.needToInsertPages = false;
+
         this._setParameters(options = {});
         const fontSrcPath = options.fontSrcPath || path.join(__dirname, '../fonts');
         this._loadFonts(fontSrcPath);
@@ -150,6 +152,9 @@ module.exports = class Recipe {
         //     this._writeAnnotations();
         //     this.writer.end();
         // }
+        if(this.needToInsertPages){
+            this._insertPages();
+        }
         if(this.needToEncrypt){
             this._encrypt();
         }
