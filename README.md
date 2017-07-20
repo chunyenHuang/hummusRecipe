@@ -10,14 +10,20 @@ I hope this repo will bring more attentions from the community to help [HummusJS
 Feel free to open issues to help us!
 
 ## Features
+
 * High performance creation, modification and parsing of PDF files and streams
 * Easy to create and modify PDF files.
 * Reusable components.
 
 ## Instructions
+
 * [GetStarted](#getstarted)
 * [Create a new PDF](#create-a-new-pdf)
 * [Modify an existing PDF](#modify-an-existing-pdf)
+* [Append PDF](#append-pdf)
+* [Insert PDF](#insert-pdf)
+* [Overlay PDF](#overlay-pdf)
+* [Encryption](#encryption)
 * [Options](#options)
 
 ## GetStarted
@@ -27,6 +33,21 @@ npm i hummus-recipe --save
 ```
 
 ## Create a new PDF
+
+```javascript
+const HummusRecipe = require('hummus-recipe');
+const pdfDoc = new HummusRecipe('new', '/output.pdf',{
+    version: 1.6,
+    author: 'John Doe',
+    title: 'Hummus Recipe',
+    subject: 'A brand new PDF'
+});
+
+pdfDoc
+    .createPage('letter-size')
+    .endPage()
+    .endPDF();
+```
 
 ```javascript
 const HummusRecipe = require('hummus-recipe');
@@ -40,19 +61,10 @@ pdfDoc
         lineWidth: 5
     })
     .rectangle(240, 400, 50, 50, {
-        color: [255, 0, 255],
-        opacity: 0.3
-    })
-    .rectangle(322, 400, 50, 50, {
-        stroke: [0, 0, 140],
-        lineWidth: 6
-    })
-    .rectangle(240, 476, 50, 50, {
-        fill: [255, 0, 0]
-    })
-    .rectangle(322, 476, 50, 50, {
         stroke: '#3b7721',
-        fill: '#eee000'
+        fill: '#eee000',
+        lineWidth: 6,
+        opacity: 0.3
     })
     .moveTo(200, 600)
     .lineTo('center', 650)
@@ -60,6 +72,7 @@ pdfDoc
     .text('Welcome to Hummus-Recipe', 'center', 250, {
         color: '066099',
         fontSize: 30,
+        font: 'Courier New',
         align: 'center center'
     })
     .comment('Feel free to open issues to help us!', 'center', 100)
@@ -93,6 +106,63 @@ pdfDoc
     .endPDF(()=>{
         // done!
     });
+```
+
+## Append PDF
+
+```javascript
+const HummusRecipe = require('hummus-recipe');
+const pdfDoc = new HummusRecipe('input.pdf', 'output.pdf');
+const longPDF = '/longPDF.pdf';
+pdfDoc
+    // just page 10
+    .appendPage(longPDF, 10)
+    // page 4 and page 6
+    .appendPage(longPDF, [4, 6])
+    // page 1-3 and 6-20
+    .appendPage(longPDF, [[1, 3], [6, 20]])
+    // all pages
+    .appendPage(longPDF)
+    .endPDF();
+```
+
+## Insert PDF
+
+```javascript
+const HummusRecipe = require('hummus-recipe');
+const pdfDoc = new HummusRecipe('input.pdf', 'output.pdf');
+const longPDF = '/longPDF.pdf';
+pdfDoc
+    // insert page3 from longPDF to current page 2
+    .insertPage(2, longPDF, 3)
+    .endPDF();
+```
+
+## Overlay PDF
+
+```javascript
+const HummusRecipe = require('hummus-recipe');
+const pdfDoc = new HummusRecipe('input.pdf', 'output.pdf');
+const overlayPDF = '/overlayPDF.pdf';
+
+pdfDoc
+    .overlay(overlayPDF)
+    .endPDF();
+```
+
+## Encryption
+
+```javascript
+const HummusRecipe = require('hummus-recipe');
+const pdfDoc = new HummusRecipe('input.pdf', 'output.pdf');
+
+pdfDoc
+    .encrypt({
+        userPassword: '123',
+        ownerPassword: '123',
+        userProtectionFlag: 4
+    })
+    .endPDF();
 ```
 
 ## Options
@@ -141,9 +211,3 @@ NOTE: stroke or fill will overwrite the color properties.
 ```
 
 NOTE: scale will use the original width and height.
-
-### Overlay Options
-
-```bash
-
-```
