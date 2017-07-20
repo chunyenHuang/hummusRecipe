@@ -1,6 +1,6 @@
 # Hummus Recipe
 
-[![NPM version](http://img.shields.io/npm/v/hummus.svg?style=flat)](https://www.npmjs.org/package/hummus-recipe)
+[![npm version](https://badge.fury.io/js/hummus-recipe.svg)](https://badge.fury.io/js/hummus-recipe)
 [![Build Status](https://travis-ci.org/chunyenHuang/hummusRecipe.svg?branch=master)](https://travis-ci.org/chunyenHuang/hummusRecipe)
 
 This is an easy recipe for [HummusJS](https://github.com/galkahana/HummusJS) with a high level class.
