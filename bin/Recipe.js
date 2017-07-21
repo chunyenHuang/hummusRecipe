@@ -142,16 +142,16 @@ module.exports = class Recipe {
         this.writer.end();
         // This is a temporary work around for copying context will overwrite the current one
         // write annotations at the end.
-        // if (this.annotations && this.annotations.length > 0) {
-        //     this.writer = hummus.createWriterToModify(
-        //         this.output, {
-        //             modifiedFilePath: this.output,
-        //             log: this.logFile
-        //         }
-        //     );
-        //     this._writeAnnotations();
-        //     this.writer.end();
-        // }
+        if (this.annotations && this.annotations.length > 0) {
+            this.writer = hummus.createWriterToModify(
+            this.output, {
+                    modifiedFilePath: this.output,
+                    log: this.logFile
+                }
+            );
+            this._writeAnnotations();
+            this.writer.end();
+        }
         if(this.needToInsertPages){
             this._insertPages();
         }
