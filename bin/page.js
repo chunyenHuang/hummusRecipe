@@ -22,10 +22,6 @@ exports.getPageInfo = function getPageInfo() {
 }
 
 exports.createPage = function createPage(pageWidth, pageHeight) {
-    if (this.pageNumber) {
-        this.endPage(this.pageNumber);
-    }
-
     if (!pageWidth && !pageHeight) {
         pageWidth = pageWidth || this.default.pageWidth;
         pageHeight = pageHeight || this.default.pageHeght;
