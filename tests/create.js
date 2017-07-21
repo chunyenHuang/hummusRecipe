@@ -37,8 +37,10 @@ describe('Create', () => {
                 [100, 300],
                 [50, 250]
             ], {
-                color: [153, 143, 32],
-                lineWidth: 5
+                lineWidth: 5,
+                stroke: [0, 0, 140],
+                fill: [153, 143, 32],
+                opacity: 0.2
             })
             .image(myCats, 'center', 450, {
                 width: 250,
@@ -60,7 +62,7 @@ describe('Create', () => {
             .rectangle(322, 476, 50, 50, {
                 stroke: '#3b7721',
                 fill: '#eee000',
-                opacity: 0.5
+                opacity: 0.2
             })
             .moveTo(200, 600)
             .lineTo('center', 650)
@@ -75,7 +77,11 @@ describe('Create', () => {
             .endPage()
             // 2nd page
             .createPage('A4', 90)
-            .circle(150, 150, 300)
+            .circle(150, 150, 300, { fill: '#bbbbbb' })
+            .rectangle(240, 400, 50, 50, {
+                color: [255, 0, 255],
+                opacity: 0.2
+            })
             .endPage()
             .endPDF(done);
     });

@@ -30,13 +30,79 @@ exports.lineTo = function lineTo(x, y, options = {}) {
  * TODO: fill polygon
  */
 exports.polygon = function polygon(coordinates = [], options = {}) {
+    if (this._getDistance(coordinates[0], coordinates[coordinates.length - 1]) != 0) {
+        coordinates.push(coordinates[0]);
+    }
+    let boundBox = [ /*minX, minY, maxX, maxY*/ ];
     coordinates.forEach((coord, index) => {
         if (index === 0) {
-            this.moveTo(coord[0], coord[1], options);
-        } else {
-            this.lineTo(coord[0], coord[1], options);
+            boundBox = [coord[0], coord[1], coord[0], coord[1]]
         }
+        boundBox[0] = (boundBox[0] > coord[0]) ? coord[0] : boundBox[0];
+        boundBox[1] = (boundBox[1] > coord[1]) ? coord[1] : boundBox[1];
+        boundBox[2] = (boundBox[2] < coord[0]) ? coord[0] : boundBox[2];
+        boundBox[3] = (boundBox[3] < coord[1]) ? coord[1] : boundBox[3];
     });
+
+    this.pauseContext();
+    const pathOptions = this._getPathOptions(options);
+    const margin = pathOptions.width * 2;
+    const width = Math.abs(boundBox[2] - boundBox[0]) + margin * 2;
+    const height = Math.abs(boundBox[3] - boundBox[1]) + margin * 2;
+    const startX = boundBox[0] - margin;
+    const startY = boundBox[1] - margin;
+
+    const xObject = new xObjectForm(this.writer, width, height);
+    const xObjectCtx = xObject.getContentContext();
+
+    const colorInRGB = this._colorNumberToRGB(pathOptions.color);
+    const strokeInRGB = this._colorNumberToRGB(pathOptions.stroke);
+    const fillInRGB = this._colorNumberToRGB(pathOptions.fill);
+
+    function draw(context, coordinates) {
+        coordinates.forEach((coord, index) => {
+            if (index === 0) {
+                context.m(coord[0] - startX, coord[1] - startY);
+            } else {
+                context.l(coord[0] - startX, coord[1] - startY);
+            }
+        });
+    }
+    xObjectCtx
+        .q()
+        .gs(xObject.getGsName(pathOptions.fillGsId))
+        .J(1)
+        .j(1)
+        .M(1.414);
+
+    if (fillInRGB) {
+        xObjectCtx.rg(fillInRGB.r / 255, fillInRGB.g / 255, fillInRGB.b / 255);
+        draw(xObjectCtx, coordinates);
+        xObjectCtx.f();
+    }
+    if (pathOptions.width) {
+        xObjectCtx.w(pathOptions.width);
+    }
+    if (strokeInRGB) {
+        xObjectCtx.RG(strokeInRGB.r / 255, strokeInRGB.g / 255, strokeInRGB.b / 255);
+        draw(xObjectCtx, coordinates);
+        xObjectCtx.s();
+    } else
+    if (colorInRGB) {
+        xObjectCtx.RG(colorInRGB.r / 255, colorInRGB.g / 255, colorInRGB.b / 255);
+        draw(xObjectCtx, coordinates);
+        xObjectCtx.s();
+    }
+    xObjectCtx.Q();
+    xObject.end();
+    this.resumeContext();
+    const { nx, ny } = this._calibrateCoorinate(startX, startY + height);
+    const context = this.pageContext;
+    context.q()
+        .cm(1, 0, 0, 1, nx, ny)
+        .doXObject(xObject)
+        .Q();
+
     return this;
 }
 
@@ -45,13 +111,7 @@ exports.polygon = function polygon(coordinates = [], options = {}) {
  */
 exports.circle = function circle(x, y, radius, options = {}) {
     const { nx, ny } = this._calibrateCoorinate(x, y);
-    if (options.stroke || options.color) {
-        const pathOptions = this._getPathOptions(options);
-        pathOptions.type = 'stroke';
-        pathOptions.color = pathOptions.stroke || pathOptions.color;
-        const context = this.pageContext;
-        context.drawCircle(nx, ny, radius, pathOptions);
-    }
+
     if (options.fill || options.color) {
         const pathOptions = this._getPathOptions(options);
         pathOptions.type = 'fill';
@@ -73,6 +133,13 @@ exports.circle = function circle(x, y, radius, options = {}) {
             .Q();
         // context.drawCircle(nx, ny, radius, pathOptions);
     }
+    if (options.stroke || options.color) {
+        const pathOptions = this._getPathOptions(options);
+        pathOptions.type = 'stroke';
+        pathOptions.color = pathOptions.stroke || pathOptions.color;
+        const context = this.pageContext;
+        context.drawCircle(nx, ny, radius, pathOptions);
+    }
     return this;
 }
 
@@ -82,16 +149,6 @@ exports.circle = function circle(x, y, radius, options = {}) {
 exports.rectangle = function rectangle(x, y, width, height, options = {}) {
     const { nx, ny } = this._calibrateCoorinate(x, y, 0, -height);
 
-    if (options.stroke) {
-        const pathOptions = this._getPathOptions(options);
-        pathOptions.type = 'stroke';
-        pathOptions.color = pathOptions.stroke || pathOptions.color;
-        const context = this.pageContext;
-        context.q();
-        // context.gs(options.strokeGsName);
-        context.drawRectangle(nx, ny, width, height, pathOptions);
-        context.Q();
-    }
     if (options.fill || options.color) {
         const pathOptions = this._getPathOptions(options);
         pathOptions.type = 'fill';
@@ -112,6 +169,17 @@ exports.rectangle = function rectangle(x, y, width, height, options = {}) {
             .cm(1, 0, 0, 1, nx, ny)
             .doXObject(xObject)
             .Q();
+    }
+
+    if (options.stroke) {
+        const pathOptions = this._getPathOptions(options);
+        pathOptions.type = 'stroke';
+        pathOptions.color = pathOptions.stroke || pathOptions.color;
+        const context = this.pageContext;
+        context.q();
+        // context.gs(options.strokeGsName);
+        context.drawRectangle(nx, ny, width, height, pathOptions);
+        context.Q();
     }
 
     return this;

@@ -58,6 +58,8 @@ pdfDoc
     .circle('center', 100, 30, { stroke: '#3b7721', fill: '#eee000' })
     .polygon([ [50, 250], [100, 200], [512, 200], [562, 250], [512, 300], [100, 300], [50, 250] ], {
         color: [153, 143, 32],
+        stroke: [0, 0, 140],
+        fill: [153, 143, 32],
         lineWidth: 5
     })
     .rectangle(240, 400, 50, 50, {
@@ -103,9 +105,7 @@ pdfDoc
     .comment('Add 2nd comment annotaion', 200, 100)
     .endPage()
     // end and save
-    .endPDF(()=>{
-        // done!
-    });
+    .endPDF();
 ```
 
 ## Append PDF
@@ -131,10 +131,10 @@ pdfDoc
 ```javascript
 const HummusRecipe = require('hummus-recipe');
 const pdfDoc = new HummusRecipe('input.pdf', 'output.pdf');
-const longPDF = '/longPDF.pdf';
+
 pdfDoc
     // insert page3 from longPDF to current page 2
-    .insertPage(2, longPDF, 3)
+    .insertPage(2, '/longPDF.pdf', 3)
     .endPDF();
 ```
 
@@ -143,10 +143,9 @@ pdfDoc
 ```javascript
 const HummusRecipe = require('hummus-recipe');
 const pdfDoc = new HummusRecipe('input.pdf', 'output.pdf');
-const overlayPDF = '/overlayPDF.pdf';
 
 pdfDoc
-    .overlay(overlayPDF)
+    .overlay('/overlayPDF.pdf')
     .endPDF();
 ```
 

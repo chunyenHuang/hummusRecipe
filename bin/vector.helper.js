@@ -109,3 +109,29 @@ function rgbToHexCode(rgb = []) {
     });
     return code;
 }
+
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
+exports._colorNumberToRGB = function(bigint) {
+    if (!bigint) return;
+    return {
+        r: (bigint >> 16) & 255,
+        g: (bigint >> 8) & 255,
+        b: bigint & 255
+    }
+}
+
+exports._getDistance = function _getDistance(coordA, coordB) {
+    const disX = Math.abs(coordB[0] - coordA[0]);
+    const disY = Math.abs(coordB[1] - coordB[1]);
+    const distance = Math.sqrt(((disX * disX) + (disY * disY)))
+
+    return distance;
+}
