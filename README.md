@@ -11,7 +11,8 @@ Feel free to open issues to help us!
 
 ## Features
 
-* High performance creation, modification and parsing of PDF files and streams
+* Javascript with C++ library.
+* High performance creation, modification and parsing of PDF files and streams.
 * Easy to create and modify PDF files.
 * Reusable components.
 
