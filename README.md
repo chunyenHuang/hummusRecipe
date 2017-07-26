@@ -19,6 +19,7 @@ Feel free to open issues to help us!
 ## Instructions
 
 * [GetStarted](#getstarted)
+* [Coordinate System](#coordinate-system)
 * [Create a new PDF](#create-a-new-pdf)
 * [Modify an existing PDF](#modify-an-existing-pdf)
 * [Append PDF](#append-pdf)
@@ -31,6 +32,20 @@ Feel free to open issues to help us!
 
 ```bash
 npm i hummus-recipe --save
+```
+
+## Coordinate System
+
+In order to make things easier, I use `Left-Top` as center `[0,0]` instead of `Left-Bottom`.
+You may write and edit the pdf like you write things on papers from the left top corner.
+It is similar to the [Html Canvas](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage)
+
+```
+pdfDoc
+    .text('start from here', 0, 0)
+    .text('next line', 0, 20)
+    .text('some other texts', 100, 100)
+    ...
 ```
 
 ## Create a new PDF
