@@ -1,5 +1,5 @@
 const path = require('path');
-const HummusRecipe = require('../bin');
+const HummusRecipe = require('../lib');
 
 describe('Create', () => {
     it('blank pdf', (done) => {
