@@ -14,6 +14,7 @@
     "hummus"
   ],
   "scripts": {
+    "jsdoc": "jsdoc -c conf.json",
     "test": "mocha ./tests/*.js --timeout 300000",
     "test-c": "nodemon --exec \"npm test || true\""
   },
@@ -29,6 +30,8 @@
     "hummus": "^1.0.77"
   },
   "devDependencies": {
+    "docdash": "^0.4.0",
+    "jsdoc": "^3.5.3",
     "mocha": "^3.4.2"
   }
 }
