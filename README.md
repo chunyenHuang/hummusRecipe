@@ -16,6 +16,10 @@ Feel free to open issues to help us!
 * Easy to create and modify PDF files.
 * Reusable components.
 
+## Documentation
+
+* [Hummus Recipe Documentation](https://chunyenhuang.github.io/hummusRecipe/Recipe.html)
+
 ## Instructions
 
 * [GetStarted](#getstarted)
@@ -26,7 +30,6 @@ Feel free to open issues to help us!
 * [Insert PDF](#insert-pdf)
 * [Overlay PDF](#overlay-pdf)
 * [Encryption](#encryption)
-* [Options](#options)
 
 ## GetStarted
 
@@ -179,50 +182,3 @@ pdfDoc
     })
     .endPDF();
 ```
-
-## Options
-
-### Vector Options
-
-```bash
-    color: HexColor or RGB
-    storke: HexColor or RGB
-    fill: HexColor or RGB
-
-    lineWidth: Float
-    opacity: Float 0-1
-```
-
-NOTE: stroke or fill will overwrite the color properties.
-
-### Text Options
-
-```bash
-    color: HexColor or RGB
-    size: Float
-    font: ['Arial', 'Courier New', 'Helvetica'...] # ./fonts
-    align: 'center center' # 'x y' - center, right, bottom
-```
-
-### Annotation Options
-
-```bash
-    title: String
-    date: Date
-    open: Boolean
-    flag: String # 'readonly', 'norotate' ...
-    richText: # coming soon
-```
-
-### Image Options
-
-```bash
-    width: Float
-    height: Float
-    scale: Float
-    keepAspectRatio: Boolean # default: true
-    opacity: Float 0-1
-    align: 'center center' # alignment from the x, y
-```
-
-NOTE: scale will use the original width and height.
