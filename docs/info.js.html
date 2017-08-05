@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>insertPage.js - Documentation</title>
+    <title>info.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">insertPage.js</h1>
+    <h1 class="page-title">info.js</h1>
     
 
     
@@ -37,77 +37,88 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const hummus = require('hummus');
-const fs = require('fs');
-/**
- * Insert a page from the other pdf
- * @name insertPage
- * @function
+            <pre class="prettyprint source linenums"><code>/**
+ * @name info
+ * @desc Add information to pdf
  * @memberof Recipe
- * @param {number} afterPageNumber - The page number for insertion.
- * @param {string} pdfSrc - The path for the other pdf
- * @param {number} srcPageNumber - The page number to be insterted from the other pdf.
+ * @function
+ * @param {Object} [options] - The options
+ * @param {number} [options.version] - The pdf version
+ * @param {string} [options.author] - The author
+ * @param {string} [options.title] - The title 
+ * @param {string} [options.subject] - The subject
+ * @param {string[]} [options.keywords] - The array of keywords
  */
-exports.insertPage = function insertPage(afterPageNumber, pdfSrc, srcPageNumber) {
-    if (!afterPageNumber || isNaN(afterPageNumber)) return;
-    this.needToInsertPages = true;
-    if (pdfSrc &amp;&amp; srcPageNumber) {
-        this.insertInformation = this.insertInformation || {};
-        this.insertInformation[afterPageNumber] = this.insertInformation[afterPageNumber] || [];
-        this.insertInformation[afterPageNumber].push({
-            afterPageNumber,
-            pdfSrc,
-            srcPageNumber
-        });
+exports.info = function _writeInfo(options = {}) {
+    let oldInfo;
+    if (!this.isNewPDF) {
+        // reuse copyCtx?
+        const copyCtx = this.writer.createPDFCopyingContext(this.src);
+        oldInfo = copyCtx.getSourceDocumentParser().queryDictionaryObject(
+            copyCtx.getSourceDocumentParser().getTrailer(), "Info"
+        ).toJSObject();
     }
+    const infoDictionary = this.writer.getDocumentContext().getInfoDictionary();
+    const fields = [{
+        key: 'author',
+        type: 'string'
+    }, {
+        key: 'title',
+        type: 'string'
+    }, {
+        key: 'subject',
+        type: 'string'
+    }, {
+        key: 'keywords',
+        type: 'array'
+        // }, {
+        //     key: 'createdAt',
+        //     type: 'date',
+        //     func: 'setCreationDate'
+        // }, {
+        //     key: 'modifiedAt',
+        //     type: 'date',
+        //     func: 'setModDate'
+    }];
+
+    if (this.isNewPDF) {
+        infoDictionary.setCreationDate(new Date());
+    }
+
+    infoDictionary.setModDate(new Date());
+    infoDictionary.producer = 'PDFHummus (https://github.com/galkahana/HummusJS)';
+    infoDictionary.creator = 'Hummus-Recipe (https://github.com/chunyenHuang/hummusRecipe)';
+
+    fields.forEach((item) => {
+        value = options[item.key];
+        if (!value) {
+            return;
+        } else {
+            switch (item.type) {
+                case 'string':
+                    value = value.toString();
+                    break;
+                case 'date':
+                    value = new Date(value);
+                    break;
+                case 'array':
+                    value = (Array.isArray(value)) ? value : [value];
+                    break;
+                default:
+            }
+        }
+        if (item.func) {
+            infoDictionary[item.func](value);
+        } else {
+            infoDictionary[item.key] = value;
+        }
+    });
     return this;
 }
 
-exports._insertPages = function _insertPages() {
-    if (!this.insertInformation) {
-        return;
-    }
-    let pagesForInsert = Object.keys(this.insertInformation).sort((a, b) => {
-        return (a > b) ? 1 : -1;
-    }).map((num) => parseInt(num));
-    const unlinkList = [];
-    const tmp = this.output + '.tmp.pdf';
-    unlinkList.push(tmp);
-    fs.renameSync(this.output, tmp);
-
-    const pdfWriter = hummus.createWriter(this.output);
-    let totalPages = 0;
-    let lastInsertedOriginal = 0;
-    pagesForInsert.forEach((pageNumber) => {
-        const specificRanges = [
-            [lastInsertedOriginal, pageNumber - 1]
-        ];
-        pdfWriter.appendPDFPagesFromPDF(tmp, {
-            type: hummus.eRangeTypeSpecific,
-            specificRanges
-        });
-        lastInsertedOriginal = pageNumber;
-        totalPages++;
-
-        const toInserts = this.insertInformation[pageNumber];
-        toInserts.forEach((info) => {
-            const specificRanges = [
-                [info.srcPageNumber - 1, info.srcPageNumber - 1]
-            ];
-            pdfWriter.appendPDFPagesFromPDF(info.pdfSrc, {
-                type: hummus.eRangeTypeSpecific,
-                specificRanges
-            });
-            totalPages++;
-        });
-    });
-    pdfWriter.end();
-
-    unlinkList.forEach((item) => {
-        if (fs.existsSync(item)) {
-            fs.unlinkSync(item);
-        }
-    });
+exports.custom = function custom(key, value) {
+    const infoDictionary = this.writer.getDocumentContext().getInfoDictionary();
+    infoDictionary.addAdditionalInfoEntry(key.toString(), value.toString());
     return this;
 }
 </code></pre>

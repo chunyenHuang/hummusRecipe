@@ -73,7 +73,9 @@ describe('Create', () => {
                 font: 'Courier New',
                 align: 'center center'
             })
-            .comment('Feel free to open issues to help us!', 'center', 100)
+            .comment('Feel free to open issues to help us!', 'center', 100 , {
+                flag:'locked'
+            })
             .endPage()
             // 2nd page
             .createPage('A4', 90)

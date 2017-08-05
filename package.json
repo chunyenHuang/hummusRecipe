@@ -14,7 +14,7 @@
     "hummus"
   ],
   "scripts": {
-    "jsdoc": "jsdoc -c conf.json",
+    "jsdoc": "./node_modules/.bin/jsdoc -c conf.json",
     "test": "mocha ./tests/*.js --timeout 300000",
     "test-c": "nodemon --exec \"npm test || true\""
   },
