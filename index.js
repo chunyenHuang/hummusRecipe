@@ -1,2 +1,2 @@
-const bin = require('./bin');
+const bin = require('./lib');
 module.exports = bin;
