@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>info.js - Documentation</title>
+    <title>split.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">info.js</h1>
+    <h1 class="page-title">split.js</h1>
     
 
     
@@ -37,88 +37,28 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @name info
- * @desc Add information to pdf
- * @memberof Recipe
+            <pre class="prettyprint source linenums"><code>const hummus = require('hummus');
+const fs = require('fs');
+const path = require('path');
+
+/**
+ * Split the pdf
+ * @name encrypt
  * @function
- * @param {Object} [options] - The options
- * @param {number} [options.version] - The pdf version
- * @param {string} [options.author] - The author
- * @param {string} [options.title] - The title 
- * @param {string} [options.subject] - The subject
- * @param {string[]} [options.keywords] - The array of keywords
+ * @memberof Recipe
+ * @param {Object} options - The options
+ * @param {string} [options.password] - The password for viewing.
+ * @param {string} [options.ownerPassword] - The password for editing.
+ * @param {number} [options.userProtectionFlag] - The flag for the security level.
  */
-exports.info = function _writeInfo(options = {}) {
-    let oldInfo;
-    if (!this.isNewPDF) {
-        // reuse copyCtx?
-        const copyCtx = this.writer.createPDFCopyingContext(this.src);
-        oldInfo = copyCtx.getSourceDocumentParser().queryDictionaryObject(
-            copyCtx.getSourceDocumentParser().getTrailer(), "Info"
-        ).toJSObject();
+exports.split = function split(outputDir = '', prefix) {
+    prefix = prefix || this.filename;
+    for (let i = 0; i &lt; this.metadata.pages; i++) {
+        const newPdf = path.join(outputDir, `${prefix}-${i+1}.pdf`);
+        const pdfWriter = hummus.createWriter(newPdf);
+        pdfWriter.createPDFCopyingContext(this.pdfReader).appendPDFPageFromPDF(i);
+        pdfWriter.end();
     }
-    const infoDictionary = this.writer.getDocumentContext().getInfoDictionary();
-    const fields = [{
-        key: 'author',
-        type: 'string'
-    }, {
-        key: 'title',
-        type: 'string'
-    }, {
-        key: 'subject',
-        type: 'string'
-    }, {
-        key: 'keywords',
-        type: 'array'
-        // }, {
-        //     key: 'createdAt',
-        //     type: 'date',
-        //     func: 'setCreationDate'
-        // }, {
-        //     key: 'modifiedAt',
-        //     type: 'date',
-        //     func: 'setModDate'
-    }];
-
-    if (this.isNewPDF) {
-        infoDictionary.setCreationDate(new Date());
-    }
-
-    infoDictionary.setModDate(new Date());
-    infoDictionary.producer = 'PDFHummus (https://github.com/galkahana/HummusJS)';
-    infoDictionary.creator = 'Hummus-Recipe (https://github.com/chunyenHuang/hummusRecipe)';
-
-    fields.forEach((item) => {
-        value = options[item.key];
-        if (!value) {
-            return;
-        } else {
-            switch (item.type) {
-                case 'string':
-                    value = value.toString();
-                    break;
-                case 'date':
-                    value = new Date(value);
-                    break;
-                case 'array':
-                    value = (Array.isArray(value)) ? value : [value];
-                    break;
-                default:
-            }
-        }
-        if (item.func) {
-            infoDictionary[item.func](value);
-        } else {
-            infoDictionary[item.key] = value;
-        }
-    });
-    return this;
-}
-
-exports.custom = function custom(key, value) {
-    const infoDictionary = this.writer.getDocumentContext().getInfoDictionary();
-    infoDictionary.addAdditionalInfoEntry(key.toString(), value.toString());
     return this;
 }
 </code></pre>
