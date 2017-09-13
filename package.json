@@ -27,11 +27,11 @@
   },
   "homepage": "https://github.com/chunyenHuang/hummusRecipe#readme",
   "dependencies": {
-    "hummus": "^1.0.79"
+    "hummus": "^1.0.81"
   },
   "devDependencies": {
     "docdash": "^0.4.0",
     "jsdoc": "^3.5.3",
-    "mocha": "^3.4.2"
+    "mocha": "^3.5.3"
   }
 }

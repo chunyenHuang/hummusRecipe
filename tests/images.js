@@ -7,6 +7,7 @@ describe('Modify', () => {
         const src = path.join(__dirname, 'materials/test.pdf')
         const output = path.join(__dirname, `output/${taskAI}.pdf`);
         const myCats = path.join(__dirname, 'materials/myCats.jpg');
+        const wiki = path.join(__dirname, 'materials/wiki.png');
 
         const recipe = new HummusRecipe(src, output);
         recipe
@@ -14,12 +15,27 @@ describe('Modify', () => {
             .image(myCats, 'center', 'center', {
                 width: 300,
                 height: 300,
-                opacity: 0.5,
                 keepAspectRatio: false,
+                opacity: 0.4,
                 align: 'center center'
             })
-            .image(myCats, 'center', 100, {
+            .image(myCats, 'center', 600, {
                 scale: 0.1,
+                align: 'center center'
+            })
+            .image(wiki, 0, 0,{
+                width: 300,
+                height: 300,
+                opacity: 0.7
+            })
+            .endPage()
+            .editPage(2)
+            .rectangle(0, 0, 800, 800, {
+                color: [22, 48, 9]
+            })
+            .image(wiki, 'center', 'center',{
+                width: 300,
+                height: 300,
                 align: 'center center'
             })
             .endPage()
