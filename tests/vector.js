@@ -50,6 +50,11 @@ describe('Vector', () => {
                 stroke: '#0000ff',                
                 opacity: 0.75
             })
+            .line([
+                [0, 500], [20, 400], [1234, 13], [125, 800], [28, 10]
+            ], {
+                stroke: '#ff0000'
+            })
             .comment('Add 1st comment annotaion', 200, 300)
             .endPage()
         recipe

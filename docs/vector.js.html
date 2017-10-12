@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -76,8 +76,33 @@ exports.lineTo = function lineTo(x, y, options = {}) {
     const { nx, ny } = this._calibrateCoorinate(x, y);
     const context = this.pageContext;
     const pathOptions = this._getPathOptions(options);
+    pathOptions.type = 'stroke';
+    pathOptions.color = pathOptions.stroke || pathOptions.color;
+
     context.drawPath(fromX, fromY, nx, ny, pathOptions);
     this.moveTo(x, y);
+    return this;
+}
+
+/**
+ * Draw a line 
+ * @name line
+ * @function
+ * @memberof Recipe
+ * @param {number[]} coordinates - The array of coordinate [[x,y], [m,n]]
+ * @param {Object} [options] - The options
+ * @param {string|number[]} [options.color] - HexColor or RGB
+ * @param {string|number[]} [options.stroke] - HexColor or RGB
+ * @param {number} [options.lineWidth] - The line width
+ */
+exports.line = function line(coordinates = [], options = {}) {
+    coordinates.forEach((coordinate, index) => {
+        if (index === 0) {
+            this.moveTo(coordinate[0], coordinate[1]);
+        } else {
+            this.lineTo(coordinate[0], coordinate[1], options);
+        }
+    });
     return this;
 }
 
@@ -109,8 +134,8 @@ exports.polygon = function polygon(coordinates = [], options = {}) {
         boundBox[3] = (boundBox[3] &lt; coord[1]) ? coord[1] : boundBox[3];
     });
 
-    this.pauseContext();
     const pathOptions = this._getPathOptions(options);
+    this.pauseContext();
     const margin = pathOptions.width * 2;
     const width = Math.abs(boundBox[2] - boundBox[0]) + margin * 2;
     const height = Math.abs(boundBox[3] - boundBox[1]) + margin * 2;
@@ -161,6 +186,7 @@ exports.polygon = function polygon(coordinates = [], options = {}) {
     xObjectCtx.Q();
     xObject.end();
     this.resumeContext();
+
     const { nx, ny } = this._calibrateCoorinate(startX, startY + height);
     const context = this.pageContext;
     context.q()
@@ -306,7 +332,7 @@ exports.fillAndStroke = function fillAndStroke(color) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Sat Sep 16 2017 22:40:34 GMT-0700 (PDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Wed Oct 11 2017 20:46:15 GMT-0700 (PDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

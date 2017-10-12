@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -1111,7 +1111,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vector.js.html">vector.js</a>, <a href="vector.js.html#line135">line 135</a>
+        <a href="vector.js.html">vector.js</a>, <a href="vector.js.html#line161">line 161</a>
     </li></ul></dd>
     
 
@@ -3623,6 +3623,315 @@
 
     
 
+    <h4 class="name" id=".line"><span class="type-signature">(static) </span>line<span class="signature">(coordinates, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vector.js.html">vector.js</a>, <a href="vector.js.html#line48">line 48</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Draw a line</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>coordinates</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The array of coordinate [[x,y], [m,n]]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The options</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>color</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>HexColor or RGB</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stroke</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Array.&lt;number></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>HexColor or RGB</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lineWidth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The line width</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id=".lineTo"><span class="type-signature">(static) </span>lineTo<span class="signature">(x, y, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
@@ -4379,7 +4688,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vector.js.html">vector.js</a>, <a href="vector.js.html#line45">line 45</a>
+        <a href="vector.js.html">vector.js</a>, <a href="vector.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -4757,7 +5066,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vector.js.html">vector.js</a>, <a href="vector.js.html#line184">line 184</a>
+        <a href="vector.js.html">vector.js</a>, <a href="vector.js.html#line210">line 210</a>
     </li></ul></dd>
     
 
@@ -6075,7 +6384,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Sat Sep 16 2017 22:40:34 GMT-0700 (PDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Wed Oct 11 2017 20:46:15 GMT-0700 (PDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
