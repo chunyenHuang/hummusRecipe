@@ -10,7 +10,7 @@ describe('Vector', () => {
             .editPage(1)
             .text('Add vectors', 'center', 100)
             .circle('center', 100, 60, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
-            .circle('center', 100, 30, { stroke: '#0032FF' })
+            .circle('center', 100, 30, { stroke: '#0032FF', dash: [5, 5] })
             .rectangle(50, 50, 50, 50, {
                 color: [255, 0, 255],
                 opacity: 0.2
@@ -48,7 +48,8 @@ describe('Vector', () => {
             ], {
                 fill: '#0000ff',
                 stroke: '#0000ff',
-                opacity: 0.75
+                opacity: 0.75,
+                dash: [12, 12]
             })
             .polygon([
                 [300, 300],
@@ -60,7 +61,10 @@ describe('Vector', () => {
                 opacity: 0.75
             })
             .rectangle(150, 600, 300, 300, {
-                color: '#3252d3'
+                color: '#3252d3',
+                stroke: '#084323',
+                lineWidth: 10,
+                dash: [5, 5]
             })
             .line([
                 [0, 500],
@@ -69,7 +73,8 @@ describe('Vector', () => {
                 [125, 800],
                 [28, 10]
             ], {
-                stroke: '#ff0000'
+                stroke: '#ff0000',
+                dash: [3, 3]
             })
             .comment('Add 1st comment annotaion', 200, 300)
             .endPage()
