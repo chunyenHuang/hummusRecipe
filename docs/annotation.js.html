@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li></ul>
 </nav>
 
 <div id="main">
@@ -49,6 +49,7 @@
  * @param {string} [options.title] - The title.
  * @param {string} [options.date] - The date.
  * @param {boolean} [options.open=false] - Open the annotation by default?
+ * @param {boolean} [options.richText] - Display with rich text format, text will be transformed automatically, or you may pass in your own rich text starts with "&lt;?xml..."
  * @param {'invisible'|'hidden'|'print'|'nozoom'|'norotate'|'noview'|'readonly'|'locked'|'togglenoview'} [options.flag] - The flag property
  */
 exports.comment = function comment(text = '', x, y, options = {}) {
@@ -103,7 +104,6 @@ exports._annot = function _annot(subtype, args = {}, pageNumber) {
         flag: '' // 'readonly'
     }, options);
 
-    const textContent = this.writer.createPDFTextString(text).toBytesArray();
     const position = [nx, ny, nx, ny];
 
     this.dictionaryContext
@@ -115,8 +115,6 @@ exports._annot = function _annot(subtype, args = {}, pageNumber) {
         .writeBooleanValue(true)
         .writeKey('Rect')
         .writeRectangleValue(position)
-        .writeKey('Contents')
-        .writeLiteralStringValue(textContent)
         .writeKey('Subj')
         .writeLiteralStringValue(this.writer.createPDFTextString(params.subject).toBytesArray())
         .writeKey('T')
@@ -126,9 +124,27 @@ exports._annot = function _annot(subtype, args = {}, pageNumber) {
         .writeKey('Open')
         .writeBooleanValue(params.open)
         .writeKey('F')
-        .writeNumberValue(getFlagBitNumberByName(params.flag))
+        .writeNumberValue(getFlagBitNumberByName(params.flag));
 
-        if (params.icon) {
+    /**
+     * Rich Text Strings
+     * 12.7.3.4
+     */
+    if (text &amp;&amp; options.richText) {
+        const richText = (text.substring(0, 4) !== '&lt;?xml') ? contentToRC(text) : text;
+        const richTextContent = this.writer.createPDFTextString(richText).toBytesArray();
+        this.dictionaryContext
+            .writeKey('RC')
+            .writeLiteralStringValue(richTextContent);
+    } else {
+        const textContent = this.writer.createPDFTextString(text).toBytesArray();
+        this.dictionaryContext
+            .writeKey('Contents')
+            .writeLiteralStringValue(textContent)
+    }
+
+    /* Display Icon */
+    if (params.icon) {
         this.dictionaryContext
             .writeKey('Name')
             .writeNameValue(params.icon);
@@ -194,8 +210,12 @@ exports._endDictionary = function _endDictionary(pageNumber) {
     this.annotations[pageIndex].push(this.dictionaryObject);
 }
 
+/**
+ * Get Flag Bit by Name
+ * @description 12.5.3 Annotation Flags
+ * @param {string} name 
+ */
 function getFlagBitNumberByName(name) {
-    // 12.5.3 Annotation Flags
     switch (name.toLowerCase()) {
         case 'invisible':
             return 1;
@@ -222,6 +242,34 @@ function getFlagBitNumberByName(name) {
             return 0;
     }
 }
+
+/**
+ * Text Strings to Rich Text Strings
+ * @todo Fix display issue for ol/ul in richText
+ * @param {string} content 
+ * @description Support XHTML Elements:  '&lt;p>' | '&lt;span>' | '&lt;b>' | '&lt;i>'
+ * @description Support CSS2 Style: 'text-align' | 'vertical-align' | 'font-size' | 'font-style' | 'font-weight' | 'font-family' | 'font' | 'color' | 'text-decoration' | 'font-stretch'
+ */
+function contentToRC(content) {
+    content = content.replace('&amp;nbsp;', ' ');
+    content = content.replace(/\r?\n|\r|\t/g, '');
+    let richText =
+        '&lt;?xml version=\"1.0\"?>' +
+        '&lt;body ' +
+        'xmlns=\"http://www.w3.org/1999/xhtml\"' +
+        'xmlns:xga=\"http://www.xfa.org/schema/xfa-data/1.0/\" ' +
+        'xfa:contentType=\"text/html\" ' +
+        'xfa:APIVersion=\"Acrobat:8.0.0\" ' +
+        'xfa:spec=\"2.4\" ' +
+        '>' +
+        content +
+        '&lt;/body>';
+    richText = richText
+        .replace(/&lt;li>/g, '&lt;p> • ')
+        .replace(/&lt;(\/)li>/g, '&lt;/p>')
+        .replace(/&lt;(\/)p>/g, '&lt;/p>&lt;br/>');
+    return richText;
+}
 </code></pre>
         </article>
     </section>
@@ -234,7 +282,7 @@ function getFlagBitNumberByName(name) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Wed Oct 11 2017 20:46:15 GMT-0700 (PDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Fri Oct 13 2017 21:39:50 GMT-0700 (PDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -28,7 +28,8 @@
   "homepage": "https://github.com/chunyenHuang/hummusRecipe#readme",
   "dependencies": {
     "hummus": "^1.0.81",
-    "linebreak": "^0.3.0"
+    "linebreak": "^0.3.0",
+    "xmldom": "^0.1.27"
   },
   "devDependencies": {
     "docdash": "^0.4.0",

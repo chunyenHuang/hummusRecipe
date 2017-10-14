@@ -15,6 +15,7 @@ Feel free to open issues to help us!
 * High performance creation, modification and parsing of PDF files and streams.
 * Easy to create and modify PDF files.
 * Reusable components.
+* Support Basic HTML elements to text
 
 ## Documentation
 
@@ -43,7 +44,7 @@ In order to make things easier, I use `Left-Top` as center `[0,0]` instead of `L
 You may write and edit the pdf like you write things on papers from the left top corner.
 It is similar to the [Html Canvas](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage)
 
-```
+```javascript
 pdfDoc
     .text('start from here', 0, 0)
     .text('next line', 0, 20)
@@ -93,8 +94,26 @@ pdfDoc
     .text('Welcome to Hummus-Recipe', 'center', 250, {
         color: '066099',
         fontSize: 30,
-        font: 'Courier New',
+        bold: true,
+        font: 'Helvatica',
         align: 'center center'
+    })
+    .text('some text box', 450, 400, {
+        color: '066099',
+        fontSize: 20,
+        font: 'Courier New',
+        textBox: {
+            width: 150,
+            lineHeight: 16,
+            padding: [5, 15],
+            style: {
+                lineWidth: 1,
+                stroke: '#00ff00',
+                fill: '#ff0000',
+                dash: [20, 20],
+                opacity: 0.1
+            }
+        }
     })
     .comment('Feel free to open issues to help us!', 'center', 100)
     .endPage()

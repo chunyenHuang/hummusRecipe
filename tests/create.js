@@ -70,8 +70,26 @@ describe('Create', () => {
             .text('Welcome to Hummus-Recipe', 'center', 250, {
                 color: '066099',
                 fontSize: 30,
-                font: 'Courier New',
+                bold: true,
+                font: 'Helvatica',
                 align: 'center center'
+            })
+            .text('some text box', 450, 400, {
+                color: '066099',
+                fontSize: 20,
+                font: 'Courier New',
+                textBox: {
+                    width: 150,
+                    lineHeight: 16,
+                    padding: [5, 15],
+                    style: {
+                        lineWidth: 1,
+                        stroke: '#00ff00',
+                        fill: '#ff0000',
+                        dash: [20, 20],
+                        opacity: 0.1
+                    }
+                }
             })
             .comment('Feel free to open issues to help us!', 'center', 100 , {
                 flag:'locked'

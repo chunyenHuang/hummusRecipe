@@ -1,5 +1,7 @@
+const fs = require('fs');
 const path = require('path');
 const HummusRecipe = require('../lib');
+const htmlCodes = fs.readFileSync(path.join(__dirname, './materials/text.html'), 'utf8');
 
 describe('Text', () => {
     it('Add text', (done) => {
@@ -8,7 +10,82 @@ describe('Text', () => {
         const recipe = new HummusRecipe(src, output);
         recipe
             .editPage(1)
-            .text('Add text', 'center', 100)
+            .circle('center', 100, 5, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
+            .text('Add text', 'center', 100, {
+                bold: true
+            })
+            .text('Add text', 'center', 120, {
+                italic: true
+            })
+            .text('Add text', 'center', 160, {
+                bold: true,
+                italic: true,
+                size: 20,
+                color: '#ff0000'
+            })
+            .text('Add text', 'center', 250, {
+                font: 'Arial',
+                size: 20,
+                color: '#ff0000'
+            })
+            .text('Add text', 'center', 250, {
+                font: 'Arial',
+                size: 20,
+                color: '#ff0000'
+            })
+            .text('Add text', 'center', 270, {
+                font: 'Courier New',
+                size: 20,
+                color: '#ff0000'
+            })
+            .text('Add text', 'center', 290, {
+                font: 'Georgia',
+                size: 20,
+                color: '#ff0000'
+            })
+            .text('Add text', 'center', 310, {
+                font: 'Roboto',
+                size: 20,
+                color: '#ff0000'
+            })
+            .endPage()
+            .endPDF(done);
+    });
+
+    it('Add text with html codes', (done) => {
+        const src = path.join(__dirname, 'materials/test.pdf')
+        const output = path.join(__dirname, `output/Add text with html codes.pdf`);
+        const recipe = new HummusRecipe(src, output);
+        recipe
+            .editPage(1)
+            .text(htmlCodes, 0, 0, {
+                html: true,
+            })
+            .endPage()
+            .endPDF(done);
+    });
+
+    it('Add text with html codes inside textbox', (done) => {
+        const src = path.join(__dirname, 'materials/test.pdf')
+        const output = path.join(__dirname, `output/Add text with html codes inside textbox.pdf`);
+        const recipe = new HummusRecipe(src, output);
+        recipe
+            .editPage(1)
+            .text(htmlCodes, 10, 10, {
+                html: true,
+                textBox: {
+                    width: 590,
+                    padding: [15, 50],
+                    lineHeight: 10,
+                    style: {
+                        lineWidth: 1,
+                        stroke: '#0000ff',
+                        fill: '#ffff00',
+                        dash: [10, 10],
+                        opacity: 0.3
+                    }
+                },
+            })
             .endPage()
             .endPDF(done);
     });
@@ -26,10 +103,10 @@ describe('Text', () => {
             .circle('center', 400, 10, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
             .text(textContent, 'center', 400, {
                 textBox: {
-                    width: 400,
+                    width: 500,
                     lineHeight: 16,
                     minHeight: 300,
-                    padding: 15,
+                    padding: [15, 30, 30],
                     style: {
                         lineWidth: 5,
                         fill: '#813b00',
@@ -62,12 +139,12 @@ describe('Text', () => {
                 align: 'right'
             })
             .circle(350, 450, 10, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
-            .text('Fix height', 350, 450, {
+            .text('Fix height 200', 350, 450, {
                 textBox: {
                     width: 200,
                     lineHeight: 16,
                     height: 200,
-                    padding: 15,
+                    padding: [5, 15],
                     style: {
                         lineWidth: 1,
                         stroke: '#00ff00',
