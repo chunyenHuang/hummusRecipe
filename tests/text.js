@@ -74,8 +74,8 @@ describe('Text', () => {
             .text(htmlCodes, 10, 10, {
                 html: true,
                 textBox: {
-                    width: 590,
-                    padding: [15, 50],
+                    width: 450,
+                    padding: [15, 20],
                     lineHeight: 10,
                     style: {
                         lineWidth: 1,
@@ -106,6 +106,7 @@ describe('Text', () => {
                     width: 500,
                     lineHeight: 16,
                     minHeight: 300,
+                    textAlign: 'center',                                        
                     padding: [15, 30, 30],
                     style: {
                         lineWidth: 5,
@@ -118,14 +119,15 @@ describe('Text', () => {
                 color: '#813b00',
                 align: 'center bottom'
             })
-            .circle('center', 450, 10, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
-            .text(textContent, 'center', 450, {
+            .circle(500, 550, 10, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
+            .text(textContent, 500, 550, {
                 textBox: {
                     width: 400,
                     lineHeight: 30,
                     // height: 100,
                     minHeight: 300,
                     padding: 15,
+                    textAlign: 'right',                    
                     style: {
                         lineWidth: 1,
                         stroke: '#0000ff',
@@ -145,6 +147,7 @@ describe('Text', () => {
                     lineHeight: 16,
                     height: 200,
                     padding: [5, 15],
+                    textAlign: 'left',
                     style: {
                         lineWidth: 1,
                         stroke: '#00ff00',
