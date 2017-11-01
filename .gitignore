@@ -1,6 +1,7 @@
 build
 .DS_Store
 tests/output/**/*.pdf
+tests/materials/fonts
 
 node_modules
 etc
