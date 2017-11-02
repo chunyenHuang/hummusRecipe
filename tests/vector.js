@@ -6,35 +6,67 @@ describe('Vector', () => {
         const src = path.join(__dirname, 'materials/test.pdf')
         const output = path.join(__dirname, `output/Add vectors.pdf`);
         const recipe = new HummusRecipe(src, output);
+        const { width, height } = recipe.pageInfo(1);
         recipe
             .editPage(1)
-            .circle('center', 100, 60, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
-            .circle('center', 100, 30, { stroke: '#0032FF', dash: [5, 5] })
-            .rectangle(50, 50, 50, 50, {
+            .rectangle(0, 0, width, height, {
+                color: [255, 0, 0],
+                opacity: 0.1
+            })
+            .rectangle(500, 50, 50, 50, {
                 color: [255, 0, 255],
                 opacity: 0.2
             })
-            .rectangle(150, 50, 50, 50, {
+            .rectangle(500, 150, 50, 50, {
                 color: [255, 0, 255],
                 opacity: 0.4
             })
-            .rectangle(250, 50, 50, 50, {
+            .rectangle(500, 250, 50, 50, {
                 color: [255, 0, 255],
                 opacity: 0.6
             })
+            .rectangle(500, 350, 50, 50, {
+                color: '#3252d3',
+                stroke: '#084323',
+                lineWidth: 10,
+                dash: [5, 5]
+            })
+            .rectangle(500, 450, 50, 50, {
+                color: [255, 0, 255],
+                opacity: 0.6
+            })
+            .rectangle(475, 475, 50, 50, {
+                opacity: 0.3,
+                fill: [255, 0, 0],
+                stroke: [255, 0, 255]
+            })
+            .rectangle(475, 475, 50, 50, {
+                opacity: 0.3,
+                lineWidth: 5,                
+                fill: [255, 255, 255],
+                stroke: [255, 0, 255]
+            })
+            .rectangle(525, 475, 50, 50, {
+                opacity: 0.8,
+                lineWidth: 3,
+                stroke: [255, 0, 255],
+                dash: [5, 5]
+            })
+            .circle('center', 100, 60, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
+            .circle('center', 100, 30, { stroke: '#0032FF', dash: [5, 5] })
             .polygon([
+                [0, 0],
                 [0, 300],
-                [300, 300],
-                [300, 0]
+                [200, 300]
             ], {
-                fill: '#00ff00',
+                fill: '#000000',
                 stroke: '#00ff00',
                 opacity: 0.2
             })
             .polygon([
-                [100, 100],
-                [300, 300],
-                [300, 100]
+                [100, 300],
+                [200, 300],
+                [100, 100]                
             ], {
                 fill: '#ff0000',
                 stroke: '#ff0000',
@@ -43,11 +75,11 @@ describe('Vector', () => {
             .polygon([
                 [60, 60],
                 [60, 300],
-                [300, 100]
+                [200, 300]
             ], {
-                fill: '#0000ff',
-                stroke: '#0000ff',
-                opacity: 0.75,
+                fill: '#00d2ff',
+                stroke: '#033002',
+                opacity: 0.35,
                 dash: [12, 12]
             })
             .polygon([
@@ -59,11 +91,17 @@ describe('Vector', () => {
                 stroke: '#0000ff',
                 opacity: 0.75
             })
-            .rectangle(150, 600, 300, 300, {
-                color: '#3252d3',
-                stroke: '#084323',
-                lineWidth: 10,
-                dash: [5, 5]
+            .polygon([
+                [250, 650],
+                [350, 680],
+                [300, 700],
+                [550, 700],
+                [580, 750],
+                [250, 750],
+            ], {
+                fill: '#0000ff',
+                stroke: '#0000ff',
+                opacity: 0.75
             })
             .line([
                 [20, 20],
@@ -73,7 +111,7 @@ describe('Vector', () => {
                 [0, 60],
                 [20, 40]
             ], {
-                lineWidth: 10,                
+                lineWidth: 10,
                 dash: [0, 0]
             })
             .endPage()
