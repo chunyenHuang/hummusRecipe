@@ -1,6 +1,6 @@
 {
   "name": "hummus-recipe",
-  "version": "1.3.11",
+  "version": "1.3.12",
   "description": "A powerful PDF tool for NodeJS based on HummusJS",
   "author": "John Huang <little78926@gmail.com>",
   "license": "MIT",
