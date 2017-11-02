@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>overlay.js - Documentation</title>
+    <title>font.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">overlay.js</h1>
+    <h1 class="page-title">font.js</h1>
     
 
     
@@ -37,21 +37,38 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Overlay a pdf to the current pdf
- * @name overlay
+            <pre class="prettyprint source linenums"><code>const fs = require('fs');
+const path = require('path');
+/**
+ * Register a custom font
+ * @name registerFont
  * @function
  * @memberof Recipe
- * @param {string} pdfSrc - The path for the overlay pdf
- * @param {number} x - The coordinate x
- * @param {number} y - The coordinate y
+ * @param {string} fontName - The font name will be used in text
+ * @param {string} fontSrcPath - The path to the font file.
  */
-exports.overlay = function overlay(pdfSrc, x, y, options = {}) {
-    const { nx, ny } = this._calibrateCoorinate(x, y);
-    const context = this.pageContext;
-    context.drawImage(nx, ny, pdfSrc);
-    return this;
+exports.registerFont = function registerFont(fontName = '', fontSrcPath = '') {
+    return this._registerFont(fontName, fontSrcPath);
 }
+
+exports._loadFonts = function _loadFonts(fontSrcPath) {
+    const fontTypes = ['.ttf', '.ttc', '.otf'];
+    fs
+        .readdirSync(fontSrcPath)
+        .filter((file) => {
+            return fontTypes.includes(path.extname(file).toLowerCase());
+        })
+        .forEach((file) => {
+            const fontName = path.basename(file, path.extname(file));
+            return this._registerFont(fontName, path.join(fontSrcPath, file));
+        });
+};
+
+exports._registerFont = function _registerFont(fontName, fontSrcPath) {
+    this.fonts = this.fonts || {};
+    // check fontSrcPath
+    this.fonts[fontName.toLowerCase()] = fontSrcPath;
+};
 </code></pre>
         </article>
     </section>

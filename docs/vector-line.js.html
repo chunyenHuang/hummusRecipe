@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>overlay.js - Documentation</title>
+    <title>vector-line.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">overlay.js</h1>
+    <h1 class="page-title">vector-line.js</h1>
     
 
     
@@ -37,22 +37,81 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Overlay a pdf to the current pdf
- * @name overlay
+            <pre class="prettyprint source linenums"><code>const xObjectForm = require('./xObjectForm');
+
+/**
+ * move the current position to target position
+ * @name moveTo
  * @function
  * @memberof Recipe
- * @param {string} pdfSrc - The path for the overlay pdf
  * @param {number} x - The coordinate x
  * @param {number} y - The coordinate y
  */
-exports.overlay = function overlay(pdfSrc, x, y, options = {}) {
+exports.moveTo = function moveTo(x, y) {
     const { nx, ny } = this._calibrateCoorinate(x, y);
-    const context = this.pageContext;
-    context.drawImage(nx, ny, pdfSrc);
+    this._position = {
+        x: nx,
+        y: ny
+    };
     return this;
 }
-</code></pre>
+
+/**
+ * Draw a line from current position
+ * @name lineTo
+ * @function
+ * @memberof Recipe
+ * @param {number} x - The coordinate x
+ * @param {number} y - The coordinate y
+ * @param {Object} [options] - The options
+ * @param {string|number[]} [options.color] - HexColor or RGB
+ * @param {string|number[]} [options.stroke] - HexColor or RGB
+ * @param {string|number[]} [options.fill] - HexColor or RGB
+ * @param {number} [options.lineWidth] - The line width
+ * @param {number} [options.opacity] - The opacity
+ * @param {number[]} [options.dash] - The dash style [number, number]
+ */
+exports.lineTo = function lineTo(x, y, options = {}) {
+    const fromX = this._position.x;
+    const fromY = this._position.y;
+    const { nx, ny } = this._calibrateCoorinate(x, y);
+    const context = this.pageContext;
+    const pathOptions = this._getPathOptions(options);
+    pathOptions.type = 'stroke';
+    pathOptions.color = pathOptions.stroke || pathOptions.color;
+    context
+        .q()
+        .J(1)
+        .j(1)
+        .d(pathOptions.dash, pathOptions.dashPhase)
+        .drawPath(fromX, fromY, nx, ny, pathOptions)
+        .Q();
+    this.moveTo(x, y);
+    return this;
+}
+
+/**
+ * Draw a line 
+ * @name line
+ * @function
+ * @memberof Recipe
+ * @param {number[]} coordinates - The array of coordinate [[x,y], [m,n]]
+ * @param {Object} [options] - The options
+ * @param {string|number[]} [options.color] - HexColor or RGB
+ * @param {string|number[]} [options.stroke] - HexColor or RGB
+ * @param {number} [options.lineWidth] - The line width
+ * @param {number[]} [options.dash] - The dash style [number, number]
+ */
+exports.line = function line(coordinates = [], options = {}) {
+    coordinates.forEach((coordinate, index) => {
+        if (index === 0) {
+            this.moveTo(coordinate[0], coordinate[1]);
+        } else {
+            this.lineTo(coordinate[0], coordinate[1], options);
+        }
+    });
+    return this;
+}</code></pre>
         </article>
     </section>
 

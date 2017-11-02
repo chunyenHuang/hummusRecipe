@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>image.js - Documentation</title>
+    <title>text.helper.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">image.js</h1>
+    <h1 class="page-title">text.helper.js</h1>
     
 
     
@@ -37,110 +37,127 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const xObjectForm = require('./xObjectForm');
-
-/**
- * Place images to pdf
- * @name image
- * @function
- * @memberof Recipe
- * @param {string} imgSrc - The path for the image. [JPEG, PNG, TIFF]
- * @param {number} x - The coordinate x
- * @param {number} y - The coordinate y
- * @param {Object} [options] - The options
- * @param {number} [options.width] - The new width
- * @param {number} [options.height] - The new height
- * @param {number} [options.scale] - Scale the image from the original width and height.
- * @param {boolean} [options.keepAspectRatio=true] - Keep the aspect ratio.
- * @param {number} [options.opacity] - The opacity.
- * @param {string} [options.align] - 'center center'...
- */
-exports.image = function image(imgSrc, x, y, options = {}) {
-    const { width, height, offsetX, offsetY } = this._getImgOffset(imgSrc, options);
-    const imgOptions = {
-        transformation: {
-            fit: 'always',
-            // proportional: true,
-            width,
-            height
-        }
-    };
-    const { nx, ny } = this._calibrateCoorinate(x, y, offsetX, offsetY);
-
-    const gsId = this._getPathOptions(options).fillGsId;
-
-    let xObject = this.xObjects.find((element) => {
-        return element.get('name') == imgSrc;
-    });
-    if (!xObject) {
-        this.pauseContext();
-        xObject = new xObjectForm(this.writer, width, height);
-        xObject.getContentContext()
-            .q()
-            .gs(xObject.getGsName(gsId))
-            .drawImage(0, 0, imgSrc, imgOptions)
-            .Q();
-        xObject.end();
-        xObject.set('type', 'image');
-        xObject.set('name', imgSrc);
-        xObject.set('width', width);
-        xObject.set('height', height);
-        this.xObjects.push(xObject);
-        this.resumeContext();
+            <pre class="prettyprint source linenums"><code>exports.Word = class Word {
+    constructor(word, pathOptions) {
+        this._value = word;
+        this._pathOptions = pathOptions;
     }
 
-    const context = this.pageContext;
-    const ratioX = width / xObject.get('width');
-    const ratioY = height / xObject.get('height');
-    context.q()
-        // .gs(xObject.getGsName(gsId))
-        .cm(ratioX, 0, 0, ratioY, nx, ny)
-        .doXObject(xObject)
-        .Q();
+    get value() {
+        return this._value;
+    }
 
-    // context.drawImage(nx, ny, imgSrc, imgOptions);
-    return this;
+    get dimensions() {
+        if (this._dimensions) return this._dimensions;
+        this._dimensions = this._pathOptions.font.calculateTextDimensions(
+            this._value, this._pathOptions.size
+        );
+        return this._dimensions;
+    }
 }
 
-exports._getImgOffset = function _getImgOffset(imgSrc = '', options = {}) {
-    // set default to true
-    options.keepAspectRatio = (options.keepAspectRatio == void 0) ?
-        true : options.keepAspectRatio;
-    const dimensions = this.writer.getImageDimensions(imgSrc);
-    const ratio = dimensions.width / dimensions.height;
+exports.Line = class Line {
+    constructor(width, height, size, pathOptions) {
+        this._width = width || 999999999;
+        this._height = height;
+        this._pathOptions = pathOptions;
+        this.size = size || pathOptions.size;
+        this.wordObjects = [];
+    }
 
-    let width = dimensions.width;
-    let height = dimensions.height;
-    if (options.scale) {
-        width = width * options.scale;
-        height = height * options.scale;
-    } else
-    if (options.width &amp;&amp; !options.height) {
-        width = options.width;
-        height = options.width / ratio;
-    } else
-    if (!options.width &amp;&amp; options.height) {
-        width = options.height * ratio;
-        height = options.height;
-    } else
-    if (options.width &amp;&amp; options.height) {
-        if (!options.keepAspectRatio) {
-            width = options.width;
-            height = options.height;
-        } else {
-            // fit to the smaller
-            if (options.width / ratio &lt;= options.height) {
-                width = options.width;
-                height = options.width / ratio;
-            } else {
-                width = options.height * ratio;
-                height = options.height;
+    addWord(wordObject) {
+        this.wordObjects.push(wordObject);
+    }
+
+    canFit(wordObject) {
+        const tempValue = this.value + wordObject.value;
+        const toWidth = this._pathOptions.font.calculateTextDimensions(
+            tempValue, this.size
+        ).width;
+        return (toWidth &lt;= this.width);
+    }
+
+    get spaceWidth() {
+        return this._pathOptions.font.calculateTextDimensions(
+            'o', this.size
+        ).width * 1.1;
+    }
+
+    get value() {
+        const value = this.wordObjects.reduce((string, word) => {
+            string += word.value;
+            return string;
+        }, '');
+        return value;
+    }
+
+    get currentWidth() {
+        return this._pathOptions.font.calculateTextDimensions(
+            this.value, this.size
+        ).width;
+    }
+
+    get textWidth() {
+        return this.wordObjects.reduce((width, word) => {
+            width += word.dimensions.width;
+            return width;
+        }, 0);
+    }
+
+    get width() {
+        return this._width;
+    }
+
+    // dynamic adjust height based on word height?
+    get height() {
+        if (this._height) return this._height;
+        const toHeight = this._pathOptions.font.calculateTextDimensions(
+            this.value, this.size
+        ).height; // ymax
+        return toHeight + 20;
+    }
+}
+
+exports._getTextOffset = function _getTextOffset(text = '', options = {}) {
+    if (!options.size || !options.font) return;
+    let offsetX = 0;
+    let offsetY = 0;
+    const textDimensions = options.font.calculateTextDimensions(text, options.size);
+    if (options.align) {
+        const alignments = options.align.split(' ');
+        if (alignments[0]) {
+            switch (alignments[0]) {
+                case 'center':
+                    offsetX = -1 * textDimensions.width / 2;
+                    break;
+                case 'right':
+                    offsetX = textDimensions.width / 2;
+                    break;
+                default:
+            }
+        }
+        if (alignments[1]) {
+            switch (alignments[1]) {
+                case 'center':
+                    offsetY = -1 * textDimensions.yMax / 2;
+                    break;
+                case 'bottom':
+                    offsetY = textDimensions.yMax / 2;
+                    break;
+                default:
             }
         }
     }
-    let offsetX = 0;
-    let offsetY = -height;
+    return { offsetX, offsetY };
+}
 
+/**
+ * @todo handle page margin and padding
+ */
+exports._getTextBoxOffset = function _getTextBoxOffset(textBox, options = {}) {
+    let offsetX = 0;
+    let offsetY = -textBox.firstLineHeight;
+    const { width, height } = textBox;
     if (options.align) {
         const alignments = options.align.split(' ');
         if (alignments[0]) {
@@ -149,7 +166,7 @@ exports._getImgOffset = function _getImgOffset(imgSrc = '', options = {}) {
                     offsetX = -1 * width / 2;
                     break;
                 case 'right':
-                    offsetX = width / 2;
+                    offsetX = -width;
                     break;
                 default:
             }
@@ -157,16 +174,19 @@ exports._getImgOffset = function _getImgOffset(imgSrc = '', options = {}) {
         if (alignments[1]) {
             switch (alignments[1]) {
                 case 'center':
-                    offsetY = -1 * height / 2;
+                    offsetY = (textBox.isSimpleText) ?
+                        -textBox.firstLineHeight / 2 :
+                        height / 2 + offsetY;
                     break;
                 case 'bottom':
-                    offsetY = height / 2;
+                    offsetY = height + offsetY;
                     break;
                 default:
             }
         }
     }
-    return { width, height, offsetX, offsetY };
+
+    return { offsetX, offsetY };
 }
 </code></pre>
         </article>
