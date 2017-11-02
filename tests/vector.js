@@ -89,7 +89,7 @@ describe('Vector', () => {
             ], {
                 fill: '#0000ff',
                 stroke: '#0000ff',
-                opacity: 0.75
+                opacity: 0
             })
             .polygon([
                 [250, 650],
