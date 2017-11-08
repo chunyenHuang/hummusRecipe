@@ -41,6 +41,7 @@ describe('Rotation', () => {
                     bold: true,
                     font: 'Helvatica'
                 })
+                .comment('add comment', 0, 0)
                 .rectangle(0, 0, width / 2, height / 2, {
                     stroke: '#ff0000',
                     fill: '#000000',
@@ -50,9 +51,11 @@ describe('Rotation', () => {
                     color: '#0000ff',
                     opacity: 0.1
                 })
-                .comment('Feel free to open issues to help us!', 'center', 100, {
-                    flag: 'locked'
-                })
+                .comment('2', 'center', 100)
+                .comment('3', 'center', 300)
+                .comment('3', 300, 400)        
+                .comment('3', 400, 500)          
+                .comment('3', 500, 600)                                                
                 .endPage()
                 .endPDF(done);
         });
