@@ -27,9 +27,15 @@ describe('Modify', () => {
             .info({
                 author: 'Me'
             })
-            .editPage(1)
-            .rectangle(100, 100, 200, 200)
-            .endPage()
+            .endPDF(done);
+    });
+    it('print pdf structure', (done) => {
+        const file = 'test3';
+        const src = path.join(__dirname, `materials/${file}.pdf`)
+        const output = path.join(__dirname, `output/${file}.pdf`);
+        const recipe = new HummusRecipe(src, output);
+        recipe
+            .structure(path.join(__dirname, `output/${file}.txt`))
             .endPDF(done);
     });
 });

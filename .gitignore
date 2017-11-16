@@ -1,6 +1,8 @@
 build
 .DS_Store
 tests/output/**/*.pdf
+tests/output/**/*.txt
+tests/output/**/*.json
 tests/materials/fonts
 
 node_modules
