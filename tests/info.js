@@ -12,10 +12,23 @@ describe('Modify', () => {
                 title: 'Hello World'
             })
             .custom('some', 'thing?')
-            .editPage(1)            
-            .comment('Feel free to open issues to help us!', 'center', 100 , {
-                flag:'locked'
+            .editPage(1)
+            .comment('Feel free to open issues to help us!', 'center', 100, {
+                flag: 'locked'
             })
+            .endPage()
+            .endPDF(done);
+    });
+    it('Change info pdf', (done) => {
+        const src = path.join(__dirname, 'materials/test-info.pdf')
+        const output = path.join(__dirname, `output/change info with IndirectObjectReference.pdf`);
+        const recipe = new HummusRecipe(src, output);
+        recipe
+            .info({
+                author: 'Me'
+            })
+            .editPage(1)
+            .rectangle(100, 100, 200, 200)
             .endPage()
             .endPDF(done);
     });
