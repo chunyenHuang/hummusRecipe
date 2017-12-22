@@ -30,6 +30,7 @@ Feel free to open issues to help us!
 * [Append PDF](#append-pdf)
 * [Insert PDF](#insert-pdf)
 * [Overlay PDF](#overlay-pdf)
+* [Split PDF](#split-pdf)
 * [Encryption](#encryption)
 
 ## GetStarted
@@ -184,6 +185,18 @@ const pdfDoc = new HummusRecipe('input.pdf', 'output.pdf');
 
 pdfDoc
     .overlay('/overlayPDF.pdf')
+    .endPDF();
+```
+
+## Split PDF
+
+```javascript
+const HummusRecipe = require('hummus-recipe');
+const pdfDoc = new HummusRecipe('input.pdf');
+const outputDir = path.join(__dirname, 'output');
+
+pdfDoc
+    .split(outputDir, 'prefix')
     .endPDF();
 ```
 
