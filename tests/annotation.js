@@ -43,4 +43,37 @@ describe('Annotation', () => {
             .endPage()
             .endPDF(done);
     });
+    it('Add FreeText', (done) => {
+        const output = path.join(__dirname, 'output/Add FreeText.pdf');
+        const recipe = new HummusRecipe('new', output);
+        recipe
+            // 1st Page
+            .createPage('letter-size')
+            .annot(300, 300, 'FreeText', {
+                text: 'Yo yo yo'
+            })
+            .annot('center', 'center', 'FreeText', {
+                text: 'Do you have Free Style yo?',
+                width: 200,
+                height: 50
+            })
+            .endPage()
+            .endPDF(done);
+    });
+    // Ticket #20, need to link annotation to text
+    it('Add highlight', (done) => {
+        const output = path.join(__dirname, 'output/Add highlight.pdf');
+        const recipe = new HummusRecipe('new', output);
+        recipe
+            // 1st Page
+            .createPage('letter-size')
+            .text('Trace-based Just-in-Time Type Specialization for Dynamic Languages', 'center', 'center')
+            .annot('center', 'center', 'Highlight', {
+                text: 'Oh~la',
+                width: 200,
+                height: 50
+            })
+            .endPage()
+            .endPDF(done);
+    });
 });
