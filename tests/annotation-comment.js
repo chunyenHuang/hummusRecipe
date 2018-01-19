@@ -1,7 +1,7 @@
 const path = require('path');
 const HummusRecipe = require('../lib');
 
-describe('Annotation', () => {
+describe('Annotation: Comment', () => {
     it('Add comment', (done) => {
         const output = path.join(__dirname, 'output/Add comment.pdf');
         const recipe = new HummusRecipe('new', output);
