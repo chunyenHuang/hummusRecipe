@@ -103,6 +103,10 @@ pdfDoc
         color: '066099',
         fontSize: 20,
         font: 'Courier New',
+        strikeOut: true,
+        highlight: {
+            color: [255, 0, 0]
+        },
         textBox: {
             width: 150,
             lineHeight: 16,

@@ -20,7 +20,7 @@ describe('Annotation: Text Annotations', () => {
                 width: 200,
                 height: 18
             })
-            .circle(50, 150, 2, { stroke: '#3b7721'})
+            .circle(50, 150, 2, { stroke: '#3b7721' })
             .text('This text should be highlighted as well.', 50, 150, {
                 highlight: true,
                 size: 8
@@ -51,12 +51,15 @@ describe('Annotation: Text Annotations', () => {
                     text: 'StriketOut!'
                 }
             })
-            .text('This text should be striked out with custom value.', 50, 400, {
+            .text('This text should be striked out and highlighted.', 50, 400, {
                 strikeOut: {
                     color: [77, 77, 77],
                     text: 'StriketOut!'
                 },
-                size: 30
+                highlight: {
+                    color: [255, 0, 0]
+                },
+                size: 25
             })
             .endPage()
             .endPDF(done);
