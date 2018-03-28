@@ -66,11 +66,10 @@ describe('Text', () => {
     });
 
     it('Add text with html codes inside textbox', (done) => {
-        const src = path.join(__dirname, 'materials/test.pdf')
         const output = path.join(__dirname, `output/Add text with html codes inside textbox.pdf`);
-        const recipe = new HummusRecipe(src, output);
+        const recipe = new HummusRecipe('new', output);
         recipe
-            .editPage(1)
+            .createPage(600, 1200)
             .text(htmlCodes, 10, 10, {
                 html: true,
                 textBox: {
