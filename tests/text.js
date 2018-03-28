@@ -43,7 +43,7 @@ describe('Text', () => {
                 size: 20,
                 color: '#ff0000'
             })
-            .text('Add text', 'center', 310, {
+            .text('Add text\nsecond line\nnext line\n\n\n\nlast line', 'center', 310, {
                 font: 'Roboto',
                 size: 20,
                 color: '#ff0000'
@@ -106,7 +106,7 @@ describe('Text', () => {
                     width: 500,
                     lineHeight: 16,
                     minHeight: 300,
-                    textAlign: 'center',                                        
+                    textAlign: 'center',
                     padding: [15, 30, 30],
                     style: {
                         lineWidth: 5,
@@ -127,7 +127,7 @@ describe('Text', () => {
                     // height: 100,
                     minHeight: 300,
                     padding: 15,
-                    textAlign: 'right',                    
+                    textAlign: 'right',
                     style: {
                         lineWidth: 1,
                         stroke: '#0000ff',
