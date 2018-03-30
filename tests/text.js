@@ -4,6 +4,26 @@ const HummusRecipe = require('../lib');
 const htmlCodes = fs.readFileSync(path.join(__dirname, './materials/text.html'), 'utf8');
 
 describe('Text', () => {
+    it('Add watermark', (done) => {
+        const src = path.join(__dirname, 'materials/test.pdf')
+        const output = path.join(__dirname, `output/Add text - watermark.pdf`);
+        const recipe = new HummusRecipe(src, output);
+
+        const pages = recipe.metadata.pages;
+        for (let i = 1; i <= pages; i++) {
+            recipe
+                .editPage(i)
+                .text('WATERMARK', 'center', 'center', {
+                    bold: true,
+                    size: 60,
+                    color: '#0000FF',
+                    align: 'center center',
+                    opacity: 0.3
+                })
+                .endPage()
+        };
+        recipe.endPDF(done);
+    });
     it('Add text', (done) => {
         const src = path.join(__dirname, 'materials/test.pdf')
         const output = path.join(__dirname, `output/Add text.pdf`);
