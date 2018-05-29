@@ -97,7 +97,9 @@ pdfDoc
         fontSize: 30,
         bold: true,
         font: 'Helvatica',
-        align: 'center center'
+        align: 'center center',
+        opacity: 0.8,
+        rotation: 180
     })
     .text('some text box', 450, 400, {
         color: '066099',
