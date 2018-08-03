@@ -10,7 +10,7 @@ describe('Text Rotation', () => {
         const recipe = new HummusRecipe(src, output);
 
         const pages = recipe.metadata.pages;
-        const angles = [0, 0, 90, 180, 270, 360, -90, -180, -270, -360, 450];
+        const angles = [0, 0, 1, 45, 90, 180, 270, 360, -90, -180, -270, -360, 450];
         for (let i = 1; i <= pages; i++) {
             const angle = angles[i] || 0;
             recipe
