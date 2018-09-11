@@ -15,7 +15,7 @@ describe('Modify', () => {
         height: 300,
         keepAspectRatio: false,
         opacity: 0.4,
-        align: 'center center',
+        align: 'center center'
       })
       .endPage()
       .endPDF(done);
