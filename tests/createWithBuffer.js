@@ -5,12 +5,10 @@ const HummusRecipe = require('../lib');
 describe('Modify', () => {
   it('Create Writer With buffer', done => {
     const src = path.join(__dirname, 'materials/test.pdf');
-    const buffer = fs.readFileSync(src);
     const myCats = path.join(__dirname, 'materials/myCats.jpg');
+    const buffer = fs.readFileSync(src);
     const recipe = new HummusRecipe(buffer);
-    let outBuffer;
-    const callback = (param) => outBuffer = param;
-    const result = recipe
+    recipe
       .editPage(1)
       .image(myCats, 'center', 'center', {
         width: 300,
@@ -20,9 +18,10 @@ describe('Modify', () => {
         align: 'center center'
       })
       .endPage()
-      .endPDF(callback);
-    done();
-    fs.writeFileSync(path.resolve('./tests/materials/createWithBuffer.pdf'), outBuffer)
-    assert(outBuffer instanceof Buffer);
+      .endPDF((outBuffer) => {
+        assert(outBuffer instanceof Buffer);
+        fs.writeFileSync(path.join(__dirname, 'output/createWithBuffer.pdf'), outBuffer);
+        done();
+      });
   });
 });
