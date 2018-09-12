@@ -7,7 +7,9 @@ describe('Modify', () => {
     const src = path.join(__dirname, 'materials/test.pdf');
     const buffer = fs.readFileSync(src);
     const myCats = path.join(__dirname, 'materials/myCats.jpg');
-    const recipe = new HummusRecipe(buffer, '', { createWithBuffer: true });
+    const recipe = new HummusRecipe(buffer);
+    let outBuffer;
+    const callback = (param) => outBuffer = param;
     const result = recipe
       .editPage(1)
       .image(myCats, 'center', 'center', {
@@ -18,8 +20,9 @@ describe('Modify', () => {
         align: 'center center'
       })
       .endPage()
-      .endPDF(done);
-    fs.writeFileSync(path.resolve('./tests/materials/createWithBuffer.pdf'), result)
-    assert(result instanceof Buffer);
+      .endPDF(callback);
+    done();
+    fs.writeFileSync(path.resolve('./tests/materials/createWithBuffer.pdf'), outBuffer)
+    assert(outBuffer instanceof Buffer);
   });
 });
