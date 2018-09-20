@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const assert = require('chai').assert
 const HummusRecipe = require('../lib');
 
 describe('Modify', () => {
