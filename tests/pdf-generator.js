@@ -40,7 +40,7 @@ describe('PDF Generator', () => {
         pdf.pages.forEach((page, index) => {
             const { width, height } = page;
             const pageNumber = index + 1;
-            recipe.createPage(width, height)
+            recipe.createPage(width, height);
             if (page.background) {
                 recipe.rectangle(0, 0, width, height, {
                     color: page.background.value,
@@ -54,7 +54,7 @@ describe('PDF Generator', () => {
                     color: '#0000ff',
                     align: 'center center',
                     opacity: 0.3
-                })
+                });
             }
             if (page.footer) {
                 const message = `Page ${pageNumber}`;
@@ -62,7 +62,7 @@ describe('PDF Generator', () => {
                     size: 10,
                     color: '#000000',
                     align: 'center center'
-                })
+                });
             }
             recipe.endPage();
         });

@@ -1,15 +1,13 @@
 const fs = require('fs-extra');
 const path = require('path');
 const HummusRecipe = require('../lib');
-const htmlCodes = fs.readFileSync(path.join(__dirname, './materials/text.html'), 'utf8');
 
 describe('Font', () => {
-    before(()=>{
+    before(() => {
         fs.ensureDirSync(path.join(__dirname, 'materials/fonts'));
-
     });
     it('Add text with custom fonts', (done) => {
-        const output = path.join(__dirname, `output/Add text with custom fonts.pdf`);
+        const output = path.join(__dirname, 'output/Add text with custom fonts.pdf');
         const recipe = new HummusRecipe('new', output, {
             fontSrcPath: path.join(__dirname, 'materials/fonts')
         });

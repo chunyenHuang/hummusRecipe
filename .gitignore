@@ -29,4 +29,3 @@ etc
 *.cache
 *.sln
 *.vcxproj*
-.vscode

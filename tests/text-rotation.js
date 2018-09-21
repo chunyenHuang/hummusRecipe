@@ -1,12 +1,10 @@
-const fs = require('fs');
 const path = require('path');
 const HummusRecipe = require('../lib');
-const htmlCodes = fs.readFileSync(path.join(__dirname, './materials/text.html'), 'utf8');
 
 describe('Text Rotation', () => {
     it('Add text with rotation', (done) => {
-        const src = path.join(__dirname, 'materials/test.pdf')
-        const output = path.join(__dirname, `output/Add text - rotation1.pdf`);
+        const src = path.join(__dirname, 'materials/test.pdf');
+        const output = path.join(__dirname, 'output/Add text - rotation1.pdf');
         const recipe = new HummusRecipe(src, output);
 
         const pages = recipe.metadata.pages;
@@ -15,7 +13,9 @@ describe('Text Rotation', () => {
             const angle = angles[i] || 0;
             recipe
                 .editPage(i)
-                .circle('center', 'center', 10, { stroke: '#0032FF' })
+                .circle('center', 'center', 10, {
+                    stroke: '#0032FF'
+                })
                 // apparently \n wont work correcly
                 .text(`${angle} ROTATION`, 'center', 'center', {
                     bold: true,
@@ -24,8 +24,8 @@ describe('Text Rotation', () => {
                     align: 'center center',
                     rotation: angle
                 })
-                .endPage()
-        };
+                .endPage();
+        }
         recipe.endPDF(done);
     });
 });

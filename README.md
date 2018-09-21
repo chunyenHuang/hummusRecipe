@@ -27,6 +27,7 @@ Feel free to open issues to help us!
 * [Coordinate System](#coordinate-system)
 * [Create a new PDF](#create-a-new-pdf)
 * [Modify an existing PDF](#modify-an-existing-pdf)
+* [PDF Pages/Info/Structure](#page-info)
 * [Append PDF](#append-pdf)
 * [Insert PDF](#insert-pdf)
 * [Overlay PDF](#overlay-pdf)
@@ -151,6 +152,22 @@ pdfDoc
     .endPage()
     // end and save
     .endPDF();
+```
+
+## Page Info
+
+```javascript
+const pdfDoc = new HummusRecipe('input.pdf', 'output.pdf');
+console.log(pdfDoc.metadata);
+```
+
+### Print the pdf structure
+
+```javascript
+const pdfDoc = new HummusRecipe('input.pdf', 'output.pdf');
+recipe
+    .structure('pdf-structure.txt')
+    .endPDF(done);
 ```
 
 ## Append PDF

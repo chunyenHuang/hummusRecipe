@@ -29,10 +29,13 @@ describe('Rotation', () => {
     }];
     pdfs.forEach((pdf) => {
         it(pdf.title, (done) => {
-            const src = path.join(__dirname, `materials/${pdf.filename}`)
+            const src = path.join(__dirname, `materials/${pdf.filename}`);
             const output = path.join(__dirname, `output/${pdf.filename}`);
             const recipe = new HummusRecipe(src, output);
-            const { width, height } = recipe.pageInfo(1);
+            const {
+                width,
+                height
+            } = recipe.pageInfo(1);
             recipe
                 .editPage(1)
                 .text('[0,0] is Here.', 0, 0, {
@@ -53,9 +56,9 @@ describe('Rotation', () => {
                 })
                 .comment('2', 'center', 100)
                 .comment('3', 'center', 300)
-                .comment('3', 300, 400)        
-                .comment('3', 400, 500)          
-                .comment('3', 500, 600)                                                
+                .comment('3', 300, 400)
+                .comment('3', 400, 500)
+                .comment('3', 500, 600)
                 .endPage()
                 .endPDF(done);
         });

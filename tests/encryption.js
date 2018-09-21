@@ -4,7 +4,7 @@ const HummusRecipe = require('../lib');
 describe('Encryption', () => {
     const taskAVP = 'Add view password';
     it(taskAVP, (done) => {
-        const src = path.join(__dirname, 'materials/test2.pdf')
+        const src = path.join(__dirname, 'materials/test2.pdf');
         const output = path.join(__dirname, `output/${taskAVP}.pdf`);
         const recipe = new HummusRecipe(src, output);
         recipe
@@ -16,8 +16,8 @@ describe('Encryption', () => {
 
     const taskAEP = 'Add edit password';
     it(taskAEP, (done) => {
-        const src = path.join(__dirname, 'materials/test2.pdf')
-        const overlayPDF = path.join(__dirname, 'materials/test3.pdf');
+        const src = path.join(__dirname, 'materials/test2.pdf');
+        // const overlayPDF = path.join(__dirname, 'materials/test3.pdf');
         const output = path.join(__dirname, `output/${taskAEP}.pdf`);
 
         const recipe = new HummusRecipe(src, output);

@@ -3,8 +3,8 @@ const HummusRecipe = require('../lib');
 
 describe('Modify', () => {
     it('Change info pdf', (done) => {
-        const src = path.join(__dirname, 'materials/blank.pdf')
-        const output = path.join(__dirname, `output/change info.pdf`);
+        const src = path.join(__dirname, 'materials/blank.pdf');
+        const output = path.join(__dirname, 'output/change info.pdf');
         const recipe = new HummusRecipe(src, output);
         recipe
             .info({
@@ -20,8 +20,8 @@ describe('Modify', () => {
             .endPDF(done);
     });
     it('Change info pdf', (done) => {
-        const src = path.join(__dirname, 'materials/test-info.pdf')
-        const output = path.join(__dirname, `output/change info with IndirectObjectReference.pdf`);
+        const src = path.join(__dirname, 'materials/test-info.pdf');
+        const output = path.join(__dirname, 'output/change info with IndirectObjectReference.pdf');
         const recipe = new HummusRecipe(src, output);
         recipe
             .info({
@@ -31,7 +31,7 @@ describe('Modify', () => {
     });
     it('print pdf structure', (done) => {
         const file = 'test3';
-        const src = path.join(__dirname, `materials/${file}.pdf`)
+        const src = path.join(__dirname, `materials/${file}.pdf`);
         const output = path.join(__dirname, `output/${file}.pdf`);
         const recipe = new HummusRecipe(src, output);
         recipe

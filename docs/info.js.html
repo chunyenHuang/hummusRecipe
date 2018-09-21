@@ -38,7 +38,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>const fs = require('fs');
-const path = require('path');
+const hummus = require('hummus');
 /**
  * @name info
  * @desc Add information to pdf
@@ -47,7 +47,7 @@ const path = require('path');
  * @param {Object} [options] - The options
  * @param {number} [options.version] - The pdf version
  * @param {string} [options.author] - The author
- * @param {string} [options.title] - The title 
+ * @param {string} [options.title] - The title
  * @param {string} [options.subject] - The subject
  * @param {string[]} [options.keywords] - The array of keywords
  */
@@ -55,17 +55,24 @@ exports.info = function info(options = {}) {
     this.toWriteInfo_ = this.toWriteInfo_ || {};
     Object.assign(this.toWriteInfo_, options);
     return this;
-}
+};
 
 exports._writeInfo = function _writeInfo() {
     const options = this.toWriteInfo_ || {};
     let oldInfo;
+    /*
+        #41, #48
+        This issue is due to the unhandled process exit from HummusJS.
+        I have to disable this part before it gets fixed in HummusJS.
+    */
     if (!this.isNewPDF) {
         // reuse copyCtx?
-        const copyCtx = this.writer.createPDFCopyingContext(this.src);
-        oldInfo = copyCtx.getSourceDocumentParser().queryDictionaryObject(
-            copyCtx.getSourceDocumentParser().getTrailer(), "Info"
-        ).toJSObject();
+        const copyFrom = this.isBufferSrc ? new hummus.PDFRStreamForBuffer(this.src) : this.src;
+        const copyCtx = this.writer.createPDFCopyingContext(copyFrom);
+        const infoDict = copyCtx.getSourceDocumentParser().queryDictionaryObject(
+            copyCtx.getSourceDocumentParser().getTrailer(), 'Info'
+        );
+        oldInfo = (infoDict &amp;&amp; infoDict.toJSObject) ? infoDict.toJSObject() : null;
     }
     const infoDictionary = this.writer.getDocumentContext().getInfoDictionary();
     const fields = [{
@@ -81,15 +88,19 @@ exports._writeInfo = function _writeInfo() {
         key: 'keywords',
         type: 'array'
     }];
-    const ignores = [
-        'CreationDate', 'Creator', 'ModDate', 'Producer'
-    ];
+    // const ignores = [
+    //     'CreationDate', 'Creator', 'ModDate', 'Producer'
+    // ];
 
     if (oldInfo) {
         Object.getOwnPropertyNames(oldInfo).forEach((key) => {
-            if (!oldInfo[key]) return;
+            if (!oldInfo[key]) {
+                return;
+            }
             const oldInforSrc = this._parseObjectByType(oldInfo[key]);
-            if (!oldInforSrc) return;
+            if (!oldInforSrc) {
+                return;
+            }
             switch (key) {
                 case 'Trapped':
                     if (oldInforSrc &amp;&amp; oldInforSrc.value) {
@@ -130,7 +141,7 @@ exports._writeInfo = function _writeInfo() {
     infoDictionary.creator = 'Hummus-Recipe (https://github.com/chunyenHuang/hummusRecipe)';
 
     fields.forEach((item) => {
-        value = options[item.key];
+        let value = options[item.key];
         if (!value) {
             return;
         } else {
@@ -154,7 +165,7 @@ exports._writeInfo = function _writeInfo() {
         }
     });
     return this;
-}
+};
 
 /**
  * @name custom
@@ -162,17 +173,17 @@ exports._writeInfo = function _writeInfo() {
  * @memberof Recipe
  * @function
  * @param {string} [key] - The key
- * @param {string} [value] - The value 
+ * @param {string} [value] - The value
  */
 exports.custom = function custom(key, value) {
     const infoDictionary = this.writer.getDocumentContext().getInfoDictionary();
     infoDictionary.addAdditionalInfoEntry(key.toString(), value.toString());
     return this;
-}
+};
 
 exports.structure = function structure(output) {
     // PDF file format http://lotabout.me/orgwiki/pdf.html
-    const outputFileType = path.extname(output);
+    // const outputFileType = path.extname(output);
     const outputFile = fs.openSync(output, 'w');
     const hummus = this.hummus;
     const pdfReader = this.pdfReader;
@@ -183,7 +194,7 @@ exports.structure = function structure(output) {
         'Root', // catalog
         'Size',
         'Prev',
-        'ID',          
+        'ID',
         // 'Encrypt',
         // 'XRefStm'
     ];
@@ -198,20 +209,22 @@ exports.structure = function structure(output) {
                 output += tabWidth;
             }
             return output;
-        }
+        };
 
         const logToFile = (inString) => {
             fs.writeSync(outputFile, addTabs() + inString + '\r\n');
-        }
+        };
 
         const iterateObjectTypes = (inObject) => {
-            let output = '';
             const type = inObject.getType();
             const label = hummus.getTypeLabel(type);
+            let output = '';
+            let objectID, jsArray, aDictionary, keys;
+
             switch (type) {
                 case hummus.ePDFObjectIndirectObjectReference:
                     ++mTabLevel;
-                    const objectID = inObject.toPDFIndirectObjectReference().getObjectID();
+                    objectID = inObject.toPDFIndirectObjectReference().getObjectID();
                     output += `Indirect object reference (${objectID}): `;
                     logToFile(output);
                     if (!mIteratedObjectIDs.hasOwnProperty(objectID)) {
@@ -224,7 +237,7 @@ exports.structure = function structure(output) {
                     --mTabLevel;
                     return;
                 case hummus.ePDFObjectArray:
-                    const jsArray = inObject.toPDFArray().toJSArray();
+                    jsArray = inObject.toPDFArray().toJSArray();
                     output += `- ${label} [${jsArray.length}]`;
                     logToFile(output);
                     ++mTabLevel;
@@ -234,8 +247,8 @@ exports.structure = function structure(output) {
                     --mTabLevel;
                     break;
                 case hummus.ePDFObjectDictionary:
-                    const aDictionary = inObject.toPDFDictionary().toJSObject();
-                    const keys = Object.getOwnPropertyNames(aDictionary).join(', ');
+                    aDictionary = inObject.toPDFDictionary().toJSObject();
+                    keys = Object.getOwnPropertyNames(aDictionary).join(', ');
                     output += `- ${label} {${keys}}`;
                     logToFile(output);
                     ++mTabLevel;
@@ -249,13 +262,14 @@ exports.structure = function structure(output) {
                     output += 'Stream . iterating stream dictionary:';
                     logToFile(output);
                     iterateObjectTypes(inObject.toPDFStream().getDictionary());
+                    break;
                 default:
                     output += `${tabWidth}${label}: ${inObject}`;
                     logToFile(output);
             }
-        }
+        };
 
-        const itemTrailer = pdfReader.queryDictionaryObject(pdfReader.getTrailer(), item);        
+        const itemTrailer = pdfReader.queryDictionaryObject(pdfReader.getTrailer(), item);
         logToFile(item);
         iterateObjectTypes(itemTrailer);
     };
@@ -266,19 +280,22 @@ exports.structure = function structure(output) {
 
     fs.closeSync(outputFile);
     return this;
-}
+};
 
 exports._parseObjectByType = function _parseObjectByType(inObject) {
-    if (!inObject) return;
+    if (!inObject) {
+        return;
+    }
     const hummus = this.hummus;
     const pdfReader = this.pdfReader;
     const type = inObject.getType();
     const label = hummus.getTypeLabel(type);
     const saveToObject = this.pdfStructure || {};
+    let objectID, parsed, dictionaryObject, dictionary;
     switch (type) {
         case hummus.ePDFObjectIndirectObjectReference:
-            const objectID = inObject.toPDFIndirectObjectReference().getObjectID();
-            const parsed = pdfReader.parseNewObject(objectID);
+            objectID = inObject.toPDFIndirectObjectReference().getObjectID();
+            parsed = pdfReader.parseNewObject(objectID);
             return this._parseObjectByType(parsed);
         case hummus.ePDFObjectArray:
             inObject.toPDFArray().toJSArray().forEach((element) => {
@@ -286,19 +303,19 @@ exports._parseObjectByType = function _parseObjectByType(inObject) {
             });
             break;
         case hummus.ePDFObjectDictionary:
-            const dictionaryObject = inObject.toPDFDictionary().toJSObject();
+            dictionaryObject = inObject.toPDFDictionary().toJSObject();
             Object.getOwnPropertyNames(dictionaryObject).forEach((element) => {
                 this._parseObjectByType(dictionaryObject[element]);
             });
             break;
         case hummus.ePDFObjectStream:
-            const dictionary = inObject.toPDFStream().getDictionary();
+            dictionary = inObject.toPDFStream().getDictionary();
             return this._parseObjectByType(dictionary);
         default:
             saveToObject[`${label}-${Date.now()*Math.random()}`] = inObject;
             return inObject;
     }
-}
+};
 </code></pre>
         </article>
     </section>
@@ -311,7 +328,7 @@ exports._parseObjectByType = function _parseObjectByType(inObject) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue May 29 2018 12:59:00 GMT-0700 (PDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Sep 20 2018 17:27:53 GMT-0700 (PDT) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

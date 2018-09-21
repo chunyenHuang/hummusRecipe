@@ -5,8 +5,8 @@ const htmlCodes = fs.readFileSync(path.join(__dirname, './materials/text.html'),
 
 describe('Text', () => {
     it('Add watermark', (done) => {
-        const src = path.join(__dirname, 'materials/test.pdf')
-        const output = path.join(__dirname, `output/Add text - watermark.pdf`);
+        const src = path.join(__dirname, 'materials/test.pdf');
+        const output = path.join(__dirname, 'output/Add text - watermark.pdf');
         const recipe = new HummusRecipe(src, output);
 
         const pages = recipe.metadata.pages;
@@ -20,17 +20,21 @@ describe('Text', () => {
                     align: 'center center',
                     opacity: 0.3
                 })
-                .endPage()
-        };
+                .endPage();
+        }
         recipe.endPDF(done);
     });
     it('Add text', (done) => {
-        const src = path.join(__dirname, 'materials/test.pdf')
-        const output = path.join(__dirname, `output/Add text.pdf`);
+        const src = path.join(__dirname, 'materials/test.pdf');
+        const output = path.join(__dirname, 'output/Add text.pdf');
         const recipe = new HummusRecipe(src, output);
         recipe
             .editPage(1)
-            .circle('center', 100, 5, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
+            .circle('center', 100, 5, {
+                stroke: '#3b7721',
+                fill: '#0e0e0e',
+                opacity: 0.4
+            })
             .text('Add text', 'center', 100, {
                 bold: true
             })
@@ -73,8 +77,8 @@ describe('Text', () => {
     });
 
     it('Add text with html codes', (done) => {
-        const src = path.join(__dirname, 'materials/test.pdf')
-        const output = path.join(__dirname, `output/Add text with html codes.pdf`);
+        const src = path.join(__dirname, 'materials/test.pdf');
+        const output = path.join(__dirname, 'output/Add text with html codes.pdf');
         const recipe = new HummusRecipe(src, output);
         recipe
             .editPage(1)
@@ -86,7 +90,7 @@ describe('Text', () => {
     });
 
     it('Add text with html codes inside textbox', (done) => {
-        const output = path.join(__dirname, `output/Add text with html codes inside textbox.pdf`);
+        const output = path.join(__dirname, 'output/Add text with html codes inside textbox.pdf');
         const recipe = new HummusRecipe('new', output);
         recipe
             .createPage(600, 1200)
@@ -110,16 +114,20 @@ describe('Text', () => {
     });
 
     it('Add text inside textbox', (done) => {
-        const src = path.join(__dirname, 'materials/test.pdf')
-        const output = path.join(__dirname, `output/Add text inside textbox.pdf`);
+        const src = path.join(__dirname, 'materials/test.pdf');
+        const output = path.join(__dirname, 'output/Add text inside textbox.pdf');
         const recipe = new HummusRecipe(src, output);
         const textContent =
-            `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. ` +
-            `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).`;
+            `${Date.now()} Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. ` +
+            `${Date.now()} It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).`;
 
         recipe
             .editPage(1)
-            .circle('center', 400, 10, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
+            .circle('center', 400, 10, {
+                stroke: '#3b7721',
+                fill: '#0e0e0e',
+                opacity: 0.4
+            })
             .text(textContent, 'center', 400, {
                 textBox: {
                     width: 500,
@@ -138,7 +146,11 @@ describe('Text', () => {
                 color: '#813b00',
                 align: 'center bottom'
             })
-            .circle(500, 550, 10, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
+            .circle(500, 550, 10, {
+                stroke: '#3b7721',
+                fill: '#0e0e0e',
+                opacity: 0.4
+            })
             .text(textContent, 500, 550, {
                 textBox: {
                     width: 400,
@@ -159,7 +171,11 @@ describe('Text', () => {
                 color: '#000000',
                 align: 'right'
             })
-            .circle(350, 450, 10, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
+            .circle(350, 450, 10, {
+                stroke: '#3b7721',
+                fill: '#0e0e0e',
+                opacity: 0.4
+            })
             .text('Fix height 200', 350, 450, {
                 textBox: {
                     width: 200,

@@ -3,10 +3,13 @@ const HummusRecipe = require('../lib');
 
 describe('Vector', () => {
     it('Add vectors', (done) => {
-        const src = path.join(__dirname, 'materials/test.pdf')
-        const output = path.join(__dirname, `output/Add vectors.pdf`);
+        const src = path.join(__dirname, 'materials/test.pdf');
+        const output = path.join(__dirname, 'output/Add vectors.pdf');
         const recipe = new HummusRecipe(src, output);
-        const { width, height } = recipe.pageInfo(1);
+        const {
+            width,
+            height
+        } = recipe.pageInfo(1);
         recipe
             .editPage(1)
             .rectangle(0, 0, width, height, {
@@ -42,7 +45,7 @@ describe('Vector', () => {
             })
             .rectangle(475, 475, 50, 50, {
                 opacity: 0.3,
-                lineWidth: 5,                
+                lineWidth: 5,
                 fill: [255, 255, 255],
                 stroke: [255, 0, 255]
             })
@@ -52,8 +55,15 @@ describe('Vector', () => {
                 stroke: [255, 0, 255],
                 dash: [5, 5]
             })
-            .circle('center', 100, 60, { stroke: '#3b7721', fill: '#0e0e0e', opacity: 0.4 })
-            .circle('center', 100, 30, { stroke: '#0032FF', dash: [5, 5] })
+            .circle('center', 100, 60, {
+                stroke: '#3b7721',
+                fill: '#0e0e0e',
+                opacity: 0.4
+            })
+            .circle('center', 100, 30, {
+                stroke: '#0032FF',
+                dash: [5, 5]
+            })
             .polygon([
                 [0, 0],
                 [0, 300],
@@ -66,7 +76,7 @@ describe('Vector', () => {
             .polygon([
                 [100, 300],
                 [200, 300],
-                [100, 100]                
+                [100, 100]
             ], {
                 fill: '#ff0000',
                 stroke: '#ff0000',
