@@ -5,8 +5,8 @@ const HummusRecipe = require('../lib');
 describe('Text - Centering', () => {
 
     it('should horizontally center the text correctly with multiple font sizes', (done) => {
-        const src = path.join(__dirname, 'materials/test-text-centering.pdf');
-        const output = path.join(__dirname, 'output/Center Text - Size 12.pdf');
+        const src = path.join(__dirname, 'materials/blank.pdf');
+        const output = path.join(__dirname, 'output/Center Text.pdf');
         const recipe = new HummusRecipe(src, output);
 
         recipe
