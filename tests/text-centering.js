@@ -1,4 +1,3 @@
-const fs = require('fs');
 const path = require('path');
 const HummusRecipe = require('../lib');
 
@@ -24,7 +23,7 @@ describe('Text - Centering', () => {
                         stroke: '#000000'
                     }
                 },
-                
+
             })
             .text('Test', 30, 20, {
                 color: '#000000',
@@ -39,7 +38,7 @@ describe('Text - Centering', () => {
                         stroke: '#000000'
                     }
                 },
-                
+
             })
             .text('Test', 30, 130, {
                 color: '#000000',
@@ -54,12 +53,12 @@ describe('Text - Centering', () => {
                         stroke: '#000000'
                     }
                 },
-                
+
             })
-            .endPage()
-            
+            .endPage();
 
-        recipe.endPDF(done)
-    })
 
-})
+        recipe.endPDF(done);
+    });
+
+});

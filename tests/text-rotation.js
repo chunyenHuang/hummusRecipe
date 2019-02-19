@@ -13,11 +13,32 @@ describe('Text Rotation', () => {
             const angle = angles[i] || 0;
             recipe
                 .editPage(i)
+                .circle('center', 300, 10, {
+                    stroke: '#0032FF'
+                })
+                .text(`${angle} ROTATION pjqy`, 'center', 300, {
+                    bold: true,
+                    size: 80,
+                    color: '#0000FF',
+                    align: 'center center',
+                    rotation: angle,
+                    opacity: 0.25
+                })
                 .circle('center', 'center', 10, {
                     stroke: '#0032FF'
                 })
-                // apparently \n wont work correcly
-                .text(`${angle} ROTATION`, 'center', 'center', {
+                .text(`${angle} ROTATION pjqy`, 'center', 'center', {
+                    bold: true,
+                    size: 80,
+                    color: '#0000FF',
+                    align: 'center center',
+                    rotation: angle,
+                    opacity: 0.5
+                })
+                .circle('center', 500, 10, {
+                    stroke: '#0032FF'
+                })
+                .text(`${angle} ROTATION pjqy`, 'center', 500, {
                     bold: true,
                     size: 80,
                     color: '#0000FF',
