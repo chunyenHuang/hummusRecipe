@@ -1,4 +1,5 @@
 # Hummus Recipe
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 [![npm version](https://badge.fury.io/js/hummus-recipe.svg)](https://badge.fury.io/js/hummus-recipe)
 [![Build Status](https://travis-ci.org/chunyenHuang/hummusRecipe.svg?branch=master)](https://travis-ci.org/chunyenHuang/hummusRecipe)
@@ -238,3 +239,15 @@ pdfDoc
     })
     .endPDF();
 ```
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table><tr><td align="center"><a href="https://www.bitfactory.io"><img src="https://avatars1.githubusercontent.com/u/510180?v=4" width="100px;" alt="Matthias Nagel"/><br /><sub><b>Matthias Nagel</b></sub></a><br /><a href="https://github.com/chunyenHuang/hummusRecipe/commits?author=matthiasnagel" title="Code">💻</a></td></tr></table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
