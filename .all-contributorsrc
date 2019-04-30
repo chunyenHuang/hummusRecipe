@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "matthiasnagel",
+      "name": "Matthias Nagel",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/510180?v=4",
+      "profile": "https://www.bitfactory.io",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "hummusRecipe",
+  "projectOwner": "chunyenHuang",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
