@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>overlay.js - Documentation</title>
+    <title>utils.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">overlay.js</h1>
+    <h1 class="page-title">utils.js</h1>
     
 
     
@@ -37,77 +37,65 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const xObjectForm = require('./xObjectForm');
+            <pre class="prettyprint source linenums"><code>const ANNOTATION_PREFIX = 'Annots';
 
 /**
- * Overlay a pdf to the current pdf
- * @name overlay
- * @function
- * @memberof Recipe
- * @param {string} pdfSrc - The path for the overlay pdf
- * @param {number} x - The coordinate x
- * @param {number} y - The coordinate y
- * @param {number} [options.scale] - Scale the overlay pdf, default is 1
- * @param {boolean} [options.keepAspectRatio] - To keep the aspect ratio when scaling, default is true
- * @param {boolean} [options.fitWidth] - To set the width to 100% (use with keepAspectRatio=true)
- * @param {boolean} [options.fitHeight] - To set the height to 100% (use with keepAspectRatio=true)
+ * Append PDF Page with annotations.
+ *
+ * @param {any} pdfWriter - Hummus writer.
+ * @param {string|any} sourcePDFPath - The path for the output pdfs or Reader stream.
+ * @param {number} pageNumber - page number.
+ * @param {any} [options={}] - appendPDFPageFromPDF options
  */
-exports.overlay = function overlay(pdfSrc, x = 0, y = 0, options = {}) {
-    // allow to have only 2 arguments input
-    if (arguments.length == 2) {
-        options = x || {};
-        x = 0;
-        y = 0;
-    }
-    // const pathOptions = this._getPathOptions(options);
-    // const gsId = this._getPathOptions(options).fillGsId;
+function appendPDFPageFromPDFWithAnnotations(pdfWriter, sourcePDFPath, pageNumber) {
+    const cpyCxt = pdfWriter.createPDFCopyingContext(sourcePDFPath);
+    const cpyCxtParser = cpyCxt.getSourceDocumentParser();
+    const pageDictionary = cpyCxtParser.parsePageDictionary(pageNumber);
 
-    const { keepAspectRatio, fitWidth, fitHeight } = options;
-    const scale = options.scale || 1;
+    if (!pageDictionary.exists(ANNOTATION_PREFIX)) {
+        cpyCxt.appendPDFPageFromPDF(pageNumber);
+    } else {
+        let reffedObjects;
+        pdfWriter.getEvents().once('OnPageWrite', params => {
+            params.pageDictionaryContext.writeKey(ANNOTATION_PREFIX);
+            reffedObjects = cpyCxt.copyDirectObjectWithDeepCopy(pageDictionary.queryObject(ANNOTATION_PREFIX));
+        });
 
-    const { width: pageWidth, height: pageHeight } = this.metadata[this.pageNumber];
+        cpyCxt.appendPDFPageFromPDF(pageNumber);
 
-    const inMetadata = this.read(pdfSrc);
-    // for now only handle the first page.
-    const { width, height } = inMetadata[1];
-
-    this.pauseContext();
-    const xObject = new xObjectForm(this.writer, width, height);
-    xObject.getContentContext()
-        .q()
-        .drawImage(0, 0, pdfSrc)
-        .Q();
-    xObject.end();
-    this.resumeContext();
-
-    const context = this.pageContext;
-    let scaleX = 1 * scale;
-    let scaleY = 1 * scale;
-
-    if (fitWidth) {
-        scaleX = pageWidth / width;
-        if (keepAspectRatio) {
-            scaleY = scaleX;
+        if (reffedObjects &amp;&amp; reffedObjects.length > 0) {
+            cpyCxt.copyNewObjectsForDirectObject(reffedObjects);
         }
     }
-    if (fitHeight) {
-        scaleY = pageHeight / height;
-        if (keepAspectRatio) {
-            scaleX = scaleY;
+}
+
+/**
+ * Append PDF Pages with annotations.
+ *
+ * @param {any} pdfWriter - Hummus writer.
+ * @param {string|any} sourcePDFPath - The path for the output pdfs or Reader stream.
+ * @param {any} [options={}] - appendPDFPagesFromPDF options
+ */
+function appendPDFPagesFromPDFWithAnnotations(pdfWriter, sourcePDFPath, options = {}) {
+    const cpyCxt = pdfWriter.createPDFCopyingContext(sourcePDFPath);
+    const cpyCxtParser = cpyCxt.getSourceDocumentParser();
+
+    if (options.specificRanges &amp;&amp; options.specificRanges.length) {
+        for (const [start, end] of options.specificRanges) {
+            for (let i = start; i &lt;= end; ++i) {
+                appendPDFPageFromPDFWithAnnotations(pdfWriter, sourcePDFPath, i);
+            }
+        }
+    } else {
+        for (let i = 0; i &lt; cpyCxtParser.getPagesCount(); ++i) {
+            appendPDFPageFromPDFWithAnnotations(pdfWriter, sourcePDFPath, i);
         }
     }
+}
 
-    const posX = x;
-    const posY = pageHeight - height * scaleY - y;
-
-    context
-        .q()
-        .cm(scaleX, 0, 0, scaleY, posX, posY)
-        .doXObject(xObject)
-        .Q();
-
-    return this;
-};
+exports.ANNOTATION_PREFIX = ANNOTATION_PREFIX;
+exports.appendPDFPageFromPDFWithAnnotations = appendPDFPageFromPDFWithAnnotations;
+exports.appendPDFPagesFromPDFWithAnnotations = appendPDFPagesFromPDFWithAnnotations;
 </code></pre>
         </article>
     </section>

@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li></ul>
 </nav>
 
 <div id="main">
@@ -102,35 +102,35 @@ exports._writeInfo = function _writeInfo() {
                 return;
             }
             switch (key) {
-                case 'Trapped':
-                    if (oldInforSrc &amp;&amp; oldInforSrc.value) {
-                        infoDictionary.trapped = oldInforSrc.value;
-                    }
-                    break;
-                case 'CreationDate':
-                    if (oldInforSrc &amp;&amp; oldInforSrc.value) {
-                        infoDictionary.setCreationDate(oldInforSrc.value);
-                    }
-                    break;
-                case 'ModDate':
-                    if (oldInforSrc &amp;&amp; oldInforSrc.value) {
-                        infoDictionary.addAdditionalInfoEntry(`source-${key}`, oldInforSrc.value);
-                    }
-                    break;
-                case 'Creator':
-                    if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
-                        infoDictionary.addAdditionalInfoEntry(`source-${key}`, oldInforSrc.toText());
-                    }
-                    break;
-                case 'Producer':
-                    if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
-                        infoDictionary.addAdditionalInfoEntry(`source-${key}`, oldInforSrc.toText());
-                    }
-                    break;
-                default:
-                    if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
-                        infoDictionary[key.toLowerCase()] = oldInforSrc.toText();
-                    }
+            case 'Trapped':
+                if (oldInforSrc &amp;&amp; oldInforSrc.value) {
+                    infoDictionary.trapped = oldInforSrc.value;
+                }
+                break;
+            case 'CreationDate':
+                if (oldInforSrc &amp;&amp; oldInforSrc.value) {
+                    infoDictionary.setCreationDate(oldInforSrc.value);
+                }
+                break;
+            case 'ModDate':
+                if (oldInforSrc &amp;&amp; oldInforSrc.value) {
+                    infoDictionary.addAdditionalInfoEntry(`source-${key}`, oldInforSrc.value);
+                }
+                break;
+            case 'Creator':
+                if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
+                    infoDictionary.addAdditionalInfoEntry(`source-${key}`, oldInforSrc.toText());
+                }
+                break;
+            case 'Producer':
+                if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
+                    infoDictionary.addAdditionalInfoEntry(`source-${key}`, oldInforSrc.toText());
+                }
+                break;
+            default:
+                if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
+                    infoDictionary[key.toLowerCase()] = oldInforSrc.toText();
+                }
             }
         });
     }
@@ -148,16 +148,16 @@ exports._writeInfo = function _writeInfo() {
             return;
         } else {
             switch (item.type) {
-                case 'string':
-                    value = value.toString();
-                    break;
-                case 'date':
-                    value = new Date(value);
-                    break;
-                case 'array':
-                    value = (Array.isArray(value)) ? value : [value];
-                    break;
-                default:
+            case 'string':
+                value = value.toString();
+                break;
+            case 'date':
+                value = new Date(value);
+                break;
+            case 'array':
+                value = (Array.isArray(value)) ? value : [value];
+                break;
+            default:
             }
         }
         if (item.func) {
@@ -224,50 +224,50 @@ exports.structure = function structure(output) {
             let objectID, jsArray, aDictionary, keys;
 
             switch (type) {
-                case hummus.ePDFObjectIndirectObjectReference:
-                    ++mTabLevel;
-                    objectID = inObject.toPDFIndirectObjectReference().getObjectID();
-                    output += `Indirect object reference (${objectID}): `;
-                    logToFile(output);
-                    if (!mIteratedObjectIDs.hasOwnProperty(objectID)) {
-                        mIteratedObjectIDs[objectID] = true;
-                        iterateObjectTypes(pdfReader.parseNewObject(objectID));
-                    }
-                    for (var i = 0; i &lt; mTabLevel; ++i) {
-                        output += ' ';
-                    }
-                    --mTabLevel;
-                    return;
-                case hummus.ePDFObjectArray:
-                    jsArray = inObject.toPDFArray().toJSArray();
-                    output += `- ${label} [${jsArray.length}]`;
-                    logToFile(output);
-                    ++mTabLevel;
-                    jsArray.forEach((element) => {
-                        iterateObjectTypes(element);
-                    });
-                    --mTabLevel;
-                    break;
-                case hummus.ePDFObjectDictionary:
-                    aDictionary = inObject.toPDFDictionary().toJSObject();
-                    keys = Object.getOwnPropertyNames(aDictionary).join(', ');
-                    output += `- ${label} {${keys}}`;
-                    logToFile(output);
-                    ++mTabLevel;
-                    Object.getOwnPropertyNames(aDictionary).forEach((element) => {
-                        logToFile(element + ' *');
-                        iterateObjectTypes(aDictionary[element]);
-                    });
-                    --mTabLevel;
-                    break;
-                case hummus.ePDFObjectStream:
-                    output += 'Stream . iterating stream dictionary:';
-                    logToFile(output);
-                    iterateObjectTypes(inObject.toPDFStream().getDictionary());
-                    break;
-                default:
-                    output += `${tabWidth}${label}: ${inObject}`;
-                    logToFile(output);
+            case hummus.ePDFObjectIndirectObjectReference:
+                ++mTabLevel;
+                objectID = inObject.toPDFIndirectObjectReference().getObjectID();
+                output += `Indirect object reference (${objectID}): `;
+                logToFile(output);
+                if (!mIteratedObjectIDs.hasOwnProperty(objectID)) {
+                    mIteratedObjectIDs[objectID] = true;
+                    iterateObjectTypes(pdfReader.parseNewObject(objectID));
+                }
+                for (var i = 0; i &lt; mTabLevel; ++i) {
+                    output += ' ';
+                }
+                --mTabLevel;
+                return;
+            case hummus.ePDFObjectArray:
+                jsArray = inObject.toPDFArray().toJSArray();
+                output += `- ${label} [${jsArray.length}]`;
+                logToFile(output);
+                ++mTabLevel;
+                jsArray.forEach((element) => {
+                    iterateObjectTypes(element);
+                });
+                --mTabLevel;
+                break;
+            case hummus.ePDFObjectDictionary:
+                aDictionary = inObject.toPDFDictionary().toJSObject();
+                keys = Object.getOwnPropertyNames(aDictionary).join(', ');
+                output += `- ${label} {${keys}}`;
+                logToFile(output);
+                ++mTabLevel;
+                Object.getOwnPropertyNames(aDictionary).forEach((element) => {
+                    logToFile(element + ' *');
+                    iterateObjectTypes(aDictionary[element]);
+                });
+                --mTabLevel;
+                break;
+            case hummus.ePDFObjectStream:
+                output += 'Stream . iterating stream dictionary:';
+                logToFile(output);
+                iterateObjectTypes(inObject.toPDFStream().getDictionary());
+                break;
+            default:
+                output += `${tabWidth}${label}: ${inObject}`;
+                logToFile(output);
             }
         };
 
@@ -295,27 +295,27 @@ exports._parseObjectByType = function _parseObjectByType(inObject) {
     const saveToObject = this.pdfStructure || {};
     let objectID, parsed, dictionaryObject, dictionary;
     switch (type) {
-        case hummus.ePDFObjectIndirectObjectReference:
-            objectID = inObject.toPDFIndirectObjectReference().getObjectID();
-            parsed = pdfReader.parseNewObject(objectID);
-            return this._parseObjectByType(parsed);
-        case hummus.ePDFObjectArray:
-            inObject.toPDFArray().toJSArray().forEach((element) => {
-                this._parseObjectByType(element);
-            });
-            break;
-        case hummus.ePDFObjectDictionary:
-            dictionaryObject = inObject.toPDFDictionary().toJSObject();
-            Object.getOwnPropertyNames(dictionaryObject).forEach((element) => {
-                this._parseObjectByType(dictionaryObject[element]);
-            });
-            break;
-        case hummus.ePDFObjectStream:
-            dictionary = inObject.toPDFStream().getDictionary();
-            return this._parseObjectByType(dictionary);
-        default:
-            saveToObject[`${label}-${Date.now()*Math.random()}`] = inObject;
-            return inObject;
+    case hummus.ePDFObjectIndirectObjectReference:
+        objectID = inObject.toPDFIndirectObjectReference().getObjectID();
+        parsed = pdfReader.parseNewObject(objectID);
+        return this._parseObjectByType(parsed);
+    case hummus.ePDFObjectArray:
+        inObject.toPDFArray().toJSArray().forEach((element) => {
+            this._parseObjectByType(element);
+        });
+        break;
+    case hummus.ePDFObjectDictionary:
+        dictionaryObject = inObject.toPDFDictionary().toJSObject();
+        Object.getOwnPropertyNames(dictionaryObject).forEach((element) => {
+            this._parseObjectByType(dictionaryObject[element]);
+        });
+        break;
+    case hummus.ePDFObjectStream:
+        dictionary = inObject.toPDFStream().getDictionary();
+        return this._parseObjectByType(dictionary);
+    default:
+        saveToObject[`${label}-${Date.now()*Math.random()}`] = inObject;
+        return inObject;
     }
 };
 </code></pre>
@@ -330,7 +330,7 @@ exports._parseObjectByType = function _parseObjectByType(inObject) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Feb 17 2019 09:47:58 GMT-0800 (Pacific Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 30 2019 21:10:18 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

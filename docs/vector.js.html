@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li></ul>
 </nav>
 
 <div id="main">
@@ -64,7 +64,7 @@ exports.circle = function circle(x, y, radius, options = {}) {
     if (options.fill || options.color) {
         const pathOptions = this._getPathOptions(options);
         pathOptions.type = 'fill';
-        pathOptions.color = pathOptions.fill || pathOptions.color;
+        pathOptions.color = (pathOptions.fill === undefined) ? pathOptions.color : pathOptions.fill;
 
         this.pauseContext();
         const xObject = new xObjectForm(this.writer, radius * 2, radius * 2);
@@ -85,7 +85,7 @@ exports.circle = function circle(x, y, radius, options = {}) {
     if (options.stroke || options.color) {
         const pathOptions = this._getPathOptions(options);
         pathOptions.type = 'stroke';
-        pathOptions.color = pathOptions.stroke || pathOptions.color;
+        pathOptions.color = (pathOptions.stroke === undefined) ? pathOptions.color : pathOptions.stroke;
         const context = this.pageContext;
         context.q();
         context.d(pathOptions.dash, pathOptions.dashPhase);
@@ -111,7 +111,10 @@ exports.circle = function circle(x, y, radius, options = {}) {
  * @param {number} [options.lineWidth] - The line width
  * @param {number} [options.opacity] - The opacity
  * @param {number[]} [options.dash] - The dash style [number, number]
- */
+ * @param {string|number[]} [options.color] - HexColor (#000000 to #ffffff) or RGB (0 to 255)
+ * @param {number} [options.rotation] - Accept: +/- 0 through 360. Default: 0
+ * @param {number[]} [options.rotationOrigin] - [originX, originY] Default: x, y
+*/
 exports.rectangle = function rectangle(x, y, width, height, options = {}) {
     const {
         nx,
@@ -120,11 +123,11 @@ exports.rectangle = function rectangle(x, y, width, height, options = {}) {
         nx: x,
         ny: y
     };
+    if (!options.rotationOrigin) options.rotationOrigin = [nx, ny];
     if (options.fill || options.color) {
         const pathOptions = this._getPathOptions(options);
         pathOptions.type = 'fill';
-        pathOptions.color = pathOptions.fill || pathOptions.color;
-
+        pathOptions.color = (pathOptions.fill === undefined) ? pathOptions.color : pathOptions.fill;
         this.pauseContext();
         const xObject = new xObjectForm(this.writer, width, height);
         xObject.getContentContext()
@@ -136,8 +139,9 @@ exports.rectangle = function rectangle(x, y, width, height, options = {}) {
         this.resumeContext();
 
         const context = this.pageContext;
-        context.q()
-            .cm(1, 0, 0, 1, nx, ny)
+        context.q();
+        this._setRotationContext(context, nx, ny, options);
+        context
             .doXObject(xObject)
             .Q();
     }
@@ -145,12 +149,23 @@ exports.rectangle = function rectangle(x, y, width, height, options = {}) {
     if (options.stroke) {
         const pathOptions = this._getPathOptions(options);
         pathOptions.type = 'stroke';
-        pathOptions.color = pathOptions.stroke || pathOptions.color;
+        pathOptions.color = (pathOptions.stroke === undefined) ? pathOptions.color : pathOptions.stroke;
+
+        this.pauseContext();
+        const xObject = new xObjectForm(this.writer, width, height);
+        xObject.getContentContext()
+            .q()
+            .d(pathOptions.dash, pathOptions.dashPhase)
+            .drawRectangle(0, 0, width, height, pathOptions)
+            .Q();
+        xObject.end();
+        this.resumeContext();
+
         const context = this.pageContext;
         context.q();
-        context.d(pathOptions.dash, pathOptions.dashPhase);
-        context.drawRectangle(nx, ny, width, height, pathOptions);
-        context.Q();
+        this._setRotationContext(context, nx, ny, options);
+        context.doXObject(xObject)
+            .Q();
     }
 
     return this;
@@ -187,7 +202,7 @@ exports.fillAndStroke = function fillAndStroke() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Feb 17 2019 09:47:58 GMT-0800 (Pacific Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 30 2019 21:10:18 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
