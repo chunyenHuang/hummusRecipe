@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "thebenlamm",
+      "name": "thebenlamm",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/5175102?v=4",
+      "profile": "https://github.com/thebenlamm",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "hummusRecipe",
+  "projectOwner": "chunyenHuang",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
