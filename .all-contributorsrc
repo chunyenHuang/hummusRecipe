@@ -1,0 +1,96 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "thebenlamm",
+      "name": "thebenlamm",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/5175102?v=4",
+      "profile": "https://github.com/thebenlamm",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "matthiasnagel",
+      "name": "Matthias Nagel",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/510180?v=4",
+      "profile": "https://www.bitfactory.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gios",
+      "name": "Pavlo Blazhchuk",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6967294?v=4",
+      "profile": "https://github.com/gios",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "shaehn",
+      "name": "shaehn",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/13596544?v=4",
+      "profile": "https://github.com/shaehn",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "chunyenHuang",
+      "name": "John Huang",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/12788155?v=4",
+      "profile": "https://www.linkedin.com/in/johnhuangguo/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "neonerd",
+      "name": "Andrej Sýkora",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/821336?v=4",
+      "profile": "http://andrejsykora.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "soeyi",
+      "name": "soeyi",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/38489160?v=4",
+      "profile": "http://soeyi.me",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "danhalliday",
+      "name": "Dan Halliday",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1068575?v=4",
+      "profile": "https://dan.halliday.work/technology/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "nikhilpi",
+      "name": "Nikhil Pai",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5175964?v=4",
+      "profile": "http://www.nikhilpi.com",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "hummusRecipe",
+  "projectOwner": "chunyenHuang",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "commitConvention": "none"
+}
