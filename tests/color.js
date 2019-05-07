@@ -37,7 +37,7 @@ describe('Color', () => {
             })
             .text('translucent light green filled rectangle', 40, 550)
             .rectangle(0, 0, 300, 500, {
-                color: [50, 255, 50],
+                fill: [50, 255, 50],
                 opacity: 0.5
             })
             .endPage()
@@ -57,6 +57,8 @@ describe('Color', () => {
             .line([[500, 90],  [500, 110]], {stroke: [200,0,0], lineWidth: 5})
             .text('3 corner yellow polygon, outline red', 360, 630)
             .polygon([[500,500], [550,600], [450,600]], {fill: [255,255,0], stroke:[255,0,0]})
+            .text('ellipse with red dash border, violet fill', 40, 675)
+            .ellipse(150, 625, 75, 25, {stroke:[255,0,0], fill:[60,0,255], opacity: .4, dash:[5,2]})
             .endPage()
             .endPDF(done);
     });
@@ -79,7 +81,7 @@ describe('Color', () => {
             })
             .text('translucent rose filled rectangle', 40, 550)
             .rectangle(0, 0, 300, 500, {
-                color: [0, 255, 50, 10],
+                fill: [0, 255, 50, 10],
                 opacity: 0.5
             })
             .endPage()
@@ -99,6 +101,8 @@ describe('Color', () => {
             .line([[500, 90],  [500, 110]], {stroke: [255,0,255,0], lineWidth: 5})
             .text('3 corner yellow polygon, outline black', 360, 630)
             .polygon([[500,500], [550,600], [450,600]], {fill: [0,0,255,0], stroke:[0,0,0,255]})
+            .text('ellipse with cyan dash border, pale green fill', 40, 675)
+            .ellipse(150, 625, 75, 25, {stroke:[255,0,0,0], fill:[60,0,255,0], opacity: .4, dash:[5,2]})
             .endPage()
             .endPDF(done);
     });
@@ -121,7 +125,7 @@ describe('Color', () => {
             })
             .text('translucent gray filled rectangle', 40, 550)
             .rectangle(0, 0, 300, 500, {
-                color: [100],
+                fill: [100],
                 opacity: 0.5
             })
             .endPage()
@@ -142,6 +146,8 @@ describe('Color', () => {
             .line([[500, 90],  [500, 110]], {stroke: [255], lineWidth: 5})
             .text('3 corner gray polygon, outline black', 360, 630, {color: [0]})
             .polygon([[500,500], [550,600], [450,600]], {fill: [235], stroke:[0]})
+            .text('ellipse with black dash border, gray fill', 40, 675, {color: [0]})
+            .ellipse(150, 625, 75, 25, {stroke:[0], fill:[100], opacity: .4, dash:[5,2]})
             .endPage()
             .endPDF(done);
     });
@@ -214,6 +220,13 @@ describe('Color', () => {
         recipe
         .text('HexColor component values (two hex digits) range from 00 to FF.', para, line(++i))
         .text('DecimalColor component values range from 0 to 255.', para, line(++i))
+
+        // testing simple drawing of shapes with no color specifications.
+        .text('Shapes using default RGB', 360, 160)
+        .circle(400, 200, 20)
+        .ellipse(475, 200, 30, 20)
+        .rectangle(445, 240, 60, 40)
+        .polygon([[400, 240],[420,280],[380,280]])
         .endPage()
             .endPDF(done);
     });
