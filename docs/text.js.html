@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
 </nav>
 
 <div id="main">
@@ -47,8 +47,21 @@ const {
 } = require('./htmlToTextObjects');
 const xObjectForm = require('./xObjectForm');
 
+//  Table indicating how to specify coloration of elements
+//  ----------------------------------------------------
+// |Color | HexColor   | DecimalColor                   |
+// |Space | (string)   | (array)                        |
+// |------+------------+--------------------------------|
+// | Gray | #GG        | [gray]                         |
+// |  RGB | #rrggbb    | [red, green, blue]             |
+// | CMYK | #ccmmyykk  | [cyan, magenta, yellow, black] |
+//  ----------------------------------------------------
+//
+//   HexColor component values (two hex digits) range from 00 to FF.
+//   DecimalColor component values range from 0 to 255.
+  
 /**
- * Write texts
+ * Write text elements
  * @name text
  * @function
  * @todo support break words
@@ -57,7 +70,7 @@ const xObjectForm = require('./xObjectForm');
  * @param {number} x - The coordinate x
  * @param {number} y - The coordinate y
  * @param {Object} [options] - The options
- * @param {string|number[]} [options.color] - HexColor (#000000 to #ffffff) or RGB (0 to 255)
+ * @param {string|number[]} [options.color] - Text color (HexColor or DecimalColor)
  * @param {number} [options.opacity] - opacity
  * @param {number} [options.rotation] - Accept: +/- 0 through 360. Default: 0
  * @param {number[]} [options.rotationOrigin] - [originX, originY] Default: the text coordinate
@@ -76,9 +89,9 @@ const xObjectForm = require('./xObjectForm');
  * @param {string} [options.textBox.textAlign] - Text alignment inside text box
  * @param {Object} [options.textBox.style] - Text Box styles
  * @param {number} [options.textBox.style.lineWidth] - Text Box border width
- * @param {string|number[]} [options.textBox.style.stroke] - Text Box border color
+ * @param {string|number[]} [options.textBox.style.stroke] - Text Box border color  (HexColor or DecimalColor)
  * @param {number[]} [options.textBox.style.dash] - Text Box border border dash style [number, number]
- * @param {string|number[]} [options.textBox.style.fill] - Text Box border background color
+ * @param {string|number[]} [options.textBox.style.fill] - Text Box border background color (HexColor or DecimalColor)
  * @param {number} [options.textBox.style.opacity] - Text Box border background opacity
  */
 exports.text = function text(text = '', x, y, options = {}) {
@@ -235,9 +248,9 @@ exports.text = function text(text = '', x, y, options = {}) {
             nx,
             ny - textBox.height + textBox.firstLineHeight,
             textBox.width, textBox.height, Object.assign(textBox.style, {
-                dontTranslate: true,
+                useGivenCoords: true,
                 rotation: pathOptions.rotation,
-                rotationOrigin: [pathOptions.originX, pathOptions.originY],
+                rotationOrigin: [pathOptions.originX,pathOptions.originY],
             })
         );
     }
@@ -276,7 +289,7 @@ exports.text = function text(text = '', x, y, options = {}) {
 
         const writeText = (context, x, y, wto) => {
             const options = wto.writeOptions;
-            const { lineHeight, lineWidth, text } = wto;
+            const {lineHeight, lineWidth, text} = wto;
 
             // write directly to page when not dealing with opacity and rotation.
             if (options.opacity === 1 &amp;&amp; options.rotation === 0) {
@@ -286,28 +299,14 @@ exports.text = function text(text = '', x, y, options = {}) {
                 this.pauseContext();
                 // https://github.com/galkahana/HummusJS/wiki/Use-the-pdf-drawing-operators
                 const xObject = new xObjectForm(this.writer, lineWidth * 1.5, lineHeight * 2);
-                const colorArray = options.colorArray;
-                const xObjectItem = xObject
-                    .getContentContext()
+                const xObjectCtx = xObject.getContentContext();
+                
+                xObjectCtx
                     .q()
                     .gs(xObject.getGsName(options.fillGsId))
                     .BT();
-
-                //https://github.com/galkahana/HummusJS/blob/b699d6a01ba027428120cbe5b1c16813bed0521d/src/deps/PDFWriter/AbstractContentContext.h#L235
-                switch (colorArray.length) {
-                case 1:
-                    xObjectItem.g(colorArray[0]);
-                    break;
-                case 3:
-                    xObjectItem.rg(colorArray[0], colorArray[1], colorArray[2]);
-                    break;
-                case 4:
-                    xObjectItem.k(colorArray[0], colorArray[1], colorArray[2], colorArray[3]);
-                    break;
-                default:
-                }
-
-                xObjectItem
+                xObject.fill(options.colorModel);              
+                xObjectCtx
                     .Tf(options.font, options.size)
                     .Tm(1, 0, 0, 1, 1, lineHeight)
                     .Tj(text)
@@ -492,7 +491,7 @@ function getToWriteTextObjects(textObject = {}, pathOptions, textBox = {}) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 30 2019 21:10:18 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri May 10 2019 14:28:36 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
