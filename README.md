@@ -60,7 +60,7 @@ pdfDoc
 
 ```javascript
 const HummusRecipe = require('hummus-recipe');
-const pdfDoc = new HummusRecipe('new', '/output.pdf',{
+const pdfDoc = new HummusRecipe('new', 'output.pdf',{
     version: 1.6,
     author: 'John Doe',
     title: 'Hummus Recipe',
