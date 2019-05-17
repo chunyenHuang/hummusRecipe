@@ -70,7 +70,6 @@ describe('Encryption', () => {
     it(taskCPE, (done) => {
         const output = path.join(__dirname, `output/${taskCPE}.pdf`);
         const a=3900
-        console.log(`perm: ${a.toString(2)}`)
         const recipe = new HummusRecipe('new', output, {ownerPassword: '123', userProtectionFlag:3900});
         recipe
             .createPage('letter-size')
