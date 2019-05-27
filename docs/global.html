@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
 </nav>
 
 <div id="main">
@@ -958,6 +958,169 @@
 
 
         
+            
+
+    
+
+    <h4 class="name" id="toColorModel"><span class="type-signature"></span>toColorModel<span class="signature">(code)</span><span class="type-signature"> &rarr; {any}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vector.helper.js.html">vector.helper.js</a>, <a href="vector.helper.js.html#line147">line 147</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Convert given color code int color model object</p>
+<p>ColorModel consists of: {
+  color: number, 
+  colorspace: string {'rgb', 'cmyk', 'gray'}, 
+  (colorspace == 'rgb')  r, g, b
+  (colorspace == 'cmyk') c, m, y, k
+  (colorspace == 'gray') gray
+}</p>
+<p>where r,g,b,c,m,y,k,gray are all numbers between 0 and 1</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>code</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the color encoding as HexColor</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the color model</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">any</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
     
 
     
@@ -975,7 +1138,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 30 2019 21:10:18 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri May 10 2019 14:28:36 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

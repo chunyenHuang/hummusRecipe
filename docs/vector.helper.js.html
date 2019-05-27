@@ -1,4 +1,43 @@
-const xObjectForm = require('./xObjectForm');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>vector.helper.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">vector.helper.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const xObjectForm = require('./xObjectForm');
 
 exports._getPathOptions = function _getPathOptions(options = {}, originX, originY) {
     const colorspace = options.colorspace || this.options.colorspace;
@@ -31,7 +70,7 @@ exports._getPathOptions = function _getPathOptions(options = {}, originX, origin
     if (options.opacity == void(0) || isNaN(options.opacity)) {
         options.opacity = 1;
     } else {
-        options.opacity = (options.opacity < 0) ? 0 :
+        options.opacity = (options.opacity &lt; 0) ? 0 :
             (options.opacity > 1) ? 1 : options.opacity;
     }
     pathOptions.opacity = options.opacity;
@@ -42,13 +81,13 @@ exports._getPathOptions = function _getPathOptions(options = {}, originX, origin
     if (options.size || options.fontSize) {
         const size = options.size || options.fontSize;
         if (!isNaN(size)) {
-            pathOptions.size = (size <= 0) ? 1 : size;
+            pathOptions.size = (size &lt;= 0) ? 1 : size;
         }
     }
     if (options.width || options.lineWidth) {
         const width = options.width || options.lineWidth;
         if (!isNaN(width)) {
-            pathOptions.width = (width <= 0) ? 1 : width;
+            pathOptions.width = (width &lt;= 0) ? 1 : width;
         }
     }
 
@@ -76,7 +115,7 @@ exports._getPathOptions = function _getPathOptions(options = {}, originX, origin
     // Page 127
     pathOptions.dash = (Array.isArray(options.dash)) ? options.dash : [];
     pathOptions.dashPhase = (!isNaN(options.dashPhase)) ? options.dashPhase : 0;
-    if (pathOptions.dash[0] == 0 && pathOptions.dash[1] == 0) {
+    if (pathOptions.dash[0] == 0 &amp;&amp; pathOptions.dash[1] == 0) {
         pathOptions.dash = [];
         pathOptions.dashPhase = 0;
     }
@@ -195,7 +234,7 @@ function transformColor(code = '', colorspace='', wantColorModel = false) {
     // Suppply default color:
     //  when colorspace is given and given color code does not have appropriate length, or
     //  when colorspace is missing, verify allowable hex value sizes for gray, rgb, or cmyk
-    if ( colorspace !== '' && code.length != defaultColor.length || 
+    if ( colorspace !== '' &amp;&amp; code.length != defaultColor.length || 
          ! [2,6,8].includes(code.toString().length)) {
         code = defaultColor;
     }
@@ -223,7 +262,7 @@ function hexToArray(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})?([a-f\d]{2})?([a-f\d]{2})?$/i.exec(hex);
     return result
         .reduce((array, item, index) => {
-            if (index >= 1 && index <= (hex.length / 2)) {
+            if (index >= 1 &amp;&amp; index &lt;= (hex.length / 2)) {
                 array.push(parseInt(item, 16) / 255);
             }
             return array;
@@ -239,9 +278,9 @@ exports._colorNumberToRGB = (bigint) => {
         };
     } else {
         return {
-            r: (bigint >> 16) & 255,
-            g: (bigint >> 8) & 255,
-            b: bigint & 255
+            r: (bigint >> 16) &amp; 255,
+            g: (bigint >> 8) &amp; 255,
+            b: bigint &amp; 255
         };
     }
 };
@@ -270,8 +309,8 @@ exports._setRotationContext = function _setRotationTransform(context, x, y, opti
         context.cm(1, 0, 0, 1, x, y); // no rotation
     } else {
         const rotationOrigin = (
-            options.rotationOrigin &&
-            Array.isArray(options.rotationOrigin) &&
+            options.rotationOrigin &amp;&amp;
+            Array.isArray(options.rotationOrigin) &amp;&amp;
             options.rotationOrigin.length == 2
         ) ? options.rotationOrigin : [options.originX, options.originY];
 
@@ -308,3 +347,22 @@ exports._drawObject = function _drawObject(self, x, y, width, height, options, c
         .Q();
 
 };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri May 10 2019 14:28:36 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
 </nav>
 
 <div id="main">
@@ -62,9 +62,9 @@ exports.moveTo = function moveTo(x, y) {
  * @param {number} x - The coordinate x
  * @param {number} y - The coordinate y
  * @param {Object} [options] - The options
- * @param {string|number[]} [options.color] - HexColor or RGB
- * @param {string|number[]} [options.stroke] - HexColor or RGB
- * @param {string|number[]} [options.fill] - HexColor or RGB
+ * @param {string|number[]} [options.color] - HexColor or DecimalColor
+ * @param {string|number[]} [options.stroke] - HexColor or DecimalColor
+ * @param {string|number[]} [options.fill] - HexColor or DecimalColor
  * @param {number} [options.lineWidth] - The line width
  * @param {number} [options.opacity] - The opacity
  * @param {number[]} [options.dash] - The dash style [number, number]
@@ -76,7 +76,12 @@ exports.lineTo = function lineTo(x, y, options = {}) {
     const context = this.pageContext;
     const pathOptions = this._getPathOptions(options);
     pathOptions.type = 'stroke';
-    pathOptions.color = (pathOptions.stroke === undefined) ? pathOptions.color : pathOptions.stroke;
+
+    if (pathOptions.stroke !== undefined) {
+        pathOptions.color = pathOptions.stroke;
+        pathOptions.colorspace = pathOptions.strokeModel.colorspace;
+    }
+
     context
         .q()
         .J(1)
@@ -95,8 +100,8 @@ exports.lineTo = function lineTo(x, y, options = {}) {
  * @memberof Recipe
  * @param {number[]} coordinates - The array of coordinate [[x,y], [m,n]]
  * @param {Object} [options] - The options
- * @param {string|number[]} [options.color] - HexColor or RGB
- * @param {string|number[]} [options.stroke] - HexColor or RGB
+ * @param {string|number[]} [options.color] - HexColor or DecimalColor
+ * @param {string|number[]} [options.stroke] - HexColor or DecimalColor
  * @param {number} [options.lineWidth] - The line width
  * @param {number[]} [options.dash] - The dash style [number, number]
  */
@@ -122,7 +127,7 @@ exports.line = function line(coordinates = [], options = {}) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 30 2019 21:10:18 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri May 10 2019 14:28:36 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
