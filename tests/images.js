@@ -16,12 +16,28 @@ describe('Modify', () => {
                 width: 300,
                 height: 300,
                 keepAspectRatio: false,
-                opacity: 0.4,
+                opacity: 1,
                 align: 'center center'
+            })
+            .image(myCats, 500, 210, {
+                scale: 0.1,
+                rotation: -90
+            })
+            .rectangle(500, 210, 73, 97, {
+                rotation: -90,
+                color: '#ff0000'
             })
             .image(myCats, 'center', 600, {
                 scale: 0.1,
-                align: 'center center'
+                align: 'center center',
+                rotation: 45,
+                rotationOrigin: [270, 550],
+                skewY: 10
+            })
+            .rectangle(270, 550, 73, 97, {
+                rotation: 45,
+                rotationOrigin: [270, 550],
+                skewY: 10
             })
             .image(wiki, 0, 0,{
                 width: 300,
