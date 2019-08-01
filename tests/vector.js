@@ -78,6 +78,9 @@ describe('Vector', () => {
             .circle(400, 250, 20, {skewY:-20})
             .ellipse(100, 650, 30, 10)
             .ellipse(100, 650, 30, 10, {skewY: 30, fill:"#00ff00", opacity:.2, stroke:"#ff0000", width:1})
+            .rectangle(10, 320, 80, 100, {borderRadius:5})
+            .rectangle(15, 325, 70, 90, {borderRadius:[5,10], stroke:"#00ff00"})
+            .rectangle(20, 330, 60, 80, {borderRadius:[20,10,5], fill:"#ff00ff"})
             .polygon([
                 [0, 0],
                 [0, 300],
