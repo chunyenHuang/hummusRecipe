@@ -131,7 +131,7 @@ describe('Color', () => {
             .endPage()
             .endPDF(done);
     });
-    
+
     // Tests the implicit setting of the Gray colorspace via size of color specification
 
     it('Gray implicit', (done) => {
@@ -164,15 +164,15 @@ describe('Color', () => {
         let indent = 20;
         let para = col+indent;
         let icon = para - 10;
-        let line = (i) => {return i*20};
+        let line = (i) => {return i*20;};
         let i = 2;
         recipe
             .createPage('letter-size')
-            .text("Gray,", ts,            line(i), {size: title, color: "00"})
+            .text('Gray,', ts,            line(i), {size: title, color: '00'})
             .text('R', gsize,             line(i), {size: title, color:[255,0,0]})
             .text('G', gsize+cwid-1,      line(i), {size: title, color:[0,255,0]})
             .text('B', gsize+(cwid*2),    line(i), {size: title, color:[0,0,255]})
-            .text(', ', gsize+(cwid*3),   line(i), {size: title, color:"00"})
+            .text(', ', gsize+(cwid*3),   line(i), {size: title, color:'00'})
             .text('C', gsize+(cwid*4)-10, line(i), {size: title, color:[255,0,0,0]})
             .text('M', gsize+(cwid*5)-10, line(i), {size: title, color:[0,255,0,0]})
             .text('Y', gsize+(cwid*6)-6,  line(i), {size: title, color:[0,0,255,0]})
@@ -180,7 +180,7 @@ describe('Color', () => {
         i += 1;
         recipe
             .text('IMPLICIT Colorspace (via input color specification)', col, line(++i))
-            
+
             .text('Gray, DecimalColor: [200]',       para, line(++i), {color: [200]})
             .text('Gray, HexColor: #55',             para, line(++i), {color: '#55'})
             .text('RGB,  DecimalColor: [0,0,255]',   para, line(++i), {color: [0,0,255]})
@@ -190,20 +190,20 @@ describe('Color', () => {
         i += 1;
         recipe
             .text('Colorspace Defaults', col, line(++i))
-            .circle(icon, line(i+1)-5, 5, { colorspace: 'gray', fill: "#ffff"})
+            .circle(icon, line(i+1)-5, 5, { colorspace: 'gray', fill: '#ffff'})
             .text('Gray', para, line(++i), {colorspace:'gray'})
-            .circle(icon, line(i+1)-5, 5, { colorspace: 'rgb', fill: "#00"})
+            .circle(icon, line(i+1)-5, 5, { colorspace: 'rgb', fill: '#00'})
             .text('RGB',  para, line(++i), {colorspace:'rgb'})
-            .circle(icon, line(i+1)-5, 5, { colorspace: 'cmyk', fill: "#00"})
+            .circle(icon, line(i+1)-5, 5, { colorspace: 'cmyk', fill: '#00'})
             .text('CMYK', para, line(++i), {colorspace:'cmyk'});
         i += 1;
         recipe
             .text('Bad "color" value results in colorspace defaults', col, line(++i))
-            .circle(icon, line(i+1)-5, 5, { colorspace: 'gray', fill: "#ffff"})
+            .circle(icon, line(i+1)-5, 5, { colorspace: 'gray', fill: '#ffff'})
             .text('Gray, #ffff',   para, line(++i), {colorspace:'gray', color: '#ffff'})
-            .circle(icon, line(i+1)-5, 5, { colorspace: 'rgb', fill: "#00"})
+            .circle(icon, line(i+1)-5, 5, { colorspace: 'rgb', fill: '#00'})
             .text('RGB,  #00',     para, line(++i), {colorspace:'rgb',  color: '#00'})
-            .circle(icon, line(i+1)-5, 5, { colorspace: 'cmyk', fill: "#00"})
+            .circle(icon, line(i+1)-5, 5, { colorspace: 'cmyk', fill: '#00'})
             .text('CMYK, #abcdef', para, line(++i), {colorspace:'cmyk', color: '#abcdef'});
         i += 1;
         recipe
@@ -218,16 +218,16 @@ describe('Color', () => {
             .text(' -----------------------------------------------------' , para, line(++i), {font: font});
         i += 1;
         recipe
-        .text('HexColor component values (two hex digits) range from 00 to FF.', para, line(++i))
-        .text('DecimalColor component values range from 0 to 255.', para, line(++i))
+            .text('HexColor component values (two hex digits) range from 00 to FF.', para, line(++i))
+            .text('DecimalColor component values range from 0 to 255.', para, line(++i))
 
         // testing simple drawing of shapes with no color specifications.
-        .text('Shapes using default RGB', 360, 160)
-        .circle(400, 200, 20)
-        .ellipse(475, 200, 30, 20)
-        .rectangle(445, 240, 60, 40)
-        .polygon([[400, 240],[420,280],[380,280]])
-        .endPage()
+            .text('Shapes using default RGB', 360, 160)
+            .circle(400, 200, 20)
+            .ellipse(475, 200, 30, 20)
+            .rectangle(445, 240, 60, 40)
+            .polygon([[400, 240],[420,280],[380,280]])
+            .endPage()
             .endPDF(done);
     });
 });

@@ -6,7 +6,6 @@
         "indent_char": " ",
         "indent_level": 0,
         "indent_size": 4,
-        "indent_with_tabs": false,
-        "jslint_happy": true
+        "indent_with_tabs": false
     }
 }
