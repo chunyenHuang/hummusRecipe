@@ -49,6 +49,7 @@ describe('Text - Centering', () => {
                 color: '#000000',
                 font: 'Arial',
                 size: 70,
+                opacity: .6,
                 textBox: {
                     width: 300,
                     // height: 56,
