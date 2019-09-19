@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.chroma">chroma</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.permission">permission</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#_transformColor">_transformColor</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#percentToHex">percentToHex</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
 </nav>
 
 <div id="main">
@@ -55,14 +55,20 @@ const streams = require('memory-streams');
  * @param {string} [options.subject] - The subject
  * @param {string} [options.colorspace] - The default colorspace: rgb, cmyk, gray
  * @param {string[]} [options.keywords] - The array of keywords
+ * @param {string} [options.password] - permission password
+ * @param {string} [options.userPassword] - this 'view' password also enables encryption
+ * @param {string} [options.ownerPassword] - this allows owner to 'edit' file
+ * @param {string} [options.userProtectionFlag] - encryption security level (see permissions)
+ * @param {string|string[]} [options.fontSrcPath] - directory location(s) of additional fonts
  */
 class Recipe {
     constructor(src, output, options = {}) {
         this.src = src;
-        this.options = options;
-
         // detect the src is Buffer or not
         this.isBufferSrc = this.src instanceof Buffer;
+        this.isNewPDF = (!this.isBufferSrc &amp;&amp; src.toLowerCase() === 'new');
+        this.encryptOptions = this._getEncryptOptions(options, this.isNewPDF);
+        this.options = Object.assign({}, options, this.encryptOptions);
 
         if (this.isBufferSrc) {
             this.outStream = new streams.WritableStream();
@@ -99,27 +105,30 @@ class Recipe {
     }
 
     _createWriter() {
-        if (!this.isBufferSrc &amp;&amp; this.src.toLowerCase() == 'new') {
-            this.isNewPDF = true;
-            this.writer = hummus.createWriter(this.output, {
-                version: this._getVersion(this.options.version)
-            });
+        if (this.isNewPDF) {
+            this.writer = hummus.createWriter(this.output,
+                Object.assign( {}, this.encryptOptions, {
+                    version: this._getVersion(this.options.version)
+                })
+            );
         } else {
-            this.isNewPDF = false;
             this.read();
             try {
                 if (this.isBufferSrc) {
                     this.writer = hummus.createWriterToModify(
                         new hummus.PDFRStreamForBuffer(this.src),
-                        new hummus.PDFStreamForResponse(this.outStream), {
+                        new hummus.PDFStreamForResponse(this.outStream),
+                        Object.assign( {}, this.encryptOptions, {
                             log: this.logFile
-                        }
+                        })
                     );
                 } else {
-                    this.writer = hummus.createWriterToModify(this.src, {
-                        modifiedFilePath: this.output,
-                        log: this.logFile
-                    });
+                    this.writer = hummus.createWriterToModify(this.src,
+                        Object.assign( {}, this.encryptOptions, {
+                            modifiedFilePath: this.output,
+                            log: this.logFile
+                        })
+                    );
                 }
             } catch (err) {
                 throw new Error(err);
@@ -159,7 +168,7 @@ class Recipe {
             if (this.isBufferSrc) {
                 src = new hummus.PDFRStreamForBuffer(this.src);
             }
-            const pdfReader = hummus.createReader(src);
+            const pdfReader = hummus.createReader(src, this.encryptOptions);
             const pages = pdfReader.getPagesCount();
             if (pages == 0) {
                 // broken or modify password protected
@@ -245,15 +254,18 @@ class Recipe {
 
                 this.writer = hummus.createWriterToModify(
                     new hummus.PDFRStreamForBuffer(oldStream.toBuffer()),
-                    new hummus.PDFStreamForResponse(this.outStream), {
+                    new hummus.PDFStreamForResponse(this.outStream),
+                    Object.assign( {}, this.encryptOptions, {
                         log: this.logFile
-                    }
+                    })
                 );
             } else {
-                this.writer = hummus.createWriterToModify(this.output, {
-                    modifiedFilePath: this.output,
-                    log: this.logFile
-                });
+                this.writer = hummus.createWriterToModify(this.output,
+                    Object.assign( {}, this.encryptOptions, {
+                        modifiedFilePath: this.output,
+                        log: this.logFile
+                    })
+                );
             }
 
             this._writeAnnotations();
@@ -308,7 +320,7 @@ module.exports = Recipe;
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri May 10 2019 14:28:36 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Sep 18 2019 18:04:07 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

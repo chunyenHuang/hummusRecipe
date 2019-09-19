@@ -1,4 +1,43 @@
-const hummus = require('hummus');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>colors.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.chroma">chroma</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.permission">permission</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#_transformColor">_transformColor</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#percentToHex">percentToHex</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">colors.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const hummus = require('hummus');
 const fs = require('fs');
 
 this.knownColors = {  // knownColors.colorspace.colorName = value
@@ -143,7 +182,7 @@ function tintTransform(self, color) {
         .endArray();
     dict.writeKey('Range');
     objCxt.startArray();
-    for (let index = 0; index < rangeCount; index++) {
+    for (let index = 0; index &lt; rangeCount; index++) {
         objCxt.writeNumber(0.0).writeNumber(1.0);
     }
     objCxt.endArray();
@@ -151,14 +190,14 @@ function tintTransform(self, color) {
     dict.writeNumberValue(1);
     dict.writeKey('C0');
     objCxt.startArray();
-    for (let index = 0; index < rangeCount; index++) {
+    for (let index = 0; index &lt; rangeCount; index++) {
         objCxt.writeNumber(0.0);
     }
     objCxt.endArray();
 
     dict.writeKey('C1');
     objCxt.startArray();
-    for (let index = 0; index < rangeCount; index++) {
+    for (let index = 0; index &lt; rangeCount; index++) {
         objCxt.writeNumber(color[index]);
     }
     objCxt.endArray();
@@ -270,7 +309,7 @@ function toColorModel(self, code, colorspace, colorName) {
     // use the colorspace from above as the
     // alternative color transformation when
     // the named color is unavailable.
-    if (colorspace === 'separation' && colorName !== '') {
+    if (colorspace === 'separation' &amp;&amp; colorName !== '') {
         cmodel.colorspace = colorspace;
         cmodel.colorName = colorName;
         cmodel.colorspaceId = createColorSpaces(self, colorName, color);
@@ -341,14 +380,14 @@ exports._transformColor = function _transformColor(code = '', opt = {}) {
     // Suppply default color:
     //  when colorspace is given and given color code does not have appropriate length, or
     //  when colorspace is missing, verify allowable hex value sizes for rgb, cmyk, or gray.
-    if ( ['rgb','cmyk','gray'].includes(colorspace) && code.length != defaultColor.length ||
+    if ( ['rgb','cmyk','gray'].includes(colorspace) &amp;&amp; code.length != defaultColor.length ||
          ! [2,6,8].includes(code.toString().length)) {
         code = defaultColor;
     }
 
     if (wantColorModel) {
         transformation = toColorModel(this, code, colorspace, colorName);
-        if ( colorName && !this.knownColors[colorspace][colorName]) {
+        if ( colorName &amp;&amp; !this.knownColors[colorspace][colorName]) {
             this.chroma(colorName, code, colorspace);
         }
     } else {
@@ -372,7 +411,7 @@ function hexToArray(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})?([a-f\d]{2})?([a-f\d]{2})?$/i.exec(hex);
     return result
         .reduce((array, item, index) => {
-            if (index >= 1 && index <= (hex.length / 2)) {
+            if (index >= 1 &amp;&amp; index &lt;= (hex.length / 2)) {
                 array.push(parseInt(item, 16) / 255);
             }
             return array;
@@ -388,9 +427,28 @@ exports._colorNumberToRGB = (bigint) => {
         };
     } else {
         return {
-            r: (bigint >> 16) & 255,
-            g: (bigint >>  8) & 255,
-            b: bigint & 255
+            r: (bigint >> 16) &amp; 255,
+            g: (bigint >>  8) &amp; 255,
+            b: bigint &amp; 255
         };
     }
 };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Sep 18 2019 18:04:07 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

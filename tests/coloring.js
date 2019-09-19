@@ -1,6 +1,5 @@
 const path = require('path');
 const HummusRecipe = require('../lib');
-const hummus = require('hummus');
 
 describe('Coloring', () => {
     it('Using Names', (done) => {
@@ -68,9 +67,9 @@ describe('Coloring', () => {
             .line([[80,490],[100,490]],lineOpt)
             .text('Pantone 1505 C, RGB', 100, 520,  {bold: true, size: 20, color: [255,105,0], colorName: 'PANTONE 1505 C'} )
             .line([[80,520],[100,520]],lineOpt)
-            .text('Pantone 1505 C, CMYK', 100, 550,  {bold: true, size: 20, color: "%0,56,90,0", colorName: 'PANTONE 1505 C'} )
+            .text('Pantone 1505 C, CMYK', 100, 550,  {bold: true, size: 20, color: '%0,56,90,0', colorName: 'PANTONE 1505 C'} )
             .line([[80,550],[100,550]],lineOpt)
-            .text('CMYK Direct', 100, 580,  {bold: true, size: 20, color: "%0,56,90,0", colorspace: 'cmyk'} )
+            .text('CMYK Direct', 100, 580,  {bold: true, size: 20, color: '%0,56,90,0', colorspace: 'cmyk'} )
             .line([[80,580],[100,580]],lineOpt)
             .text('Nan, a great PDF collaborator!', 100, 360, {bold: true, size: 30, color: 'nans'})
             .endPage()
