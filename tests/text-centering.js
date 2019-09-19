@@ -9,7 +9,6 @@ describe('Text - Centering', () => {
 
         recipe
             .createPage('letter-size')
-            .line([[180,0],[180,300]],{stroke:'#ff00ff',lineWidth:.5})
             .text('Musty', 30, 230, {
                 color: '#000000',
                 font: 'Arial',
@@ -80,7 +79,7 @@ describe('Text - Centering', () => {
                     }
                 },
             })
-            .line([[180,0],[180,700]],{stroke:'#ff00ff',lineWidth:.5})
+            .line([[180,0],[180,500]],{stroke:'#ff00ff',lineWidth:.5})
             .endPage();
 
 
