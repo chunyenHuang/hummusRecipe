@@ -69,7 +69,6 @@ describe('Encryption', () => {
     const taskCPE = 'New file with edit password';
     it(taskCPE, (done) => {
         const output = path.join(__dirname, `output/${taskCPE}.pdf`);
-        const a=3900
         const recipe = new HummusRecipe('new', output, {ownerPassword: '123', userProtectionFlag:3900});
         recipe
             .createPage('letter-size')

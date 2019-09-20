@@ -4,57 +4,82 @@ const HummusRecipe = require('../lib');
 describe('Text - Centering', () => {
 
     it('should horizontally center the text correctly with multiple font sizes', (done) => {
-        const src = path.join(__dirname, 'materials/blank.pdf');
         const output = path.join(__dirname, 'output/Center Text.pdf');
-        const recipe = new HummusRecipe(src, output);
+        const recipe = new HummusRecipe('new', output);
 
         recipe
-            .editPage(1)
-            .text('Test', 30, 240, {
+            .createPage('letter-size')
+            .text('Musty', 30, 230, {
                 color: '#000000',
                 font: 'Arial',
                 size: 12,
                 textBox: {
                     width: 300,
-                    minHeight: 100,
+                    // minHeight: 100,
                     textAlign: 'center',
-                    padding: [0, 0, 0, 0],
+                    padding: 0,
                     style: {
-                        stroke: '#000000'
+                        stroke: '#000000',
+                        lineWidth:1,
+                        fill:'#ffffff'
                     }
                 },
 
             })
-            .text('Test', 30, 20, {
+
+            .text('Dusty', 30, 50, {
                 color: '#000000',
                 font: 'Arial',
                 size: 30,
                 textBox: {
                     width: 300,
-                    minHeight: 100,
+                    // minHeight: 100,
                     textAlign: 'center',
-                    padding: [0, 0, 0, 0],
+                    padding: 0,
                     style: {
-                        stroke: '#000000'
+                        stroke: '#000000',
+                        lineWidth:1,
+                        fill:'#ffffff'
                     }
                 },
 
             })
-            .text('Test', 30, 130, {
+            .text('Testy', 30, 120, {
                 color: '#000000',
                 font: 'Arial',
-                size: 56,
+                size: 70,
+                opacity: .6,
                 textBox: {
                     width: 300,
-                    minHeight: 100,
+                    // height: 56,
+                    // minHeight: 100,
                     textAlign: 'center',
-                    padding: [0, 0, 0, 0],
+                    padding: [0,0,0,0],
                     style: {
-                        stroke: '#000000'
+                        stroke: '#000000',
+                        lineWidth:1,
+                        fill:'#ffff00'
                     }
                 },
 
             })
+            .text('A\nAAA\nOOO\nVVV\nY', 30, 260, {
+                color: '#000000',
+                font: 'Arial',
+                size: 30,
+                textBox: {
+                    width: 300,
+                    // minHeight: 100,
+                    textAlign: 'center',
+                    padding: 0,
+                    style: {
+                        stroke: '#000000',
+                        lineWidth:1,
+                        fill:'#ffffff'
+                    }
+                },
+            })
+            .line([[180,0],[180,500]],{stroke:'#ff00ff',lineWidth:.5})
             .endPage();
 
 
