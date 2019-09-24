@@ -112,7 +112,7 @@ describe('Modify', () => {
             const recipe = new HummusRecipe(src, output);
             recipe
                 .editPage(1)
-                .overlay(overlayPDF,{page_index:1})
+                .overlay(overlayPDF,{page:1})
                 .endPage()
                 .endPDF(done);
         });
@@ -123,7 +123,7 @@ describe('Modify', () => {
             const output = path.join(__dirname, 'output/Add overlay (#28) with page - position.pdf');
 
             const recipe = new HummusRecipe(src, output);
-            const options = {page_index:2};
+            const options = {page:1};
             recipe
                 .editPage(1)
                 .overlay(overlayPDF, 500, 300, options)
@@ -140,7 +140,7 @@ describe('Modify', () => {
             const options = {
                 keepAspectRatio: true,
                 scale: 3,
-                page_index:0
+                page:2
             };
             recipe
                 .editPage(1)
@@ -158,7 +158,7 @@ describe('Modify', () => {
             const options = {
                 keepAspectRatio: true,
                 fitWidth: true,
-                page_index:2
+                page:2
             };
             recipe
                 .editPage(1)
@@ -175,7 +175,8 @@ describe('Modify', () => {
             const recipe = new HummusRecipe(src, output);
             const options = {
                 keepAspectRatio: true,
-                fitHeight: true
+                fitHeight: true,
+                page:1
             };
             recipe
                 .editPage(1)
@@ -193,7 +194,7 @@ describe('Modify', () => {
             const options = {
                 fitHeight: true,
                 fitWidth: true,
-                page_index:1
+                page:2
             };
             recipe
                 .editPage(1)
