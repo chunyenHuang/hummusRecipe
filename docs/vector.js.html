@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.chroma">chroma</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.permission">permission</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#_transformColor">_transformColor</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#percentToHex">percentToHex</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
 </nav>
 
 <div id="main">
@@ -38,18 +38,19 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>//  Table indicating how to specify coloration of elements
-//  ----------------------------------------------------
-// |Color | HexColor   | DecimalColor                   |
-// |Space | (string)   | (array)                        |
-// |------+------------+--------------------------------|
-// | Gray | #GG        | [gray]                         |
-// |  RGB | #rrggbb    | [red, green, blue]             |
-// | CMYK | #ccmmyykk  | [cyan, magenta, yellow, black] |
-//  ----------------------------------------------------
+//  -------------------------------------------------------------------
+// |Color | HexColor   | DecimalColor                   | PercentColor |
+// |Space | (string)   | (array)                        | (string)     |
+// |------+------------+--------------------------------+--------------|
+// | Gray | #GG        | [gray]                         | %G           |
+// |  RGB | #rrggbb    | [red, green, blue]             | %r,g,b       |
+// | CMYK | #ccmmyykk  | [cyan, magenta, yellow, black] | %c,m,y,k     |
+//  -------------------------------------------------------------------
 //
 //   HexColor component values (two hex digits) range from 00 to FF.
 //   DecimalColor component values range from 0 to 255.
-  
+//   PercentColor component values range from 1 to 100.
+
 /**
  * Draw a circle
  * @name circle
@@ -59,9 +60,9 @@
  * @param {number} y - The coordinate y
  * @param {number} radius - The radius
  * @param {Object} [options] - The options
- * @param {string|number[]} [options.color] - HexColor or DecimalColor
- * @param {string|number[]} [options.stroke] - HexColor or DecimalColor
- * @param {string|number[]}[ options.fill] - HexColor or DecimalColor
+ * @param {string|number[]} [options.color] - HexColor, PercentColor or DecimalColor
+ * @param {string|number[]} [options.stroke] - HexColor, PercentColor or DecimalColor
+ * @param {string|number[]}[ options.fill] - HexColor, PercentColor or DecimalColor
  * @param {number} [options.lineWidth] - The line width
  * @param {number} [options.opacity] - The opacity
  * @param {number[]} [options.dash] - The dash style [number, number]
@@ -74,7 +75,7 @@ exports.circle = function circle(x, y, radius, options = {}) {
     const diameter = radius * 2;
 
     if (options.fill) {
-        const pathOptions = this._getPathOptions(options);
+        const pathOptions = this._getPathOptions(options, nx, ny);
         pathOptions.type = 'fill';
 
         if (pathOptions.fill !== undefined) {
@@ -85,7 +86,7 @@ exports.circle = function circle(x, y, radius, options = {}) {
         this._drawObject(this, nx - radius, ny - radius, diameter, diameter, pathOptions, (ctx, xObject) => {
             ctx
                 .gs(xObject.getGsName(pathOptions.fillGsId))
-                .drawCircle(radius, radius, radius, pathOptions)
+                .drawCircle(radius, radius, radius, pathOptions);
         });
     }
     if (options.stroke || options.color || !options.fill) {
@@ -101,10 +102,10 @@ exports.circle = function circle(x, y, radius, options = {}) {
 
         this._drawObject(this, nx - radius, ny - radius, diameter, diameter, pathOptions, (ctx) => {
             ctx
-               .d(pathOptions.dash, pathOptions.dashPhase)
-               .drawCircle(radius, radius, radius - pathOptions.width/2, pathOptions);
+                .d(pathOptions.dash, pathOptions.dashPhase)
+                .drawCircle(radius, radius, radius - pathOptions.width / 2, pathOptions);
 
-                // ... requires adjusting the internal drawing to accomodate line thickness.
+            // ... requires adjusting the internal drawing to accomodate line thickness.
         });
     }
     return this;
@@ -120,27 +121,20 @@ exports.circle = function circle(x, y, radius, options = {}) {
  * @param {number} width - The width
  * @param {number} height - The height
  * @param {Object} [options] - The options
- * @param {string|number[]} [options.color] - HexColor or DecimalColor
- * @param {string|number[]} [options.stroke] - HexColor or DecimalColor
- * @param {string|number[]} [options.fill] - HexColor or DecimalColor
+ * @param {string|number[]} [options.color] - HexColor, PercentColor or DecimalColor
+ * @param {string|number[]} [options.stroke] - HexColor, PercentColor or DecimalColor
+ * @param {string|number[]} [options.fill] - HexColor, PercentColor or DecimalColor
  * @param {number} [options.lineWidth] - The line width
  * @param {number} [options.opacity] - The opacity
  * @param {number[]} [options.dash] - The dash style [number, number]
  * @param {number} [options.rotation] - Accept: +/- 0 through 360. Default: 0
  * @param {number[]} [options.rotationOrigin] - [originX, originY] Default: x, y
-*/
+ */
 exports.rectangle = function rectangle(x, y, width, height, options = {}) {
-    const { nx, ny } = (options.useGivenCoords) 
-                     ? { nx: x, ny: y } 
-                     : this._calibrateCoordinate(x, y, 0, -height);
-
-    // override default rotation origin?
-    if (!options.useGivenCoords &amp;&amp; options.rotationOrigin) {
-        const orig = this._calibrateCoordinate(options.rotationOrigin[0], options.rotationOrigin[1]);
-        options.rotationOrigin = [orig.nx, orig.ny];
-    }
+    const { nx, ny } = (options.useGivenCoords) ? { nx: x, ny: y } : this._calibrateCoordinate(x, y, 0, -height);
 
     const pathOptions = this._getPathOptions(options, nx, ny);
+    let colorModel = pathOptions.colorModel;
 
     if (options.fill) {
         pathOptions.type = 'fill';
@@ -148,12 +142,19 @@ exports.rectangle = function rectangle(x, y, width, height, options = {}) {
         if (pathOptions.fill !== undefined) {
             pathOptions.color = pathOptions.fill;
             pathOptions.colorspace = pathOptions.fillModel.colorspace;
+            colorModel = pathOptions.fillModel;
         }
 
         this._drawObject(this, nx, ny, width, height, pathOptions, (ctx, xObject) => {
-            ctx
-                .gs(xObject.getGsName(pathOptions.fillGsId))
-                .drawRectangle(0, 0, width, height, pathOptions);
+            ctx.gs(xObject.getGsName(pathOptions.fillGsId));
+
+            if (options.borderRadius) {
+                xObject.fill(colorModel);
+                drawRoundedRectangle(ctx, 0, 0, width, height, options.borderRadius);
+                ctx.f();
+            } else {
+                ctx.drawRectangle(0, 0, width, height, pathOptions);
+            }
         });
     }
 
@@ -163,22 +164,79 @@ exports.rectangle = function rectangle(x, y, width, height, options = {}) {
         if (pathOptions.stroke !== undefined) {
             pathOptions.color = pathOptions.stroke;
             pathOptions.colorspace = pathOptions.strokeModel.colorspace;
+            colorModel = pathOptions.strokeModel;
         }
 
         // To honor the given width and height of the rectangle ...
 
-        this._drawObject(this, nx, ny, width, height, pathOptions, (ctx) => {
-            const margin = pathOptions.width;
-            ctx
-                .d(pathOptions.dash, pathOptions.dashPhase)
-                .drawRectangle(margin/2, margin/2, width-margin, height-margin, pathOptions);
+        this._drawObject(this, nx, ny, width, height, pathOptions, (ctx, xObject) => {
 
-                // ... requires adjusting the internal drawing to accomodate line thickness.
+            // ... requires adjusting the internal drawing to accomodate line thickness.
+            const margin = pathOptions.width;
+
+            if (options.borderRadius) {
+                xObject.stroke(colorModel);
+                ctx
+                    .w(pathOptions.width)
+                    .d(pathOptions.dash, pathOptions.dashPhase);
+
+                drawRoundedRectangle(ctx, margin / 2, margin / 2, width - margin, height - margin, options.borderRadius);
+                ctx.S();
+            } else {
+                ctx
+                    .d(pathOptions.dash, pathOptions.dashPhase)
+                    .drawRectangle(margin / 2, margin / 2, width - margin, height - margin, pathOptions);
+            }
         });
     }
 
     return this;
 };
+
+function drawRoundedRectangle(ctx, left, bottom, width, height, radii) {
+    let radius = [];
+
+    // populate radius array accordingly.
+    // Missing element value comes from opposite corner.
+    if (typeof radii === 'number') {
+        radius = new Array(4).fill(radii);
+    } else if (Array.isArray(radii)) {
+        switch (radii.length) {
+            case 1:
+                radius = new Array(4).fill(radii[0]);
+                break;
+            case 2:
+                radius = radii.slice(0);
+                radius[2] = radii[0];
+                radius[3] = radii[1];
+                break;
+            case 3:
+                radius = radii.slice(0);
+                radius[3] = radii[1];
+                break;
+            case 4:
+                radius = radii;
+                break;
+        }
+    }
+    const K = 0.551784;
+    const right = left + width;
+    const top = bottom + height;
+    ctx
+        .m(left, top - radius[0]) // top-left
+        .c(left, top - radius[0] * (1 - K), left + radius[0] * (1 - K), top, left + radius[0], top)
+
+        .l(right - radius[1], top) // top-right
+        .c(right - radius[1] * (1 - K), top, right, top - radius[1] * (1 - K), right, top - radius[1])
+
+        .l(right, bottom + radius[2]) // bottom-right
+        .c(right, bottom + radius[2] * (1 - K), right - radius[2] * (1 - K), bottom, right - radius[2], bottom)
+
+        .l(left + radius[3], bottom) // bottom-left
+        .c(left + radius[3] * (1 - K), bottom, left, bottom + radius[3] * (1 - K), left, bottom + radius[3])
+
+        .l(left, top - radius[0]); // back to top-left
+}
 
 /**
  * Draw an ellipse
@@ -190,9 +248,9 @@ exports.rectangle = function rectangle(x, y, width, height, options = {}) {
  * @param {number} rx radius length from the center point along x-axis
  * @param {number} ry radius length from the center point along y-axis
  * @param {Object} options
- * @param {string|number[]} [options.color] - HexColor or DecimalColor
- * @param {string|number[]} [options.stroke] - HexColor or DecimalColor
- * @param {string|number[]}[ options.fill] - HexColor or DecimalColor
+ * @param {string|number[]} [options.color] - HexColor, PercentColor or DecimalColor
+ * @param {string|number[]} [options.stroke] - HexColor, PercentColor or DecimalColor
+ * @param {string|number[]}[ options.fill] - HexColor, PercentColor or DecimalColor
  * @param {number} [options.lineWidth] - The line width
  * @param {number} [options.opacity] - The opacity
  * @param {number[]} [options.dash] - The dash style [number, number]
@@ -204,39 +262,29 @@ exports.ellipse = function ellipse(cx, cy, rx, ry, options = {}) {
         nx,
         ny
     } = this._calibrateCoordinate(cx, cy);
-    
-    if (options.rotationOrigin) {
-        const orig = this._calibrateCoordinate(options.rotationOrigin[0], options.rotationOrigin[1]);
-        options.rotationOrigin = [orig.nx, orig.ny];
-    }
 
     const pathOptions = this._getPathOptions(options, nx, ny);
     let colorModel = pathOptions.colorModel;
 
-    // Algorithm has to account for thickness of line to keep
-    // ellipse within the confines of the enclosing rectangle
-    // so that there is no viewed clipping of the drawn path.
+    const width = rx * 2;
+    const height = ry * 2;
 
-    const magic = 0.551784;  // from https://www.tinaja.com/glib/ellipse4.pdf
-    const ox = rx * magic;   // control point offset horizontal
-    const oy = ry * magic;   // control point offset horizontal
-    const w  = rx * 2;       // width of enclosing rectangle
-    const h  = ry * 2;       // height of enclosing rectangle
-    const x = 0;             // x coordinate of origin
-    const y = 0;             // y coordinate of origin
-    const xe = x + w;        // x-end, opposite corner from origin
-    const ye = y + h;        // y-end, opposite corner from origin
-    const xm = rx;           // x-middle of enclosing rectangle
-    const ym = ry;           // y-middle of enclosing rectangle
+    const drawEllipse = (ctx, x, y, w, h) => {
+        const magic = 0.551784; // from https://www.tinaja.com/glib/ellipse4.pdf
+        const ox = rx * magic; // control point offset horizontal
+        const oy = ry * magic; // control point offset horizontal
+        const xe = x + w; // x-end, opposite corner from origin
+        const ye = y + h; // y-end, opposite corner from origin
+        const xm = rx; // x-middle of enclosing rectangle
+        const ym = ry; // y-middle of enclosing rectangle
 
-    const drawEllipse = (ctx, x, y, xe, ye) => {
         ctx
             .m(x, ym)
             .c(x, ym - oy, xm - ox, y, xm, y)
             .c(xm + ox, y, xe, ym - oy, xe, ym)
             .c(xe, ym + oy, xm + ox, ye, xm, ye)
-            .c(xm - ox, ye, x, ym + oy, x, ym)
-    }
+            .c(xm - ox, ye, x, ym + oy, x, ym);
+    };
 
     if (options.fill) {
 
@@ -244,11 +292,11 @@ exports.ellipse = function ellipse(cx, cy, rx, ry, options = {}) {
             colorModel = pathOptions.fillModel;
         }
 
-        this._drawObject(this, nx-rx, ny-ry, w, h, pathOptions, (ctx, xObject) => {
-            
+
+        this._drawObject(this, nx - rx, ny - ry, width, height, pathOptions, (ctx, xObject) => {
             ctx.gs(xObject.getGsName(pathOptions.fillGsId));
             xObject.fill(colorModel);
-            drawEllipse(ctx, x, y, xe, ye);
+            drawEllipse(ctx, 0, 0, width, height);
             ctx.f();
         });
     }
@@ -261,15 +309,15 @@ exports.ellipse = function ellipse(cx, cy, rx, ry, options = {}) {
 
         // To honor the given width and height of the enclosing rectangle ...
 
-        this._drawObject(this, nx-rx, ny-ry, w, h, pathOptions, (ctx, xObject) => {
-            const margin = pathOptions.width/2;
+        this._drawObject(this, nx - rx, ny - ry, width, height, pathOptions, (ctx, xObject) => {
+            const margin = pathOptions.width / 2;
             xObject.stroke(colorModel);
             ctx
                 .w(pathOptions.width)
-                .d(pathOptions.dash, pathOptions.dashPhase)
+                .d(pathOptions.dash, pathOptions.dashPhase);
 
             // ... requires adjusting the internal drawing to accomodate line thickness.
-            drawEllipse(ctx, margin, margin, xe-margin, ye-margin);
+            drawEllipse(ctx, margin, margin, width - pathOptions.width, height - pathOptions.width);
             ctx.S();
         });
     }
@@ -307,7 +355,7 @@ exports.fillAndStroke = function fillAndStroke() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri May 10 2019 14:28:36 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Sep 18 2019 18:04:07 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
