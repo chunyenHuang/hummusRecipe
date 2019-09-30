@@ -1,5 +1,6 @@
 const path = require('path');
 const HummusRecipe = require('../lib');
+const assert = require('chai').assert;
 
 describe('Modify', () => {
     it('Change info pdf', (done) => {
@@ -18,6 +19,13 @@ describe('Modify', () => {
             })
             .endPage()
             .endPDF(done);
+    });
+    it('Read document title', (done) => {
+        const src = path.join(__dirname, 'output/change info.pdf');
+        const recipe = new HummusRecipe(src);
+        const info = recipe.getDocumentInfo();
+        assert.equal(info.title, 'Hello World');   // This test depends on output from above.
+        recipe.endPDF(done);
     });
     it('Change info pdf', (done) => {
         const src = path.join(__dirname, 'materials/test-info.pdf');
