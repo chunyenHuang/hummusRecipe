@@ -23,7 +23,7 @@ describe('Modify', () => {
     it('Read document title', (done) => {
         const src = path.join(__dirname, 'output/change info.pdf');
         const recipe = new HummusRecipe(src);
-        const info = recipe.getDocumentInfo();
+        const info = recipe.info();
         assert.equal(info.title, 'Hello World');   // This test depends on output from above.
         recipe.endPDF(done);
     });
