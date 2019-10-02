@@ -41,39 +41,98 @@
 const hummus = require('hummus');
 /**
  * @name info
- * @desc Add information to pdf
+ * @desc Add new PDF information, or retrieve existing PDF information.
  * @memberof Recipe
  * @function
- * @param {Object} [options] - The options
+ * @param {Object} [options] - The options (when missing obtains existing PDF information)
  * @param {number} [options.version] - The pdf version
  * @param {string} [options.author] - The author
  * @param {string} [options.title] - The title
  * @param {string} [options.subject] - The subject
  * @param {string[]} [options.keywords] - The array of keywords
  */
-exports.info = function info(options = {}) {
-    this.toWriteInfo_ = this.toWriteInfo_ || {};
-    Object.assign(this.toWriteInfo_, options);
-    return this;
+exports.info = function info(options) {
+    let result;
+
+    if (! options) {
+        result = this._readInfo();
+        
+    } else {
+        this.toWriteInfo_ = this.toWriteInfo_ || {};
+        Object.assign(this.toWriteInfo_, options);
+        result = this;
+    }
+
+    return result;
 };
+
+exports._readInfo = function _readInfo() {
+    if (!this.isNewPDF &amp;&amp; !this.infoDictionary) {
+        const copyFrom = this.isBufferSrc ? new hummus.PDFRStreamForBuffer(this.src) : this.src;
+        const copyCtx  = this.writer.createPDFCopyingContext(copyFrom);
+        const infoDict = copyCtx.getSourceDocumentParser().queryDictionaryObject(
+            copyCtx.getSourceDocumentParser().getTrailer(), 'Info'
+        );
+    
+        const oldInfo = (infoDict &amp;&amp; infoDict.toJSObject) ? infoDict.toJSObject() : null;
+    
+        if (oldInfo) {
+            this.infoDictionary = {}
+            Object.getOwnPropertyNames(oldInfo).forEach((key) => {
+                if (!oldInfo[key]) {
+                    return;
+                }
+                const oldInforSrc = this._parseObjectByType(oldInfo[key]);
+                if (!oldInforSrc) {
+                    return;
+                }
+                switch (key) {
+                    case 'Trapped':
+                        if (oldInforSrc &amp;&amp; oldInforSrc.value) {
+                            this.infoDictionary.trapped = oldInforSrc.value;
+                        }
+                        break;
+                    case 'CreationDate':
+                        if (oldInforSrc &amp;&amp; oldInforSrc.value) {
+                            this.infoDictionary.creationDate = oldInforSrc.value;
+                        }
+                        break;
+                    case 'ModDate':
+                        if (oldInforSrc &amp;&amp; oldInforSrc.value) {
+                            this.infoDictionary.modDate = oldInforSrc.value;
+                        }
+                        break;
+                    case 'Creator':
+                        if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
+                            this.infoDictionary.creator = oldInforSrc.toText();
+                        }
+                        break;
+                    case 'Producer':
+                        if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
+                            this.infoDictionary.producer = oldInforSrc.toText();
+                        }
+                        break;
+                    default:
+                        if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
+                            this.infoDictionary[key.toLowerCase()] = oldInforSrc.toText();
+                        }
+                }
+            });
+        }
+    }
+
+    return this.infoDictionary;
+}
 
 exports._writeInfo = function _writeInfo() {
     const options = this.toWriteInfo_ || {};
-    let oldInfo;
+    const oldInfo = this._readInfo();
     /*
         #41, #48
         This issue is due to the unhandled process exit from HummusJS.
         I have to disable this part before it gets fixed in HummusJS.
     */
-    if (!this.isNewPDF) {
-        // reuse copyCtx?
-        const copyFrom = this.isBufferSrc ? new hummus.PDFRStreamForBuffer(this.src) : this.src;
-        const copyCtx = this.writer.createPDFCopyingContext(copyFrom, options);
-        const infoDict = copyCtx.getSourceDocumentParser().queryDictionaryObject(
-            copyCtx.getSourceDocumentParser().getTrailer(), 'Info'
-        );
-        oldInfo = (infoDict &amp;&amp; infoDict.toJSObject) ? infoDict.toJSObject() : null;
-    }
+    
     const infoDictionary = this.writer.getDocumentContext().getInfoDictionary();
     const fields = [{
         key: 'author',
@@ -97,40 +156,25 @@ exports._writeInfo = function _writeInfo() {
             if (!oldInfo[key]) {
                 return;
             }
-            const oldInforSrc = this._parseObjectByType(oldInfo[key]);
-            if (!oldInforSrc) {
-                return;
-            }
+
             switch (key) {
-                case 'Trapped':
-                    if (oldInforSrc &amp;&amp; oldInforSrc.value) {
-                        infoDictionary.trapped = oldInforSrc.value;
-                    }
+                case 'trapped':
+                    infoDictionary.trapped = oldInfo.trapped;
                     break;
-                case 'CreationDate':
-                    if (oldInforSrc &amp;&amp; oldInforSrc.value) {
-                        infoDictionary.setCreationDate(oldInforSrc.value);
-                    }
+                case 'creationDate':
+                    infoDictionary.setCreationDate(oldInfo.creationDate);
                     break;
-                case 'ModDate':
-                    if (oldInforSrc &amp;&amp; oldInforSrc.value) {
-                        infoDictionary.addAdditionalInfoEntry(`source-${key}`, oldInforSrc.value);
-                    }
+                case 'modDate':
+                    infoDictionary.addAdditionalInfoEntry('source-ModDate', oldInfo.modDate);
                     break;
-                case 'Creator':
-                    if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
-                        infoDictionary.addAdditionalInfoEntry(`source-${key}`, oldInforSrc.toText());
-                    }
+                case 'creator':
+                    infoDictionary.addAdditionalInfoEntry('source-Creator', oldInfo.creator);
                     break;
-                case 'Producer':
-                    if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
-                        infoDictionary.addAdditionalInfoEntry(`source-${key}`, oldInforSrc.toText());
-                    }
+                case 'producer':
+                    infoDictionary.addAdditionalInfoEntry('source-Producer', oldInfo.producer);
                     break;
                 default:
-                    if (oldInforSrc &amp;&amp; oldInforSrc.toText) {
-                        infoDictionary[key.toLowerCase()] = oldInforSrc.toText();
-                    }
+                    infoDictionary[key] = oldInfo[key];
             }
         });
     }
@@ -330,7 +374,7 @@ exports._parseObjectByType = function _parseObjectByType(inObject) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Sep 18 2019 18:04:07 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Oct 02 2019 12:00:26 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
