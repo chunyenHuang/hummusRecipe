@@ -216,7 +216,7 @@ describe('Color', () => {
             .text('| Space | (string)   | (array)                        | (string)     |', para, line(++i), {font: font, size:12})
             .text('|-------+------------+--------------------------------+--------------|', para, line(++i), {font: font, size:12})
             .text('| Gray  | #GG        | [gray]                         | %G           |', para, line(++i), {font: font, size:12})
-            .text('| RGB   | #rrggbb    | [red, green, blue]             | %G           |', para, line(++i), {font: font, size:12})
+            .text('| RGB   | #rrggbb    | [red, green, blue]             | %r,g,b       |', para, line(++i), {font: font, size:12})
             .text('| CMYK  | #ccmmyykk  | [cyan, magenta, yellow, black] | %c,m,y,k     |', para, line(++i), {font: font, size:12})
             .text(' --------------------------------------------------------------------' , para, line(++i), {font: font, size:12});
         i += 1;
