@@ -64,12 +64,12 @@ describe('Vector', () => {
                 stroke: [255, 0, 255],
                 dash: [5, 5]
             })
-            .circle('center', 100, 60, {
+            .circle('center', 150, 60, {
                 stroke: '#3b7721',
                 fill: '#0e0e0e',
                 opacity: 0.4
             })
-            .circle('center', 100, 30, {
+            .circle('center', 150, 30, {
                 stroke: '#0032FF',
                 dash: [5, 5]
             })
@@ -148,7 +148,29 @@ describe('Vector', () => {
             ], {
                 lineWidth: 10,
                 dash: [0, 0]
-            })
+            });
+        let x = 175;
+        let y = 11;
+        let h = 20;
+        recipe
+            .text('lineCaps:', 100, 5+h)
+            .line([[x,y], [x+20,y]], {lineWidth: 10, lineCap:'butt'})
+            .text('butt', x+30, 5, {color:'red'})
+            .line([[x,y+20], [x+20,y+20]], {lineWidth: 10, lineCap:'round'})  // default
+            .text('round',x+30, 5+h, {color:'green'})
+            .line([[x,y+40], [x+20,y+40]], {lineWidth: 10, lineCap:'square'})
+            .text('square', x+30, 5+2*h, {color:'red'});
+        
+        x=300
+        y=10
+        recipe
+            .polygon([[x,y+10],   [x+20,y+30], [x, y+50]], {lineWidth: 8, lineJoin:'miter', miterLimit:3})
+            .text('miter', x-3,70,{rotation:-45, color:'red' })
+            .polygon([[x+40,y+10],[x+60,y+30], [x+40, y+50]], {lineWidth: 8, lineJoin:'round'})  // default
+            .text('round', x+37,70,{rotation:-45, color:'green' })
+            .polygon([[x+80,y+10],[x+100,y+30], [x+80, y+50]], {lineWidth: 8, lineJoin: 'bevel'})
+            .text('bevel', x+77,70,{rotation:-45, color:'red' })
+            .text(':lineJoins', 415, 33)
             .endPage()
             .endPDF(done);
     });
