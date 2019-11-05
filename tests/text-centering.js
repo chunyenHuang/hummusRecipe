@@ -66,7 +66,7 @@ describe('Text - Centering', () => {
             .text('A\nAAA\nOOO\nVVV\n{0}', 30, 260, {
                 color: '#000000',
                 font: 'Arial',
-                size: 30,
+                size: 20,
                 textBox: {
                     width: 300,
                     textAlign: 'center',
@@ -75,26 +75,28 @@ describe('Text - Centering', () => {
                         fill:'#ffff00'
                     }
                 },
-            })
+            });
 
-            .text('<-- Note, using padding of\n      2 puts dots inside fill.', 340, 475)
-            .text('<-- Text with line height applied\n            (1.16% font size).', 340, 525)
-            .text('A\nAAA\nOOO\nVVV\n|', 30, 425, {
+        let fs = 20;
+        recipe
+            .text('<-- Note, using padding of 2\n      puts marker dots inside fill.', 340, 455)
+            .text('<-- Text with line height applied\n            (1.16% font size).', 340, 490)
+            .text('A\nAAA\nOOO\nVVV\n|', 30, 400, {
                 color: '#000000',
                 font: 'Arial',
-                size: 30,
+                size: fs,
                 textBox: {
                     width: 300,
                     textAlign: 'center',
                     padding: 2,
-                    lineHeight: 1.16*30, // percentage of font size
+                    lineHeight: 1.16*fs, // percentage of font size
                     style: {
                         fill:'default'
                     }
                 },
             })
-            .circle(30,425,2,{stroke:'red'})
-            .circle(330,425,2,{stroke:'red'})
+            .circle(30,400,2,{stroke:'red'})
+            .circle(330,400,2,{stroke:'red'})
 
             .line([[180,25],[180,425]],{stroke:'#ff00ff',lineWidth:.5});
 
@@ -145,7 +147,7 @@ describe('Text - Centering', () => {
                     }
                 }
             })
-            .line([[x-5,y],[x+w+5,y]], {lineWidth: .5, stroke: 'red'})
+            .line([[x-5,y],[x+w+5,y]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
             .circle(x,y,2,{stroke:'red'});
 
         y = 400;
@@ -164,7 +166,7 @@ describe('Text - Centering', () => {
                     }
                 }
             })
-            .line([[x-5,y+h],[x+w+5,y+h]], {lineWidth: .5, stroke: "#ff0000"})
+            .line([[x-5,y+h],[x+w+5,y+h]], {lineWidth: .5, stroke: "red", lineCap: 'butt'})
             .circle(x,y,2,{stroke:'red'});
 
         x = 500;
@@ -184,7 +186,7 @@ describe('Text - Centering', () => {
                         }
                     }
                 })
-            .line([[x+w,y-5],[x+w,y+h+5]], {lineWidth: .5, stroke: 'red'})
+            .line([[x+w,y-5],[x+w,y+h+5]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
             .circle(x,y,2,{stroke:'red'});
 
         x = 400;
@@ -203,14 +205,61 @@ describe('Text - Centering', () => {
                     }
                 }
             })
-            .line([[x,y-5],[x,y+h+5]], {lineWidth: .5, stroke: 'red'})
+            .line([[x,y-5],[x,y+h+5]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
             .circle(x,y,2,{stroke:'red'});
         
+        recipe
+            .text('Using horizontal "justify" setting with default "top" vertical setting, no height.', 40, 535, {
+                color: '#000000',
+                textBox: {
+                    width: 130,
+                    textAlign: 'justify',
+                    style: {
+                        stroke: '#ffff00',
+                        lineWidth:.5,
+                    }
+                }
+            })
+
+            .text('... now with "justify center" setting and specific height', 180, 535, {
+                textBox: {
+                    width: 130,
+                    height: 70,
+                    textAlign: 'justify center',
+                    style: {
+                        stroke: '#ff0000',
+                        lineWidth:.5,
+                    }
+                }
+            })
+
+            .text('... finally, using "justify bottom" setting with specific height', 320, 535, {
+                color: 'blue',
+                textBox: {
+                    width: 140,
+                    height: 70,
+                    textAlign: 'justify bottom',
+                    style: {
+                        stroke: '#ff00ff',
+                        lineWidth:.5,
+                    }
+                }
+            })
+
+            .text('Oh, wait a minute. How about a justification view without any box drawn. It gives you the sense of an old fashioned newspaper column.', 470, 535, {
+                color: '#000000',
+                size: 10,
+                textBox: {
+                    width: 120,
+                    height: 70,
+                    textAlign: 'justify',
+                }
+            });
 
         h = 70;
         recipe
             .circle(40,625,2,{stroke:'red'})
-            .text(`text box without\nminHeight\n setting`, 40, 625, {
+            .text(`text box without\nheight or\nminHeight\n setting\nauto fits text`, 40, 625, {
                 color: '#000000',
                 textBox: {
                     width: 100,
@@ -223,19 +272,105 @@ describe('Text - Centering', () => {
             })
             .circle(150,625,2,{stroke:'red'})
             .circle(150,625+h,2,{stroke:'red'})
-            .text(`minHeight: ${h}`, 150, 625, {
+            .text(`minHeight: ${h}\nBox will not collapse when not enough text to fill it. It will auto grow when text exceeds minHeight.`, 150, 625, {
                 color: '#000000',
+                size: 9,
                 textBox: {
                     width: 100,
                     minHeight: h,
-                    textAlign: 'center',
                     style: {
                         stroke: '#000000',
                         lineWidth:.5,
                     }
                 }
             })
-
+            .text('text at\ncenter center', 265, 625,{
+                color: '#000000',
+                textBox: {
+                    width: 100,
+                    minHeight: h,
+                    textAlign: 'center center',
+                    style: {
+                        stroke: '#000000',
+                        lineWidth:.5,
+                    }
+                }
+            })
+            .text('text at\ncenter bottom', 380, 625,{
+                color: '#000000',
+                textBox: {
+                    width: 100,
+                    minHeight: h,
+                    textAlign: 'center bottom',
+                    style: {
+                        stroke: '#000000',
+                        lineWidth:.5,
+                    }
+                }
+            })
+            .text('text at\nright bottom', 500, 625,{
+                color: '#000000',
+                textBox: {
+                    width: 100,
+                    minHeight: h,
+                    textAlign: 'right bottom',
+                    style: {
+                        stroke: '#000000',
+                        lineWidth:.5,
+                    }
+                }
+            })
+            .text('This is what happens when you use "height" and have too much text', 40, 725,{
+                color: '#000000',
+                textBox: {
+                    width: 125,
+                    height: 40,
+                    // textAlign: 'right bottom',
+                    // textAlign: 'justify',
+                    style: {
+                        stroke: '#000000',
+                        lineWidth:.5,
+                    }
+                }
+            })
+            .text('Using height and supplying textAlign: center center', 180, 725,{
+                color: '#000000',
+                textBox: {
+                    width: 120,
+                    height: 40,
+                    textAlign: 'center center',
+                    style: {
+                        stroke: '#000000',
+                        lineWidth:.5,
+                    }
+                }
+            })
+            .text('Using "height" and supplying textAlign: right bottom', 310, 725,{
+                color: '#000000',
+                textBox: {
+                    width: 120,
+                    height: 40,
+                    textAlign: 'right bottom',
+                    style: {
+                        stroke: '#000000',
+                        lineWidth:.5,
+                    }
+                }
+            })
+            .text('Showing text with\nellipsis when wrap\ndisabled on the last line', 440, 725, {
+                color: '#000000',
+                size: 10,
+                textBox: {
+                    width: 100,
+                    height: 40,
+                    wrap: 'ellipsis',
+                    style: {
+                        stroke: '#000000',
+                        lineWidth:.5,
+                    }
+                }
+            })
+        
         recipe.endPage();
         recipe.endPDF(done);
     });
