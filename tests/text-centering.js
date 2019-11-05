@@ -277,9 +277,7 @@ describe('Text - Centering', () => {
                 size: 9,
                 textBox: {
                     width: 100,
-                    wrap: 'trim',
                     minHeight: h,
-                    // textAlign: 'right',
                     style: {
                         stroke: '#000000',
                         lineWidth:.5,
@@ -353,6 +351,19 @@ describe('Text - Centering', () => {
                     width: 120,
                     height: 40,
                     textAlign: 'right bottom',
+                    style: {
+                        stroke: '#000000',
+                        lineWidth:.5,
+                    }
+                }
+            })
+            .text('Showing text with\nellipsis when wrap\ndisabled on the last line', 440, 725, {
+                color: '#000000',
+                size: 10,
+                textBox: {
+                    width: 100,
+                    height: 40,
+                    wrap: 'ellipsis',
                     style: {
                         stroke: '#000000',
                         lineWidth:.5,
