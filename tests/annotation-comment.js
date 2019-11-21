@@ -9,6 +9,7 @@ describe('Annotation: Comment', () => {
             // 1st Page
             .createPage('letter-size')
             .comment('Feel free to open issues to help us!', 'center', 100, {
+                title: 'First Comment',
                 flag: 'locked'
             })
             .endPage()

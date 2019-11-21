@@ -2691,7 +2691,7 @@ must be specified as hex values.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="info.js.html">info.js</a>, <a href="info.js.html#line133">line 133</a>
+        <a href="info.js.html">info.js</a>, <a href="info.js.html#line177">line 177</a>
     </li></ul></dd>
     
 
@@ -3002,7 +3002,7 @@ must be specified as hex values.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vector.js.html">vector.js</a>, <a href="vector.js.html#line202">line 202</a>
+        <a href="vector.js.html">vector.js</a>, <a href="vector.js.html#line203">line 203</a>
     </li></ul></dd>
     
 
@@ -4437,7 +4437,7 @@ must be specified as hex values.</p>
 
 
 <div class="description">
-    <p>Add information to pdf</p>
+    <p>Add new PDF information, or retrieve existing PDF information.</p>
 </div>
 
 
@@ -4503,7 +4503,7 @@ must be specified as hex values.</p>
 
             
 
-            <td class="description last"><p>The options</p>
+            <td class="description last"><p>The options (when missing obtains existing PDF information)</p>
                 <h6>Properties</h6>
                 
 
@@ -4914,7 +4914,7 @@ must be specified as hex values.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vector-line.js.html">vector-line.js</a>, <a href="vector-line.js.html#line57">line 57</a>
+        <a href="vector-line.js.html">vector-line.js</a>, <a href="vector-line.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -5184,6 +5184,39 @@ must be specified as hex values.</p>
 
         <tr>
             
+                <td class="name"><code>opacity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>how transparent should line be, from 0: invisible to 1: opaque</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>dash</code></td>
             
 
@@ -5210,7 +5243,139 @@ must be specified as hex values.</p>
 
             
 
-            <td class="description last"><p>The dash style [number, number]</p></td>
+            <td class="description last"><p>The dash pattern [dashSize, gapSize] or [dashAndGapSize]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dashPhase</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>distance into dash pattern at which to start dash (default: 0, immediately)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lineCap</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>open line end style, 'butt', 'round', or 'square' (default: 'round')</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lineJoin</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>joined line end style, 'miter', 'round', or 'bevel' (default: 'round')</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>miterLimit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>limit at which 'miter' joins are forced to 'bevel' (default: 1.414)</p></td>
         </tr>
 
     
@@ -5524,42 +5689,6 @@ must be specified as hex values.</p>
 
         <tr>
             
-                <td class="name"><code>fill</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">Array.&lt;number></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>HexColor, PercentColor or DecimalColor</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>lineWidth</code></td>
             
 
@@ -5619,7 +5748,7 @@ must be specified as hex values.</p>
 
             
 
-            <td class="description last"><p>The opacity</p></td>
+            <td class="description last"><p>how transparent should line be, from 0: invisible to 1: opaque</p></td>
         </tr>
 
     
@@ -5652,7 +5781,139 @@ must be specified as hex values.</p>
 
             
 
-            <td class="description last"><p>The dash style [number, number]</p></td>
+            <td class="description last"><p>The dash pattern [dashSize, gapSize] or [dashAndGapSize]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dashPhase</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>distance into dash pattern at which to start dash (default: 0, immediately)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lineCap</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>open line end style, 'butt', 'round', or 'square' (default: 'round')</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lineJoin</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>joined line end style, 'miter', 'round', or 'bevel' (default: 'round')</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>miterLimit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>limit at which 'miter' joins are forced to 'bevel' (default: 1.414)</p></td>
         </tr>
 
     
@@ -6825,7 +7086,40 @@ More than one may be specified by using a comma to separate the names in the inp
 
             
 
-            <td class="description last"><p>The dash style [number, number]</p></td>
+            <td class="description last"><p>The dash pattern [dashSize, gapSize] or [dashAndGapSize]</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dashPhase</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>distance into dash pattern at which to start dash (default: 0, immediately)</p></td>
         </tr>
 
     
@@ -6892,6 +7186,105 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             <td class="description last"><p>[originX, originY] Default: x, y</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lineCap</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>open line end style, 'butt', 'round', or 'square' (default: 'round')</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lineJoin</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>joined line end style, 'miter', 'round', or 'bevel' (default: 'round')</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>miterLimit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>limit at which 'miter' joins are forced to 'bevel' (default: 1.414)</p></td>
         </tr>
 
     
@@ -8043,6 +8436,8 @@ More than one may be specified by using a comma to separate the names in the inp
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -8081,6 +8476,10 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>Text color (HexColor, PercentColor or DecimalColor)</p></td>
         </tr>
@@ -8113,6 +8512,12 @@ More than one may be specified by using a comma to separate the names in the inp
                 </td>
             
 
+            
+                <td class="default">
+                
+                    <code>1</code>
+                
+                </td>
             
 
             <td class="description last"><p>opacity</p></td>
@@ -8147,8 +8552,14 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
 
-            <td class="description last"><p>Accept: +/- 0 through 360. Default: 0</p></td>
+            <td class="description last"><p>Accept: +/- 0 through 360.</p></td>
         </tr>
 
     
@@ -8180,8 +8591,14 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                    <code>[x,y]</code>
+                
+                </td>
+            
 
-            <td class="description last"><p>[originX, originY] Default: the text coordinate</p></td>
+            <td class="description last"><p>[originX, originY]</p></td>
         </tr>
 
     
@@ -8212,6 +8629,12 @@ More than one may be specified by using a comma to separate the names in the inp
                 </td>
             
 
+            
+                <td class="default">
+                
+                    <code>Helvetica</code>
+                
+                </td>
             
 
             <td class="description last"><p>The font. 'Arial', 'Helvetica'...</p></td>
@@ -8246,8 +8669,14 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                    <code>14</code>
+                
+                </td>
+            
 
-            <td class="description last"><p>The line width</p></td>
+            <td class="description last"><p>The font size</p></td>
         </tr>
 
     
@@ -8278,6 +8707,12 @@ More than one may be specified by using a comma to separate the names in the inp
                 </td>
             
 
+            
+                <td class="default">
+                
+                    <code>'left top'</code>
+                
+                </td>
             
 
             <td class="description last"><p>The alignment. 'center center'...</p></td>
@@ -8315,6 +8750,10 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>Text markup annotation.</p></td>
         </tr>
@@ -8350,6 +8789,10 @@ More than one may be specified by using a comma to separate the names in the inp
                 </td>
             
 
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>Text markup annotation.</p></td>
@@ -8387,6 +8830,10 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>Text markup annotation.</p></td>
         </tr>
@@ -8420,6 +8867,10 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>Text Box to fit in.</p>
                 <h6>Properties</h6>
@@ -8438,6 +8889,8 @@ More than one may be specified by using a comma to separate the names in the inp
         <th>Attributes</th>
         
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -8474,6 +8927,12 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                    <code>100</code>
+                
+                </td>
+            
 
             <td class="description last"><p>Text Box width</p></td>
         </tr>
@@ -8507,6 +8966,10 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>Text Box fixed height</p></td>
         </tr>
@@ -8539,6 +9002,12 @@ More than one may be specified by using a comma to separate the names in the inp
                 </td>
             
 
+            
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
             
 
             <td class="description last"><p>Text Box minimum height</p></td>
@@ -8576,6 +9045,12 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
 
             <td class="description last"><p>Text Box padding, [top, right, bottom, left]</p></td>
         </tr>
@@ -8609,8 +9084,53 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                    <code>0</code>
+                
+                </td>
+            
 
             <td class="description last"><p>Text Box line height</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>wrap</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>'auto'</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Text wrapping mechanism, 'auto', 'clip', 'trim'.</p></td>
         </tr>
 
     
@@ -8642,8 +9162,15 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                    <code>'left top'</code>
+                
+                </td>
+            
 
-            <td class="description last"><p>Text alignment inside text box</p></td>
+            <td class="description last"><p>Alignment inside text box, specified as 'horizontal vertical',
+where horizontal is one of: 'left', 'center', 'right', 'justify' and veritical is one of: 'top', 'center', 'bottom'.</p></td>
         </tr>
 
     
@@ -8675,6 +9202,10 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>Text Box styles</p>
                 <h6>Properties</h6>
@@ -8693,6 +9224,8 @@ More than one may be specified by using a comma to separate the names in the inp
         <th>Attributes</th>
         
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -8728,6 +9261,12 @@ More than one may be specified by using a comma to separate the names in the inp
                 </td>
             
 
+            
+                <td class="default">
+                
+                    <code>2</code>
+                
+                </td>
             
 
             <td class="description last"><p>Text Box border width</p></td>
@@ -8765,6 +9304,10 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>Text Box border color  (HexColor, PercentColor or DecimalColor)</p></td>
         </tr>
@@ -8797,6 +9340,12 @@ More than one may be specified by using a comma to separate the names in the inp
                 </td>
             
 
+            
+                <td class="default">
+                
+                    <code>[]</code>
+                
+                </td>
             
 
             <td class="description last"><p>Text Box border border dash style [number, number]</p></td>
@@ -8834,6 +9383,10 @@ More than one may be specified by using a comma to separate the names in the inp
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
             <td class="description last"><p>Text Box border background color (HexColor, PercentColor or DecimalColor)</p></td>
         </tr>
@@ -8866,6 +9419,12 @@ More than one may be specified by using a comma to separate the names in the inp
                 </td>
             
 
+            
+                <td class="default">
+                
+                    <code>1</code>
+                
+                </td>
             
 
             <td class="description last"><p>Text Box border background opacity</p></td>
@@ -9062,7 +9621,7 @@ More than one may be specified by using a comma to separate the names in the inp
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Sep 18 2019 18:04:07 GMT-0700 (Pacific Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 01 2019 20:41:12 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
