@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.chroma">chroma</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.permission">permission</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#_transformColor">_transformColor</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#percentToHex">percentToHex</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.chroma">chroma</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.permission">permission</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#_transformColor">_transformColor</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#justify">justify</a></li><li><a href="global.html#percentToHex">percentToHex</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
 </nav>
 
 <div id="main">
@@ -40,40 +40,38 @@
             <pre class="prettyprint source linenums"><code>const hummus = require('hummus');
 
 /**
- * Create a new page
+ * Create a new page, specifying either actual width and height, or the name
+ * of a supported page size (eg. 'letter', )
  * @name createPage
  * @function
  * @memberof Recipe
- * @param {number} pageWidth - The page width.
- * @param {number} pageHeight - The page height.
+ * @param {number|string} [pageWidth_or_pageSizeName='letter'] - The page width, or name of paper type.
+ * @param {number} [pageHeight_or_rotation] - The page height, or rotation (90) when when page size name given.
  */
 exports.createPage = function createPage(pageWidth, pageHeight) {
-    if (!pageWidth &amp;&amp; !pageHeight) {
-        pageWidth = pageWidth || this.default.pageWidth;
-        pageHeight = pageHeight || this.default.pageHeight;
-    } else
-    if (pageWidth &amp;&amp; !isNaN(pageWidth) &amp;&amp; pageHeight &amp;&amp; !isNaN(pageHeight)) {
-        pageWidth = pageWidth || this.default.pageWidth;
-        pageHeight = pageHeight || this.default.pageHeight;
-    } else
-    if (pageWidth &amp;&amp; typeof (pageWidth) == 'string') {
-        // const type = pageWidth;
-        const rotate = pageHeight;
-        let pageType = this.default.paperSizeTypes[pageWidth];
 
-        if (pageType) {
-            pageWidth = pageType.pageWidth;
-            pageHeight = pageType.pageHeight;
+    if (!pageWidth &amp;&amp; !pageHeight) {
+        [pageWidth, pageHeight] = this.default.pageSize;
+        
+    } else if (pageWidth &amp;&amp; !isNaN(pageWidth) &amp;&amp; pageHeight &amp;&amp; !isNaN(pageHeight)) {
+        pageWidth  = pageWidth  || this.default.pageSize[0];
+        pageHeight = pageHeight || this.default.pageSize[1];
+    
+    } else if (typeof pageWidth === 'string') {
+        const rotate   = pageHeight;
+        const pageType = pageWidth.toLowerCase();
+        const pageSize = this.default.mediumSizes[pageType];
+
+        if (pageSize) {
+            [pageWidth, pageHeight] = pageSize;
         } else {
-            // use default
-            pageWidth = this.default.pageWidth;
-            pageHeight = this.default.pageHeight;
+            [pageWidth, pageHeight] = this.default.pageSize;
         }
+
         if (rotate &amp;&amp; !isNaN(rotate)) {
             if (rotate % 180 != 0) {
-                let temp = pageHeight;
-                pageHeight = pageWidth;
-                pageWidth = temp;
+                // swap width and height
+                [pageWidth, pageHeight] = [pageHeight, pageWidth];
             }
         }
     }
@@ -248,7 +246,7 @@ exports.getPageInfo = function getPageInfo() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Nov 01 2019 20:41:12 GMT-0400 (Eastern Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Nov 25 2019 10:50:41 GMT-0500 (Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

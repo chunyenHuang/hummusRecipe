@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.chroma">chroma</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.permission">permission</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#_transformColor">_transformColor</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#percentToHex">percentToHex</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Recipe.html">Recipe</a><ul class='methods'><li data-type='method'><a href="Recipe.html#.annot">annot</a></li><li data-type='method'><a href="Recipe.html#.appendPage">appendPage</a></li><li data-type='method'><a href="Recipe.html#.chroma">chroma</a></li><li data-type='method'><a href="Recipe.html#.circle">circle</a></li><li data-type='method'><a href="Recipe.html#.comment">comment</a></li><li data-type='method'><a href="Recipe.html#.createPage">createPage</a></li><li data-type='method'><a href="Recipe.html#.custom">custom</a></li><li data-type='method'><a href="Recipe.html#.editPage">editPage</a></li><li data-type='method'><a href="Recipe.html#.ellipse">ellipse</a></li><li data-type='method'><a href="Recipe.html#.encrypt">encrypt</a></li><li data-type='method'><a href="Recipe.html#.endPage">endPage</a></li><li data-type='method'><a href="Recipe.html#.image">image</a></li><li data-type='method'><a href="Recipe.html#.info">info</a></li><li data-type='method'><a href="Recipe.html#.insertPage">insertPage</a></li><li data-type='method'><a href="Recipe.html#.line">line</a></li><li data-type='method'><a href="Recipe.html#.lineTo">lineTo</a></li><li data-type='method'><a href="Recipe.html#.moveTo">moveTo</a></li><li data-type='method'><a href="Recipe.html#.overlay">overlay</a></li><li data-type='method'><a href="Recipe.html#.pageInfo">pageInfo</a></li><li data-type='method'><a href="Recipe.html#.permission">permission</a></li><li data-type='method'><a href="Recipe.html#.polygon">polygon</a></li><li data-type='method'><a href="Recipe.html#.rectangle">rectangle</a></li><li data-type='method'><a href="Recipe.html#.registerFont">registerFont</a></li><li data-type='method'><a href="Recipe.html#.split">split</a></li><li data-type='method'><a href="Recipe.html#.text">text</a></li><li data-type='method'><a href="Recipe.html#endPDF">endPDF</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#_getTextBoxOffset">_getTextBoxOffset</a></li><li><a href="global.html#_transformColor">_transformColor</a></li><li><a href="global.html#appendPDFPageFromPDFWithAnnotations">appendPDFPageFromPDFWithAnnotations</a></li><li><a href="global.html#appendPDFPagesFromPDFWithAnnotations">appendPDFPagesFromPDFWithAnnotations</a></li><li><a href="global.html#contentToRC">contentToRC</a></li><li><a href="global.html#getFlagBitNumberByName">getFlagBitNumberByName</a></li><li><a href="global.html#justify">justify</a></li><li><a href="global.html#percentToHex">percentToHex</a></li><li><a href="global.html#toColorModel">toColorModel</a></li></ul>
 </nav>
 
 <div id="main">
@@ -61,6 +61,62 @@ const xObjectForm = require('./xObjectForm');
 //   DecimalColor component values range from 0 to 255.
 //   PercentColor component values range from 1 to 100.
 
+function merge (target, source) {
+    // Iterate through `source` properties and if an `Object` set property to merge of `target` and `source` properties
+    for (const key of Object.keys(source)) {
+      if (source[key] instanceof Object) Object.assign(source[key], merge(target[key], source[key]))
+    }
+  
+    // Join `target` and modified `source`
+    // Forcing non-object to become one. This allows
+    // things like hilite:true become hilite:{color:'red'}
+    if (! (target instanceof Object)) {
+        target = {};
+    }
+    Object.assign(target, source)
+    return target
+}
+
+function _initOptions(self, x = {}, y, options = {}) {
+
+    // This allows user to skip providing x/y coordinates
+    if (typeof x === 'object') {
+        options = x;
+        self._textOptions = self._textOptions || {textBox:{}};
+        self._flow = (options.flow === undefined) ? true : options.flow;
+
+        // The following only happens when 'text' is called
+        // for the first time without any position coordinates.
+        if (self.x === undefined) { 
+            self.x = self._margin.left; 
+            self.y = self._margin.top;
+            self.box = {x: self.x, y: self.y};
+            self._firstLineHeight = 0;
+        }
+
+    } else {
+        // Update the current position, when provided.
+        self.x = x;
+        self.y = y;
+        self.box = {x,y};
+        self._firstLineHeight = 0;    // indicates not set yet, determined later.
+        self._textOptions = {textBox:{}};
+        self._previousTextObjects = [];
+        self._flow = options.flow || false;
+    }
+
+    self._previousTextObjects = self._previousTextObjects || [];
+
+    // Merge any previous options with new options
+    const mergedOpts = merge(self._textOptions, options);
+
+    if (mergedOpts.textBox.width === undefined) {
+        mergedOpts.textBox.width = Math.max(0, self.metadata[self.pageNumber].width - self.x - self._margin.right);
+    }
+
+    return mergedOpts;
+  }
+
 /**
  * Write text elements
  * @name text
@@ -81,6 +137,11 @@ const xObjectForm = require('./xObjectForm');
  * @param {Object|Boolean} [options.highlight] - Text markup annotation.
  * @param {Object|Boolean} [options.underline] - Text markup annotation.
  * @param {Object|Boolean} [options.strikeOut] - Text markup annotation.
+ * @param {Boolean} [options.flow=false] - Used to activate/deactivate text flow which is the
+ * ability to use multiple calls to 'text' to create an overall text box.
+ * @param {Boolean} [options.hilite=false] - Used to hilite given text.
+ * @param {Object} [options.hilite.color=yellow] - text hilite color (HexColor, PercentColor or DecimalColor)
+ * @param {number} [options.hilite.opacity=.5] - text hilite color opacity
  * @param {Object} [options.textBox] - Text Box to fit in.
  * @param {number} [options.textBox.width=100] - Text Box width
  * @param {number} [options.textBox.height] - Text Box fixed height
@@ -98,16 +159,24 @@ const xObjectForm = require('./xObjectForm');
  * @param {number[]} [options.textBox.style.dash=[]] - Text Box border border dash style [number, number]
  * @param {string|number[]} [options.textBox.style.fill] - Text Box border background color (HexColor, PercentColor or DecimalColor)
  * @param {number} [options.textBox.style.opacity=1] - Text Box border background opacity
+ * @param {boolean|number|number[]} [options.textBox.style.borderRadius=0] - Border radius to apply to get rounded corners.
+ * When true is given, the default radius size for all corners is 5. A four number array may be used to give specific sizees to each
+ * corner. The numbering starts from the top, left corner, and goes clockwise around the text box.
  */
 exports.text = function text(text = '', x, y, options = {}) {
     if (!this.pageContext) {
         return this;
     }
+    options = _initOptions(this, x, y, options);
+
     const targetAnnotations = options;
-    const originCoord = this._calibrateCoordinate(x, y, 0, 0, this.pageNumber);
+    const originCoord = this._calibrateCoordinate(this.x, this.y, 0, 0, this.pageNumber);
     const pathOptions = this._getPathOptions(options, originCoord.nx, originCoord.ny);
     pathOptions.html = options.html;
-    // const { width: pageWidth, height: pageHeight } = this.metadata[this.pageNumber];
+    pathOptions.hilite = options.hilite;
+
+    // save text state for continued text?
+    this._textOptions = (this._flow) ? options : {textBox:{}};
 
     const textObjects = (options.html) ? htmlToTextObjects(text) : [{
         value: text,
@@ -168,24 +237,27 @@ exports.text = function text(text = '', x, y, options = {}) {
     });
 
     let firstLineHeight;
-    let totalHeight = 0;
     let toWriteTextObjects = [];
 
     const writeValue = (textObject) => {
         textObject.lineID = textObject.lineID || Date.now() * Math.random();
         textObject.lineID = (textObject.needsLineBreaker) ? Date.now() * Math.random() : textObject.lineID;
-        if (textObject.value) {
+        if (textObject.value !== undefined) {
             textObject.styles.color = (textObject.styles.color) ?
                 this._transformColor(textObject.styles.color) : pathOptions.color;
             const {
                 toWriteTextObjects: newToWriteObjects,
                 paragraphHeight
-            } = getToWriteTextObjects(textObject, pathOptions, textBox);
+            } = makeTextObjects(this, textObject, pathOptions, textBox);
+
             toWriteTextObjects = [...toWriteTextObjects, ...newToWriteObjects];
+
             if (!firstLineHeight) {
-                firstLineHeight = toWriteTextObjects[0].lineHeight;
+                this._lineHeight = firstLineHeight = toWriteTextObjects[0].lineHeight;
+                if (!this._firstLineHeight) {
+                    this._firstLineHeight = this._lineHeight;  // used in textbox coordinate computation
+                }
             }
-            totalHeight += paragraphHeight; // textObject.size;
         }
         if (textObject.tag &amp;&amp; textObject.childs.length) {
             // console.log(textObject);
@@ -247,214 +319,321 @@ exports.text = function text(text = '', x, y, options = {}) {
     if (!textBox.width) {
         textBox.width = toWriteTextObjects[0].lineWidth;
     }
-    textBox.firstLineHeight = firstLineHeight;
-    textBox.lastLineHeight  = pathOptions.textHeight;
 
-    const {
-        offsetX,
-        offsetY
-    } = this._getTextBoxOffset(textBox, pathOptions);
-    const {
-        nx,
-        ny
-    } = this._calibrateCoordinate(x, y, offsetX, offsetY);
+    textBox.firstLineHeight = this._firstLineHeight;
+    
+    // need to collect all the text that is 'flowing' before processing.
+    if (this._flow) {
+        this._previousTextObjects = [... toWriteTextObjects];
+    } else {
+        
+        const { nx, ny } = getTextBoxPosition(this, textBox, pathOptions);
+        let textYpos = ny;
 
-    let textYpos = ny;
+        if (textBox.style) {
+            const actualTextHeight = getTextBoxHeight(toWriteTextObjects);
+            drawTextBox(this, nx, ny, textBox, actualTextHeight, pathOptions);
 
-    if (textBox.style) {
-        const textBoxWidth  = textBox.width + textBox.paddingLeft + textBox.paddingRight;
-        const actualTextHeight = textBox.firstLineHeight * (toWriteTextObjects.length-1) + textBox.lastLineHeight
-
-        if (!textBox.height) {
-            textBox.height = actualTextHeight + textBox.paddingTop + textBox.paddingBottom;
-            
-            if (textBox.minHeight &amp;&amp; textBox.minHeight > textBox.height) {
-                textBox.height = textBox.minHeight;
+            // Determine vertical starting position of text within textBox
+            switch (toWriteTextObjects[0].writeOptions.alignVertical) {
+                case 'center':
+                    textYpos -= (textBox.height - actualTextHeight) / 2;
+                    break;
+                case 'bottom':
+                    textYpos -= (textBox.height - actualTextHeight - textBox.paddingBottom);
+                    break;
             }
         }
 
-        this.rectangle(
-            nx - textBox.paddingLeft, 
-            ny - textBox.height + textBox.firstLineHeight + textBox.paddingTop,
-            textBoxWidth, textBox.height, Object.assign(textBox.style, {
-                useGivenCoords: true,
-                rotation: pathOptions.rotation,
-                rotationOrigin: [pathOptions.originX,pathOptions.originY],
-            })
-        );
-         
-        // Determine vertical starting position of text within textBox
-        switch (toWriteTextObjects[0].writeOptions.alignVertical) {
-            case 'center':
-                textYpos -= (textBox.height - actualTextHeight) / 2;
-                break;
-            case 'bottom':
-                textYpos -= (textBox.height - actualTextHeight);
-                break;
-        }
+        const context = this.pageContext;
+        let currentY = textYpos - textBox.paddingTop;
+        let currentLineID;
+        let currentLineWidth = 0;
+        let toWriteContents = [];
+
+        toWriteTextObjects.forEach((toWriteTextObject, index) => {
+            const {
+                text,
+                lineHeight,
+                lineWidth,
+                lineID,
+                spaceWidth
+            } = toWriteTextObject;
+    
+            currentLineID = currentLineID || lineID;
+            const isContinued = (currentLineID == lineID) ? true : false;
+    
+            const getStartX = (startX, content) => {
+                let spaceWidth = content.text.endsWith(' ') ? content.spaceWidth : 0;
+
+                switch (content.writeOptions.alignHorizontal) {
+                    case 'center':
+                        offsetX = (textBox.width - currentLineWidth) / 2;
+                        break;
+                    case 'right':
+                        offsetX = (textBox.width - textBox.paddingRight - currentLineWidth) + spaceWidth;
+                        break;
+                    default:
+                        offsetX = textBox.paddingLeft;
+                        break;
+                }
+               
+                return startX + offsetX;
+            };
+    
+            const writeText = (context, x, y, wto) => {
+                const options = wto.writeOptions;
+                const {lineHeight, text, baseline} = wto;
+                let next_x = 0;
+    
+                if (text === "") {  // nothing to write, so simply escape.
+                    return next_x;
+                }
+    
+                // Produce a hilite under words?
+                if (options.hilite) {
+                    const bgColor   = options.hilite.color   || "#ffff00";
+                    const bgOpacity = options.hilite.opacity || .5;
+                    let bxWidth = wto.lineWidth;
+    
+                    // The hiliting rectangle cannot use the text box line
+                    // width when justification is activated because the
+                    // spaces between words is calculated dynamically.
+                    if (options.alignHorizontal === 'justify') {
+                        bxWidth = justify(nx, x, wto, textBox) - x;
+                    
+                    // Except for 'right' alignment cases, have to consider 
+                    // text on line ending with spaces to tweak box width.
+                    } else if (options.alignHorizontal !== 'right') {
+                        if (text.endsWith(' ')) {
+                            bxWidth += wto.spaceWidth;
+                        }
+                    }
+    
+                    this.rectangle(x, y, bxWidth, options.textHeight, {
+                        useGivenCoords: true,
+                        rotation: pathOptions.rotation,
+                        rotationOrigin: [pathOptions.originX,pathOptions.originY],
+                        fill: bgColor,
+                        opacity: bgOpacity
+                    });
+                }
+    
+                // write directly to page when not dealing with opacity, rotation and special colorspace.
+                if (options.opacity  === 1 &amp;&amp; options.colorspace !== 'separation' &amp;&amp;
+                   (options.rotation === 0 || options.rotation === undefined)) {
+                    
+                    // Note that the last line of a text box ignores justification.
+                    if (options.alignHorizontal === 'justify' &amp;&amp; !wto.lastLine) {
+                        next_x = 
+                            justify(nx, x, wto, textBox, (word, xx) => {
+                                context.writeText(word.value, xx, y+baseline, options);
+                            });
+    
+                    } else {
+                        if (textBox.wrap !== 'auto') {  // This applies a clipping region around the text
+                            this.pageContext.q();
+                            this.pageContext
+                                .m(nx,y+lineHeight)
+                                .l(nx+textBox.width,y+lineHeight)
+                                .l(nx+textBox.width,y)
+                                .l(nx,y)
+                                .h().W().n();
+                        }
+                        
+                        context.writeText(text, x, y+baseline, options);
+    
+                        if (textBox.wrap !== 'auto') {
+                            this.pageContext.Q();
+                        }
+                    }            
+                } else {
+
+                    this.pauseContext();
+    
+                    // https://github.com/galkahana/HummusJS/wiki/Use-the-pdf-drawing-operators
+                    const xObject = new xObjectForm(this.writer, textBox.width, lineHeight);
+                    const xObjectCtx = xObject.getContentContext();
+                    const yPos = baseline;
+                    // Build form object
+                    xObjectCtx
+                        .q()
+                        .gs(xObject.getGsName(options.fillGsId))  // set graphic state (here opacity)
+                        .BT();                                    // begin text context
+                    xObjectCtx.Tf(options.font, options.size);    // set font
+                    xObject.fill(options.colorModel);             // set color
+    
+                    if (options.alignHorizontal !== 'justify' || wto.lastLine) {
+                        xObjectCtx
+                            .Tm(1, 0, 0, 1, x-nx, yPos)           // set position in object
+                            .Tj(text);                            // write text
+                    } else {
+                        next_x = 
+                            justify(nx, x, wto, textBox, (word, xx) => {
+                                xObjectCtx
+                                .Tm(1, 0, 0, 1, xx-nx, yPos)      // set position in object
+                                .Tj(word.value);                  // write word
+                            });
+                    }
+
+                    // To get proper alignment, reset back to textbox
+                    // coordinate in case text segment encountered.
+                    x = nx;
+    
+                    xObjectCtx
+                        .ET()                                     // end text context
+                        .Q();
+                    
+                    xObject.end();
+    
+                    this.resumeContext();
+    
+                    this.pageContext.q();
+                    this._setRotationContext(this.pageContext, x, y, options);
+                    this.pageContext
+                        .doXObject(xObject)
+                        .Q();
+                }
+    
+                const { textHeight } = options;
+    
+                for (let key in targetAnnotations) {
+                    const subtype = this._getTextMarkupAnnotationSubtype(key);
+                    if (subtype) {
+                        const markupOption = (typeof (targetAnnotations[key]) != 'object') ? {} : targetAnnotations[key];
+                        Object.assign(markupOption, {
+                            height: textHeight * 1.4,
+                            width: currentLineWidth,
+                            text: markupOption.text || '',
+                            _textHeight: textHeight
+                        });
+                        const { ox, oy } = this._reverseCoordinate(x, y - textHeight * 0.2);
+                        this.annot(ox, oy, subtype, markupOption);
+                    }
+                }
+    
+                return next_x;
+            };
+    
+            if (!isContinued) {  // flush out current line before processing next one
+                let next_x = 0;
+                toWriteContents.forEach((content, idx) => {
+                    const x = next_x || getStartX(content.startX, content);
+                    const y = currentY;
+                    next_x = writeText(context, x, y, content);
+                });
+                // The line offset from the last line in the
+                // group determines Y positioning for next line.
+                let lineOffset = toWriteContents[toWriteContents.length-1].lineOffset;
+                toWriteContents = [];
+                currentLineID = lineID;
+                currentLineWidth = 0;
+                currentY -= (lineHeight * lineOffset);
+                this.y   += (lineHeight * lineOffset);
+                this._previousTextObjects.shift();
+            }
+    
+            const startX = nx + currentLineWidth;
+    
+            if (text != '[@@DONOT_RENDER_THIS@@]') {
+                toWriteTextObject.startX = toWriteTextObject.startX || startX;
+                toWriteContents.push( toWriteTextObject );
+            }
+    
+            // To handle text that has been split in middle of word,
+            // need to decide if current text ends with a space.
+            currentLineWidth += lineWidth + (toWriteTextObject.text.endsWith(' ') ? spaceWidth : 0);
+    
+            // Processing last text object?
+            if (index === toWriteTextObjects.length-1) {
+                if (this._flow) {
+                    if (toWriteTextObject.lineComplete) {
+                        this._previousTextObjects = [];
+                    } else {
+                        this._previousTextObjects = [... toWriteContents];
+                        toWriteContents = [];
+                    }
+                }
+    
+                let next_x = 0;
+                for (let ii = 0; ii &lt; toWriteContents.length; ii++) {
+                    const content = toWriteContents[ii];
+                    const x = next_x || getStartX(content.startX, content);
+                    const y = currentY;
+                    next_x = writeText(context, x, y, content);
+                }
+            }
+        });    
     }
     
-    const context = this.pageContext;
-    // const space = 8;
-    let currentY = textYpos;
-    let currentLineID;
-    let currentLineWidth = 0;
-    let toWriteContents = [];
-
-    toWriteTextObjects.forEach((toWriteTextObject, index) => {
-        const {
-            text,
-            lineHeight,
-            lineWidth,
-            lineID,
-            spaceWidth
-        } = toWriteTextObject;
-
-        currentLineID = currentLineID || lineID;
-        const isContinued = (currentLineID == lineID) ? true : false;
-
-        const getStartX = (startX, currentWriteOptions) => {
-            let offsetX = textBox.paddingLeft;
-
-            switch (currentWriteOptions.alignHorizontal) {
-                case 'center':
-                    offsetX = (textBox.width - currentLineWidth) / 2;
-                    break;
-                case 'right':
-                    offsetX = (textBox.width - textBox.paddingRight - currentLineWidth);
-                    break;
-            }
-            
-            return startX + offsetX;
-        };
-
-        const writeText = (context, x, y, wto) => {
-            const options = wto.writeOptions;
-            const {lineHeight, text, baseline, wordsInLine, textWidth} = wto;
-
-            // write directly to page when not dealing with opacity, rotation and special colorspace.
-            if (options.opacity  === 1 &amp;&amp; options.colorspace !== 'separation' &amp;&amp;
-               (options.rotation === 0 || options.rotation === undefined)) {
-                
-                // Note that the last line of a text box ignores justification.
-                if (options.alignHorizontal !== 'justify' || wto.lastLine) {
-                    if (textBox.wrap !== 'auto') {  // This applies a clipping region around the text
-                        this.pageContext.q();
-                        this.pageContext
-                            .m(nx,y+lineHeight)
-                            .l(nx+textBox.width,y+lineHeight)
-                            .l(nx+textBox.width,y)
-                            .l(nx,y)
-                            .h().W().n();
-                    }
-                    
-                    context.writeText(text, x, y+baseline, options);
-
-                    if (textBox.wrap !== 'auto') {
-                        this.pageContext.Q();
-                    }
-                } else {
-                    justify(x, wordsInLine, textBox, textWidth, (word, xx) => {
-                        context.writeText(word, xx, y+baseline, options);
-                    });
-                }            
-            } else {
-                this.pauseContext();
-
-                // https://github.com/galkahana/HummusJS/wiki/Use-the-pdf-drawing-operators
-                const xObject = new xObjectForm(this.writer, textBox.width, lineHeight);
-                const xObjectCtx = xObject.getContentContext();
-                // Build form object
-                xObjectCtx
-                    .q()
-                    .gs(xObject.getGsName(options.fillGsId))  // set graphic state (here opacity)
-                    .BT();                                    // begin text context
-                xObjectCtx.Tf(options.font, options.size);    // set font
-                xObject.fill(options.colorModel);             // set color
-
-                if (options.alignHorizontal !== 'justify' || wto.lastLine) {
-                    xObjectCtx
-                        .Tm(1, 0, 0, 1, 0, baseline)          // set position in object
-                        .Tj(text);                            // write text
-                } else {
-                    justify(0, wordsInLine, textBox, textWidth, (word, xx) => {
-                        xObjectCtx
-                        .Tm(1, 0, 0, 1, xx, baseline)         // set position in object
-                        .Tj(word);                            // write word
-                    });
-                }
-
-                xObjectCtx
-                    .ET()                                     // end text context
-                    .Q();
-                xObject.end();
-
-                this.resumeContext();
-
-                this.pageContext.q();
-                this._setRotationContext(this.pageContext, x, y, options);
-                this.pageContext
-                    .doXObject(xObject)
-                    .Q();
-            }
-
-            const { textHeight } = options;
-
-            for (let key in targetAnnotations) {
-                const subtype = this._getTextMarkupAnnotationSubtype(key);
-                if (subtype) {
-                    const markupOption = (typeof (targetAnnotations[key]) != 'object') ? {} : targetAnnotations[key];
-                    Object.assign(markupOption, {
-                        height: textHeight * 1.4,
-                        width: currentLineWidth,
-                        text: markupOption.text || '',
-                        _textHeight: textHeight
-                    });
-                    const {
-                        ox,
-                        oy
-                    } = this._reverseCoordinate(x, y - textHeight * 0.2);
-                    this.annot(ox, oy, subtype, markupOption);
-                }
-            }
-        };
-
-        if (!isContinued) {
-            toWriteContents.forEach((content) => {
-                const x = getStartX(content.startX, content.wto.writeOptions);
-                const y = currentY;
-                writeText(context, x, y, content.wto);
-            });
-            toWriteContents = [];
-            currentLineID = lineID;
-            currentLineWidth = 0;
-            currentY -= lineHeight;
-        }
-
-        const startX = nx + currentLineWidth;
-        if (text != '[@@DONOT_RENDER_THIS@@]') {
-            toWriteContents.push({
-                startX,
-                wto: toWriteTextObject
-            });
-        }
-
-        currentLineWidth = currentLineWidth + lineWidth + spaceWidth;
-
-        // Processing last line?
-        if (index == toWriteTextObjects.length - 1) {
-            toWriteContents.forEach((content) => {
-                const x = getStartX(content.startX, content.wto.writeOptions);
-                const y = currentY;
-                writeText(context, x, y, content.wto);
-            });
-        }
-    });
-
     return this;
 };
 
-function justify (x, wordsInLine, textBox, textWidth, callback) {
+function getTextBoxHeight(textObjs) {
+    let previousLineID;
+    let height = 0;
+
+    // The summation of each text line height determines text box height.
+    // The last segment of a line holds the correct offset (influenced by moveDown)
+    // so must traverse the list in reverse order.
+
+    for (let index = textObjs.length-1; index >= 0; index--) {
+        const segment = textObjs[index];
+        const { lineHeight, lineID } = segment;
+        
+        // Keep line segments from same line influencing box height
+        if (previousLineID !== lineID) {
+            let lineOffset = segment.lineOffset;
+            height += (lineHeight * lineOffset);
+            previousLineID = lineID;
+        }
+    }
+
+    return height;
+}
+
+function getTextBoxPosition(self, textBox, pathOptions) {
+
+    const { offsetX, offsetY } = self._getTextBoxOffset(textBox, pathOptions);
+    const {nx, ny} = self._calibrateCoordinate(self.x, self.y, offsetX, offsetY); 
+    return {nx, ny};
+}
+
+function drawTextBox(self, nx, ny, textBox, actualTextHeight, pathOptions) {
+    
+    const textBoxWidth = textBox.width //+ textBox.paddingLeft + textBox.paddingRight;
+    let borderRadius = (textBox.style) ? textBox.style.borderRadius : 0;
+    if (borderRadius === true) { borderRadius = 5;}
+
+    if (!textBox.height) {
+        textBox.height = actualTextHeight + textBox.paddingTop + textBox.paddingBottom;
+        
+        if (textBox.minHeight &amp;&amp; textBox.minHeight > textBox.height) {
+            textBox.height = textBox.minHeight;
+        }
+    }
+    
+    self.rectangle(
+        nx, 
+        ny - textBox.height + self._firstLineHeight,
+        textBoxWidth, textBox.height, Object.assign(textBox.style, {
+            useGivenCoords: true,
+            rotation: pathOptions.rotation,
+            rotationOrigin: [pathOptions.originX,pathOptions.originY],
+            borderRadius: borderRadius
+        })
+    );
+}
+
+/**
+ * Justify text in a line.
+ * @param {number} left is position of left hand side of text box
+ * @param {number} x is starting position for text placement
+ * @param {Object[]} wto is a write object
+ * @param {Object} textBox holds text box properties
+ * @param {Function} [position] used to place given word at a postion on the line
+ */
+function justify (left, x, wto, textBox, position) {
     // For some reason, textWidth is smaller than lineWidth. My suspicions lie in the fact
     // that spacing computations appear different depending on where the space is located.
     // What is noted though that if lineWidth is used in the calculations for text 
@@ -462,21 +641,42 @@ function justify (x, wordsInLine, textBox, textWidth, callback) {
     // computation, the final wrinkle to make sure the last word in the line smacks up against
     // the right side boundary is to perform a special computation on the last word positioning
     // relative to that right side bounds.
-    const spaceCount = wordsInLine.length-1;
-    const spaceBetweenWords = ( wordsInLine.length > 1) ? (textBox.width - textWidth) / (spaceCount) : 0;
-    const lineStart = x;
+    const wordsInLine = wto.wordsInLine;
+    const textWidth   = (wto.totalTextWidth) ? wto.totalTextWidth : wto.textWidth;
+    const spaceCount  = (wto.wordCount) ? wto.wordCount-1 : wordsInLine.length-1;
+    const spaceBetweenWords = (spaceCount > 0) ? (textBox.width -textBox.paddingLeft -textBox.paddingRight -textWidth) / (spaceCount) : 0;
+    const boxEdge = left;
+    const lineStart = left + textBox.paddingLeft;
+    let   word;
+
+    const lastWordPosition = (word) => {
+        return boxEdge + textBox.width -textBox.paddingRight -word.dimensions.xMax;
+    }
+
+    // There is the possibility that only one word left on segmented line.
+    if (wordsInLine.length === 1 &amp;&amp; wordsInLine[0].last &amp;&amp; x !== lineStart) {
+        x = lastWordPosition(wordsInLine[0]);
+    }
 
     for (let index = 0; index &lt; wordsInLine.length; index++) {
-        const word = wordsInLine[index];
+        const nextWord = wordsInLine[index+1];
         
-        callback(word.value, x)
+        word = wordsInLine[index]; 
+        position &amp;&amp; position(word, x);
+
         // Ready to compute last word spacing?
-        if (index+1 === spaceCount) {
-            x = lineStart + textBox.width - textBox.paddingRight - wordsInLine[index+1].dimensions.xMax;
+        if ( nextWord &amp;&amp; nextWord.last ) {
+            x = lastWordPosition(nextWord);
         } else {
-            x += word.dimensions.width + spaceBetweenWords;
+            x += word.dimensions.xMax + spaceBetweenWords;
         }
     }
+
+    // Supply caller with next available line position.
+    // Checking to see if last word ended with a space or not
+    // to compensate for text fragments that have not been
+    // split on whitespace boundaries.
+    return word.value.endsWith(' ') ? x : x - spaceBetweenWords;
 }
 
 function nextWord (text, brk, previousPosition, pathOptions) {
@@ -497,7 +697,7 @@ function elideNonFittingText(textBox, line, word, pathOptions) {
         // It makes an initial attempt to take the word that was
         // too big and make it shrink in size until it and the 
         // ellipsis character fit. If that doesn't work, one more
-        // stab is taken by trying to shrink the previous word
+        // attempt is taken by trying to shrink the previous word
         // that fit on the line.
         const ellipsis = '…';
         let usingPreviousWord = false;
@@ -510,7 +710,7 @@ function elideNonFittingText(textBox, line, word, pathOptions) {
 
             // Try last word that fit in box?
             } else if (!usingPreviousWord) {
-                tooBig = new Word(line.words.pop().value.slice(0,-2) + ellipsis, pathOptions);
+                tooBig = new Word(line.words.pop().value.slice(0,-1) + ellipsis, pathOptions);
                 usingPreviousWord = true;
 
             } else {
@@ -522,8 +722,66 @@ function elideNonFittingText(textBox, line, word, pathOptions) {
     }
 }
 
-function getToWriteTextObjects(textObject = {}, pathOptions, textBox = {}) {
-    const toWriteTextObjects = [];
+function makeTextObject(lines, line, textBox, options = {}) {
+  
+    const lineHeight = textBox.lineHeight;
+    const spaceSz = (options.lastLine &amp;&amp; line.lastWord &amp;&amp; line.lastWord.value.endsWith(' ')) ? line.spaceWidth/2 : 0;
+    // const spaceSz = (options.totalTextWidth===0 &amp;&amp; line.lastWord &amp;&amp; line.lastWord.value.endsWith(' ')) ? line.spaceWidth/2 : 0;
+
+    lines.push(line);
+  
+    return {
+        text          : line.value,
+        lineID        : line.lineID,
+        lineHeight    : lineHeight,
+        lineOffset    : 1,
+        baseline      : lineHeight - textBox.baselineHeight,
+        lineWidth     : line.currentWidth + spaceSz,
+        textWidth     : line.textWidth,          // for justification
+        spaceWidth    : line.spaceWidth,
+        wordsInLine   : line.words,
+        wordCount     : options.wordCount || 0,  // for justification
+        totalTextWidth: options.totalTextWidth || 0,
+        lastLine      : (options.lastLine === true),
+        writeOptions  : options.writeOptions,
+        lineComplete  : (options.lineComplete === true)
+    }
+}
+
+function bindTextToLine(line, textObjects, wordCount, totalTextWidth) {
+    // Apply justification information to previous text objects.
+    if (wordCount > 0) {
+        line.markLastWord();
+        wordCount += line.words.length;
+        totalTextWidth += line.textWidth;
+
+        // If the previous text does not end with a space and
+        // the text on the line does not start with a space then
+        // assuming that the input was split across the word so
+        // we want to decrement the number of words in the line
+        // for the proper space calculation when justifying text.
+        // For example, 'justif' --- 'ying'.
+        const previousLine = textObjects[textObjects.length-1];
+
+        if (!previousLine.text.endsWith(' ') &amp;&amp; 
+            line.words[0] &amp;&amp; !line.words[0].value.startsWith(' ')) {
+                wordCount--;
+        }
+
+        line.lineID = previousLine.lineID; // associate this line with previous one
+
+        for (let i = textObjects.length-1; i >= 0; i--) {
+            let textObj = textObjects[i];
+            if (textObj.lineID !== line.lineID) break;
+            textObj.wordCount = wordCount;
+            textObj.totalTextWidth = totalTextWidth;
+        }
+    }
+    return [wordCount, totalTextWidth];
+}
+
+function makeTextObjects(self, textObject = {}, pathOptions, textBox = {}) {
+    const toWriteTextObjects = [... self._previousTextObjects];
     let text = ((textObject.prependValue) ? textObject.prependValue : '') +
         textObject.value +
         ((textObject.appendValue) ? textObject.appendValue : '');
@@ -541,20 +799,80 @@ function getToWriteTextObjects(textObject = {}, pathOptions, textBox = {}) {
     textBox.lineHeight = textBox.lineHeight || textHeight;
     textBox.baselineHeight = textDimensions.yMax;
 
+    const [alignHorizontal, alignVertical] = (textBox.textAlign) ? textBox.textAlign.split(' ') : [];
+    const writeOptions = Object.assign({}, pathOptions, {
+        color          : textObject.styles.color,
+        opacity        : parseFloat(textObject.styles.opacity || pathOptions.opacity || 1),
+        underline      : textObject.underline || pathOptions.underline,
+        size           : textObject.size,
+        alignHorizontal: alignHorizontal,
+        alignVertical  : alignVertical,
+        font           : pathOptions.font
+    });
+
+    const lineOpts = {
+        html: pathOptions.html,
+        writeOptions: writeOptions,
+        more: self._flow
+    }
+
     const breaker = new LineBreaker(text);
     const lines = [];
     const indent = (textObject.indent || 0);
-    // const indentWidth = indent * size;
+
     const lineMaxWidth = (textBox.width) ? textBox.width - textBox.paddingLeft - textBox.paddingRight - indent : null;
-    let newLine = new Line(lineMaxWidth, textBox.lineHeight, size, pathOptions);
+    let remainderWidth = lineMaxWidth;
+    let newLine;
     let last = 0;
     let bk = breaker.nextBreak();
     let previousWord;
     let flushLine = false;
+    let wordCount = 0;       // for justification
+    let totalTextWidth = 0;  // for justification
+    let textLine = '';
 
-    for (let i = 0; i &lt; indent; i++) {
-        newLine.addWord(new Word(' ', pathOptions));
+    // When text flow is involved, there may be lines that are
+    // incomplete. So need to determine previous line word count
+    // and remove last line marks because more text is being processed.
+    if (toWriteTextObjects.length > 0) {
+        let lineWidth = 0;
+        let spaceSz = 0;
+        const end = toWriteTextObjects.length-1;
+        const previousLine = toWriteTextObjects[end];
+        let lineComplete, fini;
+
+        if (text === "" &amp;&amp; !self._flow) {  // turning off flow with empty text so
+            previousLine.lastLine = true;  // need to make previous line, the last.
+        }
+
+        for (let i = end; i >= 0; i--) {
+            let textObj = toWriteTextObjects[i];
+
+            // only collect data while lineID's match.
+            if (textObj.lineID !== previousLine.lineID) break;
+            spaceSz = textObj.spaceWidth;
+            textLine = textObj.text + textLine;
+            totalTextWidth += textObj.textWidth;
+            lineWidth += textObj.lineWidth;
+            if (i === end) {
+                fini = lineComplete = textObj.lineComplete;
+            } else {
+                fini = textObj.lineComplete;
+            }
+            textObj.wordsInLine[textObj.wordsInLine.length-1].lastWord(fini);
+        }
+    
+        if (lineComplete) {
+            totalTextWidth = 0;
+        } else if (textLine) {
+            wordCount = textLine.trim().split(/\s+/).length;
+            if (!textLine.endsWith(' ')) spaceSz = 0;
+            remainderWidth = lineMaxWidth - lineWidth - spaceSz;
+        }
     }
+
+    newLine = new Line(remainderWidth, textBox.lineHeight, size, pathOptions);
+    newLine.indent(indent);
 
     while (bk) {
         let word = nextWord(text, bk, last, pathOptions);
@@ -562,23 +880,50 @@ function getToWriteTextObjects(textObject = {}, pathOptions, textBox = {}) {
         if (newLine.canFit(word)) {
             newLine.addWord(word);
         } else {
-            // remove any trailing space on previous word so right justification works appropriately
-            if ( previousWord &amp;&amp; textBox.wrap === 'auto') {
-                newLine.replaceLastWord(new Word(previousWord.value.trim(), pathOptions));
+            // Protect against line width being too small to accept any
+            // word, which may also happen during text justification.
+            if (newLine.words.length === 0) {
+                // self.movedown(); // start at front of next line.
+                if (wordCount > 0) {
+                    // no words applied to previous segment, so drop word count
+                    // and mark last word of previous line in case justifying.
+                    wordCount = 0; 
+                    totalTextWidth = 0;
+                    markLineComplete(toWriteTextObjects);
+                }
+            } else {
+                // remove any trailing space on previous word so right justification works appropriately
+                if ( previousWord &amp;&amp; textBox.wrap === 'auto') {
+                    newLine.replaceLastWord(previousWord.value.trim());
+                }
+
+                [wordCount, totalTextWidth] =
+                   bindTextToLine(newLine, toWriteTextObjects, wordCount, totalTextWidth);
+
+                toWriteTextObjects.push(
+                    makeTextObject(lines, newLine, textBox, 
+                        Object.assign({}, lineOpts, {
+                            wordCount: wordCount, 
+                            totalTextWidth: totalTextWidth,
+                            lineComplete: true
+                        })
+                    )
+                );
+                wordCount = 0;
+                totalTextWidth = 0;
             }
-            lines.push(newLine);
 
             // now deal with text line wrap (what happens to text that doesn't fit in line)
             if (textBox.wrap !== 'auto') {
                 flushLine = true;
                 elideNonFittingText(textBox, newLine, word, pathOptions);
+                toWriteTextObjects[toWriteTextObjects.length-1].text = newLine.value;
 
             } else {
                 // this is the auto wrap section
                 newLine = new Line(lineMaxWidth, textBox.lineHeight, size, pathOptions);
-                for (let i = 0; i &lt; indent; i++) {
-                    newLine.addWord(new Word(' ', pathOptions));
-                }
+                newLine.indent(indent);
+
                 if (textObject.prependValue) {
                     const space = Array(textObject.prependValue.length + 1).fill(' ').join('');
                     newLine.addWord(new Word(space, pathOptions));
@@ -604,7 +949,9 @@ function getToWriteTextObjects(textObject = {}, pathOptions, textBox = {}) {
              * https://github.com/chunyenHuang/hummusRecipe/issues/29
              */
             if (bk.required) {
-                lines.push(newLine);
+                toWriteTextObjects.push(
+                    makeTextObject(lines, newLine, textBox, Object.assign({lineComplete:true}, lineOpts)));
+                markLineComplete(toWriteTextObjects);
                 newLine = new Line(lineMaxWidth, textBox.lineHeight, size, pathOptions);
             }
         }
@@ -616,47 +963,57 @@ function getToWriteTextObjects(textObject = {}, pathOptions, textBox = {}) {
         }
     }
 
+    let isLastLine = (alignHorizontal === 'justify' &amp;&amp; !self._flow);
+
     if (!flushLine) {
-        lines.push(newLine);
+        [wordCount, totalTextWidth] =
+            bindTextToLine(newLine, toWriteTextObjects, wordCount, totalTextWidth);
+
+        toWriteTextObjects.push(
+            makeTextObject(lines, newLine, textBox,
+                 Object.assign({}, lineOpts, {
+                      wordCount:wordCount, 
+                      totalTextWidth:totalTextWidth,
+                      lastLine:isLastLine
+                    })));
+    } else {
+        toWriteTextObjects[toWriteTextObjects.length-1].lastLine = isLastLine;
     }
 
-    const lineHeightMargin = 0;
-    let lineHeight = (textHeight + lineHeightMargin >= textBox.lineHeight) ? textHeight + lineHeightMargin : textBox.lineHeight;
-    let [alignHorizontal, alignVertical] = (textBox.textAlign) ? textBox.textAlign.split(' ') : [];
-    const writeOptions = Object.assign({}, pathOptions, {
-        color: textObject.styles.color,
-        opacity: parseFloat(textObject.styles.opacity || pathOptions.opacity || 1),
-        underline: textObject.underline || pathOptions.underline,
-        size: textObject.size,
-        alignHorizontal: alignHorizontal,
-        alignVertical: alignVertical,
-        font: pathOptions.font
-    });
-    let paragraphHeight = 0;
-    lines.forEach((line, index) => {
-        lineHeight = (lineHeight >= line.height) ? lineHeight : line.height;
+    let paragraphHeight = textBox.lineHeight * lines.length;
 
-        // Space width only gets applied for HTML elements.
-        // Otherwise, normal text alignments (center,right) are shifted left by a space.
-        toWriteTextObjects.push({
-            text: line.value,
-            lineID: (index == 0) ? textObject.lineID : Date.now() * Math.random(),
-            // @todo: handle line height to mimic html tag
-            lineHeight,
-            baseline: lineHeight - textBox.baselineHeight,
-            lineWidth: line.currentWidth,
-            textWidth: line.textWidth,  // for justification
-            spaceWidth: (pathOptions.html) ? line.spaceWidth : 0,
-            wordsInLine: line.words,
-            lastLine: (index === lines.length-1),
-            writeOptions
-        });
-        paragraphHeight += lineHeight;
-    });
     return {
         toWriteTextObjects,
         paragraphHeight
     };
+}
+
+function markLineComplete(toWriteTextObjects, lines = null) {
+    // Get last element in text objects and mark it.
+    const textObj = toWriteTextObjects[toWriteTextObjects.length-1];
+    const lastWordIdx = textObj.wordsInLine.length - 1;
+
+    textObj.wordsInLine[lastWordIdx].lastWord();
+    textObj.lineComplete = true;
+
+    if (lines) {
+        textObj.lineOffset = lines;
+    }
+}
+
+exports.movedown = function movedown(lines=1, returnCoords = false) {
+
+    if (!this._flow || this._previousTextObjects.length === 0) {
+        this._previousTextObjects = [];
+        this.y += this._lineHeight * lines;
+        this.x = this.box.x;
+    } else {
+        // This handles continuous text positioning
+        markLineComplete(this._previousTextObjects, lines);
+        this._previousTextObjects[this._previousTextObjects.length-1].lastLine = true;
+    }
+
+    return (returnCoords) ? [this.x, this.y] : this;
 }
 </code></pre>
         </article>
@@ -670,7 +1027,7 @@ function getToWriteTextObjects(textObject = {}, pathOptions, textBox = {}) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Nov 05 2019 10:28:09 GMT-0500 (Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Nov 25 2019 10:50:40 GMT-0500 (Eastern Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
