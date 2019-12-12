@@ -98,7 +98,7 @@ describe('Graphic Object Positioning', () => {
             .ellipse(col[3] + wid[1] / 2, row[5] + hgt[0] / 2, wid[1] / 2, hgt[0] / 2, { width: 5 })
 
             .text('Note, object growth outside cut frames with increasing line widths', 100, 40)
-            .text('*', 80, 50, { color: 'ff0000', fontSize: 32 })
+            .text('*', 80, 40, { color: 'ff0000', fontSize: 32 })
 
             .text('*', col[1] - 20, row[3] + hgt[0] / 2, { color: 'ff0000', fontSize: 32 })
             .text('*', col[1] - 20, row[4] + hgt[0] / 2, { color: 'ff0000', fontSize: 32 })
