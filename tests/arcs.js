@@ -244,7 +244,7 @@ describe('Arc test', () => {
     });
 
     it('Pie Charts', (done) => {
-        const output = path.join(__dirname, 'output/Arcs.pdf');
+        const output = path.join(__dirname, 'output/arcs.pdf');
         const recipe = new HummusRecipe(output, output);
 
         const movies = [
