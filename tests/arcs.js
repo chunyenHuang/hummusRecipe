@@ -218,7 +218,7 @@ describe('Arc test', () => {
             .text('Arcs of Circles', 230, 27, {size:20, bold:true})
             .arc(x, y, r, 0, 90)
             .text('0°', x+r+5, y,txtOps).text('90°', x, y+r+5,txtOps)
-            .arc(x, y, r, -90, -180,)
+            .arc(x, y, r, -90, -180)
             .text('-90°', x-15, y-r-13,txtOps).text('-180°', x-r-30, y-10,txtOps)
             .circle(x, y, 2, {color:'red', width:.5})
             .arc(x+120, y, r, 90, -90)
