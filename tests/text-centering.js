@@ -147,7 +147,7 @@ describe('Text - Centering', () => {
                     }
                 }
             })
-            .line([[x-5,y],[x+w+5,y]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
+            .line([[x-5,y+p],[x+w+5,y+p]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
             .circle(x,y,2,{stroke:'red'});
 
         y = 400;
@@ -157,7 +157,7 @@ describe('Text - Centering', () => {
                 color: '#000000',
                 textBox: {
                     width: w,
-                    textAlign: 'center',
+                    textAlign: 'center bottom',
                     padding: [0,0,p,0],
                     style: {
                         stroke: '#000000',
@@ -170,14 +170,14 @@ describe('Text - Centering', () => {
             .circle(x,y,2,{stroke:'red'});
 
         x = 500;
-        y = 340
+        y = 340;
         recipe
             .text(`[0,${p},0,0]`, x+10, y-17)
             .text(`RIGHT Pad ${p}`, x, y, {
                     color: '#000000',
                     textBox: {
                         width: w,
-                        textAlign: 'center',
+                        textAlign: 'right',
                         padding: [0,p,0,0],
                         style: {
                             stroke: '#000000',
@@ -186,7 +186,7 @@ describe('Text - Centering', () => {
                         }
                     }
                 })
-            .line([[x+w,y-5],[x+w,y+h+5]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
+            .line([[x+w-p,y-5],[x+w-p,y+h+5]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
             .circle(x,y,2,{stroke:'red'});
 
         x = 400;
@@ -196,7 +196,7 @@ describe('Text - Centering', () => {
                 color: '#000000',
                 textBox: {
                     width: w,
-                    textAlign: 'center',
+                    textAlign: 'left',
                     padding: [0,0,0,p],
                     style: {
                         stroke: '#000000',
@@ -205,7 +205,7 @@ describe('Text - Centering', () => {
                     }
                 }
             })
-            .line([[x,y-5],[x,y+h+5]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
+            .line([[x+p,y-5],[x+p,y+h+5]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
             .circle(x,y,2,{stroke:'red'});
         
         recipe
@@ -348,7 +348,7 @@ describe('Text - Centering', () => {
             .text('Using "height" and supplying textAlign: right bottom', 310, 725,{
                 color: '#000000',
                 textBox: {
-                    width: 120,
+                    width: 100,
                     height: 40,
                     textAlign: 'right bottom',
                     style: {

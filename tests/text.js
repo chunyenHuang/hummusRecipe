@@ -77,11 +77,11 @@ describe('Text', () => {
     });
 
     it('Add text with html codes', (done) => {
-        const src = path.join(__dirname, 'materials/test.pdf');
+        const src = 'new' //path.join(__dirname, 'materials/test.pdf');
         const output = path.join(__dirname, 'output/Add text with html codes.pdf');
         const recipe = new HummusRecipe(src, output);
         recipe
-            .editPage(1)
+            .createPage('letter')
             .text(htmlCodes, 0, 0, {
                 html: true,
             })
@@ -114,7 +114,7 @@ describe('Text', () => {
     });
 
     it('Add text inside textbox', (done) => {
-        const src = path.join(__dirname, 'materials/test.pdf');
+        const src = 'new' //path.join(__dirname, 'materials/test.pdf');
         const output = path.join(__dirname, 'output/Add text inside textbox.pdf');
         const recipe = new HummusRecipe(src, output);
         const textContent =
@@ -122,7 +122,7 @@ describe('Text', () => {
             `${Date.now()} It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).`;
 
         recipe
-            .editPage(1)
+            .createPage('letter')
             .circle('center', 400, 10, {
                 stroke: '#3b7721',
                 fill: '#0e0e0e',
@@ -155,7 +155,6 @@ describe('Text', () => {
                 textBox: {
                     width: 400,
                     lineHeight: 30,
-                    // height: 100,
                     minHeight: 300,
                     padding: 15,
                     textAlign: 'right',
