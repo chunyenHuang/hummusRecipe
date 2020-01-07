@@ -20,7 +20,7 @@ Feel free to open issues to help us!
 
 ## Documentation
 
-* [Hummus Recipe Documentation](https://chunyenhuang.github.io/hummusRecipe/Recipe.html)
+* [Hummus Recipe Documentation](https://hummus-recipe.s3.amazonaws.com/docs/Recipe.html)
 
 ## Instructions
 
