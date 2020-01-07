@@ -163,46 +163,6 @@ function pie(x, y, radius, chart) {
     return this;
 }
 
-function _getFontFile(options = {}) {
-    let fontFile;
-
-    if (options.font) {
-        fontFile = this.fonts[options.font.toLowerCase()];
-        
-    } else {  
-        // default font used, now have to make final decision based on bold/italic considerations.
-        // Note, if this is not done explicitly, the font dimensions will be incorrect.
-        const font = 
-           (options.bold && options.italic) ? 'helvetica-bold-italic' : 
-           (options.italic) ? 'helvetica-italic' : 
-           (options.bold)   ? 'helvetica-bold' : 'helvetica';
-
-        fontFile = this.fonts[font];
-    }
-
-    return fontFile;
-}
-
-function textDimensions(text, options = {}) {
-    this.current = this.current || {};
-    const fontFile = this._getFontFile(options);
-    let width = 0, height = 0;
-    const defaultFontSize = 14;
-
-    if (fontFile) {
-        if (!this.current.font || this.current.fontFile !== fontFile) {
-            this.current.font = this.writer.getFontForFile(fontFile);
-            this.current.fontFile = fontFile;
-        }
-        const fontSize = options.size || defaultFontSize;
-        const dimensions = this.current.font.calculateTextDimensions(text, fontSize);
-        width  = dimensions.xMax;
-        height = dimensions.height;
-    }
-
-    return {width:width, height: height};
-}
-
 describe('Arc test', () => {
     it('Simple Arcs', (done) => {
 
@@ -293,8 +253,6 @@ describe('Arc test', () => {
         let y = 550
         let r = 80
         recipe.register(pie);
-        recipe.register(textDimensions);
-        recipe.register(_getFontFile);
         recipe
             .editPage(1)
             .pie(x,y, r, chart);
