@@ -16,6 +16,7 @@
   "scripts": {
     "lint": "eslint lib tests --fix",
     "jsdoc": "./node_modules/.bin/jsdoc -c conf.json",
+    "deploy:docs": "aws s3 cp docs/ s3://hummus-recipe/docs --recursive --profile goldax --acl public-read",
     "test": "mocha ./tests/*.js --timeout 300000",
     "test-c": "nodemon --exec \"npm test || true\""
   },
