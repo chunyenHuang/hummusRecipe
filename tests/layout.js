@@ -29,7 +29,7 @@ describe('Layout', () => {
                 break;
         }
 
-        const fontHome = (fontDir) ? {fontSrcPath:[fontDir]} : null;
+        const fontHome = (fontDir) ? {fontSrcPath:[fontDir]} : undefined;
         const recipe = new HummusRecipe('new', output, fontHome);
 
         recipe.registerFont(times,   path.join(fontDir, timesPlain));
