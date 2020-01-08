@@ -3,7 +3,7 @@ const HummusRecipe = require('../lib');
 
 describe('Layout', () => {
 
-    it('Flow text into column layouts', (done) => {
+    it(`Flow text into column layouts (OS:${process.platform})`, (done) => {
         const output = path.join(__dirname, 'output/paper.pdf');
         const times   = 'times';
         const courier = 'courier new';
@@ -22,10 +22,12 @@ describe('Layout', () => {
         
             case 'darwin':      // MacOS
                 fontDir         = '/Library/Fonts';
+                                // want fall thru to default
+            default:
                 timesPlain      = 'Times New Roman.ttf';
                 timesBold       = 'Times New Roman Bold.ttf';
-                timesItalic     = 'Times New Roman Italic';
-                timesBoldItalic = 'Times New Roman Bold Italic';
+                timesItalic     = 'Times New Roman Italic.ttf';
+                timesBoldItalic = 'Times New Roman Bold Italic.ttf';
                 break;
         }
 
