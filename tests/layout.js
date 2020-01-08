@@ -7,7 +7,7 @@ describe('Layout', () => {
         const output = path.join(__dirname, 'output/paper.pdf');
         const times   = 'times';
         const courier = 'courier new';
-        let fontDir, timesPlain, timesBold, timesItalic, timesBoldItalic;
+        let fontDir = '', timesPlain, timesBold, timesItalic, timesBoldItalic;
 
         // Note, if font not found, default library font (Helvetica) will be used.
         // The Times Roman font will fill one page. The Helvetica font will overflow onto second page.
