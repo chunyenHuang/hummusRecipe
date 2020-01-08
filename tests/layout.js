@@ -5,7 +5,6 @@ describe('Layout', () => {
 
     it('Flow text into column layouts', (done) => {
         const output = path.join(__dirname, 'output/paper.pdf');
-        const recipe = new HummusRecipe('new', output, {fontSrcPath:["/Windows/Fonts"]});
         const times   = 'times';
         const courier = 'courier new';
         let fontDir, timesPlain, timesBold, timesItalic, timesBoldItalic;
@@ -13,7 +12,6 @@ describe('Layout', () => {
         // Note, if font not found, default library font (Helvetica) will be used.
         // The Times Roman font will fill one page. The Helvetica font will overflow onto second page.
         switch (process.platform) {
-            default:
             case 'win32':
                 fontDir         = '/Windows/Fonts';
                 timesPlain      = 'times.ttf';
@@ -30,6 +28,9 @@ describe('Layout', () => {
                 timesBoldItalic = 'Times New Roman Bold Italic';
                 break;
         }
+
+        const fontHome = (fontDir) ? {fontSrcPath:[fontDir]} : null;
+        const recipe = new HummusRecipe('new', output, fontHome);
 
         recipe.registerFont(times,   path.join(fontDir, timesPlain));
         recipe.registerFont(times,   path.join(fontDir, timesBold), 'b');
