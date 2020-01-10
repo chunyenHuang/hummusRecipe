@@ -77,7 +77,7 @@ describe('Text', () => {
     });
 
     it('Add text with html codes', (done) => {
-        const src = 'new' //path.join(__dirname, 'materials/test.pdf');
+        const src = 'new'; //path.join(__dirname, 'materials/test.pdf');
         const output = path.join(__dirname, 'output/Add text with html codes.pdf');
         const recipe = new HummusRecipe(src, output);
         recipe
@@ -114,7 +114,7 @@ describe('Text', () => {
     });
 
     it('Add text inside textbox', (done) => {
-        const src = 'new' //path.join(__dirname, 'materials/test.pdf');
+        const src = 'new'; //path.join(__dirname, 'materials/test.pdf');
         const output = path.join(__dirname, 'output/Add text inside textbox.pdf');
         const recipe = new HummusRecipe(src, output);
         const textContent =

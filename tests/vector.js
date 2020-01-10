@@ -160,9 +160,9 @@ describe('Vector', () => {
             .text('round',x+30, 5+h, {color:'green'})
             .line([[x,y+40], [x+20,y+40]], {lineWidth: 10, lineCap:'square'})
             .text('square', x+30, 5+2*h, {color:'red'});
-        
-        x=300
-        y=10
+
+        x=300;
+        y=10;
         recipe
             .polygon([[x,y+10],   [x+20,y+30], [x, y+50]], {lineWidth: 8, lineJoin:'miter', miterLimit:3})
             .text('miter', x-3,70,{rotation:-45, color:'red' })

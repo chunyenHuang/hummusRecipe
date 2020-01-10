@@ -29,37 +29,37 @@ faucibus orci luctus et ultrices posuere cubilia Curae;';
             .text(lorem.slice(500,510),{color:'red', hilite:true})
             .text(lorem.slice(510),{color:'green',hilite:false})
             .text('',{flow:false})
-            .text('Simple Text Flow, 3 segments, showing color change and hilite',x,y,{color:'#000000'})
+            .text('Simple Text Flow, 3 segments, showing color change and hilite',x,y,{color:'#000000'});
 
         x = 72;
         y = 300;
         let w = 200;
         let p = 4;
         recipe
-            .text(`This is a text box with a padding of ${p}, `, x,y, 
+            .text(`This is a text box with a padding of ${p}, `, x,y,
                 {flow:true, hilite:true, textBox:{padding:p ,width: w, textAlign:'center'}})
-            .text('with round box corners (standard radius is 5) ', 
+            .text('with round box corners (standard radius is 5) ',
                 {color:'red', hilite:false})
             .movedown(2)
             .text('Did a movedown(2) to get ', {color:'blue', hilite:true})
-            .text('text to this spot in box. Notice the text hiliting, which is different from "fill" for the text box. ', 
+            .text('text to this spot in box. Notice the text hiliting, which is different from "fill" for the text box. ',
                 {color:'green', size:14})
             .text('It can have different colors, with yellow being the default at opacity .5. See blue higlight below')
             .movedown(2)
             .text('Box was constructed with multiple text statements without specifying any x,y coordinates. ',
-                {color:'blue', hilite:{color:"#81e6ff"}})
+                {color:'blue', hilite:{color:'#81e6ff'}})
             .movedown()
             .text('Notice, here is a change in font size. ', {size:20,color:'#ff00ff',hilite:false})
-            .text('',{flow:false, textBox:{style:{lineWidth:1, stroke:'red', borderRadius:true}}})
-        
+            .text('',{flow:false, textBox:{style:{lineWidth:1, stroke:'red', borderRadius:true}}});
+
         recipe
-            .text('We can still handle rotation along',350, y+75, 
-                {hilite:{opacity:.9}, rotation:-30, flow:true, 
-                textBox:{padding:5,width:100, textAlign:'center', 
-                style:{stroke:'black', fill:'#9de3f2', borderRadius:true}}})
+            .text('We can still handle rotation along',350, y+75,
+                {hilite:{opacity:.9}, rotation:-30, flow:true,
+                    textBox:{padding:5,width:100, textAlign:'center',
+                        style:{stroke:'black', fill:'#9de3f2', borderRadius:true}}})
             .text('with text background fill coloring, and text centering.', {hilite:false})
-            .text('', {flow:false})
-            
+            .text('', {flow:false});
+
         recipe.endPage();
         recipe.endPDF(done);
     });

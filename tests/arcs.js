@@ -5,27 +5,27 @@ function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
-       color += letters[Math.floor(Math.random() * 16)];
+        color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
 }
 
-function toRadians(angle) {return angle * (Math.PI / 180)}
+function toRadians(angle) {return angle * (Math.PI / 180);}
 
 function endPoint(x, y, l, angle) {
-    const radians = toRadians(angle)
-    return [(x + l * Math.cos(radians)), (y + l * Math.sin(radians))]
+    const radians = toRadians(angle);
+    return [(x + l * Math.cos(radians)), (y + l * Math.sin(radians))];
 }
 
 function pie(x, y, radius, chart) {
     let sectorColors = [];
     let startAt = -90;
-    let sectorLineColor = "#00";
+    let sectorLineColor = '#00';
     let sectorOpacity = 1;
     let sectorRay = false;
     let sectorOffset = 0;
     let sectorLimit = 10;
-    let sectorPcntColor = "#ffffff";
+    let sectorPcntColor = '#ffffff';
     let sectorPcntSize = 8;
     let total = 0;
     let defaultFontSize = 14;
@@ -40,20 +40,20 @@ function pie(x, y, radius, chart) {
     }
 
     if (chart.sector) {
-        if ( chart.sector.stroke       ) sectorLineColor = chart.sector.stroke;
-        if ( chart.sector.opacity      ) sectorOpacity   = chart.sector.opacity;
-        if ( chart.sector.ray          ) sectorRay       = chart.sector.ray;
-        if ( chart.sector.offset       ) sectorOffset    = chart.sector.offset;
-        if ( chart.sector.percentColor ) sectorPcntColor = chart.sector.percentColor;
-        if ( chart.sector.percentSize  ) sectorPcntSize  = chart.sector.percentSize;
-        if ( chart.sector.percentLimit ) sectorLimit     = chart.sector.percentLimit;
+        if ( chart.sector.stroke       ) {sectorLineColor = chart.sector.stroke;}
+        if ( chart.sector.opacity      ) {sectorOpacity   = chart.sector.opacity;}
+        if ( chart.sector.ray          ) {sectorRay       = chart.sector.ray;}
+        if ( chart.sector.offset       ) {sectorOffset    = chart.sector.offset;}
+        if ( chart.sector.percentColor ) {sectorPcntColor = chart.sector.percentColor;}
+        if ( chart.sector.percentSize  ) {sectorPcntSize  = chart.sector.percentSize;}
+        if ( chart.sector.percentLimit ) {sectorLimit     = chart.sector.percentLimit;}
     }
 
     if (chart.label) {
         Object.assign(labelOpts, chart.label);
     }
 
-    let options = {stroke: sectorLineColor, width: 1, sector:true, opacity: sectorOpacity}
+    let options = {stroke: sectorLineColor, width: 1, sector:true, opacity: sectorOpacity};
     let smallestY = y - radius -20;
 
     for (let i=0; i < pie.length; i++) {
@@ -70,9 +70,9 @@ function pie(x, y, radius, chart) {
         let needPercent  = false;
         const sectorOpts = {fill: sectorColors[i]};
 
-        if ( pie[i].stroke ) sectorOpts.stroke  = pie[i].stroke;
-        if ( pie[i].width )  sectorOpts.width   = pie[i].width;
-        if ( pie[i].opacity) sectorOpts.opacity = pie[i].opacity;
+        if ( pie[i].stroke ) {sectorOpts.stroke  = pie[i].stroke;}
+        if ( pie[i].width )  {sectorOpts.width   = pie[i].width;}
+        if ( pie[i].opacity) {sectorOpts.opacity = pie[i].opacity;}
 
         if (pie[i].offset) {
             [ox, oy] = endPoint(x, y, offdist, midArcAng);
@@ -106,11 +106,11 @@ function pie(x, y, radius, chart) {
             let [px, py] = endPoint(x, y, prcntDist, midArcAng);
             this.text(percent, px+tx, py+ty, {color:sectorPcntColor, size: pcntSize});
         }
-        
+
         // Add labels when present
         if (pie[i].label) {
             const opts = Object.assign({}, labelOpts, pie[i], {opacity:1});
-            if (!opts.color) opts.color = sectorColors[i];
+            if (!opts.color) {opts.color = sectorColors[i];}
             let xOffset = 5;
             let yOffset = opts.size / 2;
             const label = (needPercent) ?`${pie[i].label} (${sectorSize}%)` : pie[i].label;
@@ -122,7 +122,7 @@ function pie(x, y, radius, chart) {
             if ( midArcAng > -90 && midArcAng < -45) {
                 let td = this.textDimensions(label, opts);
                 yOffset = td.height * 1.5;
-                xOffset = - td.width/2;  
+                xOffset = - td.width/2;
             }
             else if (midArcAng > 45 && midArcAng <= 90) {
                 let td = this.textDimensions(label, opts);
@@ -149,7 +149,7 @@ function pie(x, y, radius, chart) {
                 smallestY = ry;
             }
         }
-        
+
         startAt = endAt;
     }
 
@@ -168,9 +168,9 @@ describe('Arc test', () => {
 
         const output = path.join(__dirname, 'output/arcs.pdf');
         const recipe = new HummusRecipe('new', output);
-        let x = 120
-        let y = 120
-        let r = 50
+        let x = 120;
+        let y = 120;
+        let r = 50;
         let txtOps = {color:'#000000', size: 10};
 
         recipe
@@ -185,7 +185,7 @@ describe('Arc test', () => {
             .arc(x+240, y, r, -90, 90, {rotation:-60})
             .arc(x+360, y, r, 45, -270)
             .arc(x+363, y+7, r, 45, 90);
-        y+=160
+        y+=160;
         recipe
             .text('Sectors of Circles', 220, y-r-30, {size:20, bold:true})
             .arc(x, y, r, 0, 90, {rotation:0, sector:true})
@@ -208,13 +208,13 @@ describe('Arc test', () => {
         const recipe = new HummusRecipe(output, output);
 
         const movies = [
-            { label: "Comedy",  value: 8, fill: 'red' },
-            { label: "Action",  value: 5, fill: '#d62e00' },
-            { label: "Romance", value: 6, fill: '347d24' },
-            { label: "Drama",   value: 1, fill: 'blue'},
-            { label: "SciFi",   value: 4, fill: '#a425ff' }
+            { label: 'Comedy',  value: 8, fill: 'red' },
+            { label: 'Action',  value: 5, fill: '#d62e00' },
+            { label: 'Romance', value: 6, fill: '347d24' },
+            { label: 'Drama',   value: 1, fill: 'blue'},
+            { label: 'SciFi',   value: 4, fill: '#a425ff' }
         ];
-        
+
         const grades = [
             {label: 'A', value: 4,  fill: '#c4861b' },
             {label: 'B', value: 14, fill: '#1f750e' },
@@ -224,17 +224,17 @@ describe('Arc test', () => {
 
         const chart = {
             title: {
-                text: "Favorite Type of Movie",
+                text: 'Favorite Type of Movie',
                 size: 16,
                 color: '#ff621f',
-                italic: true, 
+                italic: true,
                 bold: true,
-                underline: {color: "#ff621f"}
+                underline: {color: '#ff621f'}
             },
             data: movies,
             sector: {
                 // opacity: .5,
-                stroke: "#ff",
+                stroke: '#ff',
                 offset: 16,
                 ray: true,
                 // percentColor: "#00",
@@ -249,9 +249,9 @@ describe('Arc test', () => {
             }
         };
 
-        let x = 200
-        let y = 550
-        let r = 80
+        let x = 200;
+        let y = 550;
+        let r = 80;
         recipe.register(pie);
         recipe
             .editPage(1)
@@ -261,7 +261,7 @@ describe('Arc test', () => {
         chart.data = grades;
         chart.sector.ray = false;
         chart.title.text = 'Student Grades';
-        chart.title.color = "#000000";
+        chart.title.color = '#000000';
         delete chart.title['underline'];
         chart.title.underline = {color: chart.title.color};
         recipe

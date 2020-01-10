@@ -6,7 +6,7 @@ describe('Text - Centering', () => {
     it('should horizontally center the text correctly with multiple font sizes', (done) => {
         const output = path.join(__dirname, 'output/Center Text.pdf');
         const recipe = new HummusRecipe('new', output);
-        
+
         recipe
             .createPage('letter-size')
             .circle(30,220,2,{stroke:'red'})
@@ -104,7 +104,7 @@ describe('Text - Centering', () => {
         let y = 100;
         let w, h, p;
 
-        recipe.text('Rotation should occur\naround red dot below.', 400, 50)
+        recipe.text('Rotation should occur\naround red dot below.', 400, 50);
         recipe.circle(x,y,2,{stroke:'red'});
 
         for (let angle = 5; angle <= 45; angle+=5) {
@@ -143,7 +143,7 @@ describe('Text - Centering', () => {
                     style: {
                         stroke: '#000000',
                         lineWidth:.5,
-                        fill: "#ffff00"
+                        fill: '#ffff00'
                     }
                 }
             })
@@ -162,11 +162,11 @@ describe('Text - Centering', () => {
                     style: {
                         stroke: '#000000',
                         lineWidth:.5,
-                        fill: "#ffff00"
+                        fill: '#ffff00'
                     }
                 }
             })
-            .line([[x-5,y+h],[x+w+5,y+h]], {lineWidth: .5, stroke: "red", lineCap: 'butt'})
+            .line([[x-5,y+h],[x+w+5,y+h]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
             .circle(x,y,2,{stroke:'red'});
 
         x = 500;
@@ -174,18 +174,18 @@ describe('Text - Centering', () => {
         recipe
             .text(`[0,${p},0,0]`, x+10, y-17)
             .text(`RIGHT Pad ${p}`, x, y, {
-                    color: '#000000',
-                    textBox: {
-                        width: w,
-                        textAlign: 'right',
-                        padding: [0,p,0,0],
-                        style: {
-                            stroke: '#000000',
-                            lineWidth:.5,
-                            fill: "#ffff00"
-                        }
+                color: '#000000',
+                textBox: {
+                    width: w,
+                    textAlign: 'right',
+                    padding: [0,p,0,0],
+                    style: {
+                        stroke: '#000000',
+                        lineWidth:.5,
+                        fill: '#ffff00'
                     }
-                })
+                }
+            })
             .line([[x+w-p,y-5],[x+w-p,y+h+5]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
             .circle(x,y,2,{stroke:'red'});
 
@@ -201,13 +201,13 @@ describe('Text - Centering', () => {
                     style: {
                         stroke: '#000000',
                         lineWidth:.5,
-                        fill: "#ffff00"
+                        fill: '#ffff00'
                     }
                 }
             })
             .line([[x+p,y-5],[x+p,y+h+5]], {lineWidth: .5, stroke: 'red', lineCap: 'butt'})
             .circle(x,y,2,{stroke:'red'});
-        
+
         recipe
             .text('Using horizontal "justify" setting with default "top" vertical setting, no height.', 40, 535, {
                 color: '#000000',
@@ -259,7 +259,7 @@ describe('Text - Centering', () => {
         h = 70;
         recipe
             .circle(40,625,2,{stroke:'red'})
-            .text(`text box without\nheight or\nminHeight\n setting\nauto fits text`, 40, 625, {
+            .text('text box without\nheight or\nminHeight\n setting\nauto fits text', 40, 625, {
                 color: '#000000',
                 textBox: {
                     width: 100,
@@ -369,8 +369,8 @@ describe('Text - Centering', () => {
                         lineWidth:.5,
                     }
                 }
-            })
-        
+            });
+
         recipe.endPage();
         recipe.endPDF(done);
     });

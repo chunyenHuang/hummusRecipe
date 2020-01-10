@@ -5,8 +5,8 @@ describe('Triangles', () => {
     it('SSS, SAS, ASA', (done) => {
         const output = path.join(__dirname, 'output/Add triangles.pdf');
         const recipe = new HummusRecipe('new', output);
-        let x = 50
-        let y = 100
+        let x = 50;
+        let y = 100;
         let txtOps = {color:'#000000', size: 10};
         recipe
             .createPage('letter')
@@ -21,9 +21,9 @@ describe('Triangles', () => {
             .triangle(x+250, y, [90,60,80], {width:.5,position:'b', color:'blue', debug:true, rotation:-20})
             .text('rotation: -20', x+260, y+21, {color:'#000000', size:10})
             .triangle(x+380, y, [90,60,80], {width:.5,position:'b', fill:'blue', debug:true});
-        
+
         y = 250;
-        let sas = [90,90,90]
+        let sas = [90,90,90];
         recipe
             .line([[50,y],[550,y]],{color:'#aa',width:.5, opacity:.5})
             .triangle(x, y, sas, {traitID:'sas', width:.5, color:'blue', debug:true})
@@ -40,13 +40,13 @@ describe('Triangles', () => {
             .line([[50,y],[550,y]],{color:'#aa',width:.5, opacity:.5})
             .triangle(x, y, asa, {traitID:'asa', width:.5, color:'blue', debug:true})
             .text(`"ASA", (${asa[0]}, ${asa[1]}, ${asa[2]})`, x+15, y+21, txtOps)
-            .text(`(<B,  c,  <A)`, x+50, y+38, txtOps)
+            .text('(<B,  c,  <A)', x+50, y+38, txtOps)
             .triangle(x+200, y, [40,80,50], {traitID:'asa', width:.5, color:'blue', debug:true})
             .triangle(x+350, y, [40,80,50], {traitID:'asa', width:.5, position:'c', flipX:true, color:'blue', debug:true})
             .text('position: "C"\nand flipX', x+340, y+21, txtOps)
             .triangle(x+450, y, [40,80,50], {traitID:'asa', width:.5, position:'c', flipX:true, rotation:45, color:'blue', debug:true})
             .text('position: "C"\nand flipX\nrotation: 45', x+450, y+21, txtOps);
-        
+
         y = 550;
         recipe
             .line([[50,y],[550,y]],{color:'#aa',width:.5, opacity:.5})
@@ -73,5 +73,5 @@ describe('Triangles', () => {
             .text('rotation: 15', x, y+21, txtOps)
             .endPage()
             .endPDF(done);
-    })
+    });
 });

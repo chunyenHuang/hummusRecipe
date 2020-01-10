@@ -29,7 +29,7 @@ facilisis risus eu lacinia. Sed eu leo in turpis fringilla hendrerit.';
             .text(lorem, x, y, {charSpace:0, textBox:{width:w, textAlign:'justify',style:{width:.5,color:'red'}}})
             .text(lorem, x+w+5, y, {charSpace:1, textBox:{width:w, textAlign:'justify',style:{width:.5,color:'blue'}}})
             .text(lorem, x+(w+5)*2, y, {charSpace:2, textBox:{width:w, textAlign:'justify',style:{width:.5,color:'green'}}});
-        
+
         y = 520;
         recipe
             .text('textAlign: "center"', x, y-20, {color:'#00'})

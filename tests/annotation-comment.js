@@ -10,7 +10,7 @@ describe('Annotation: Comment', () => {
             .createPage('letter-size')
             .text('Click\nbelow', 298, 60)
             .text('Except for the background rectangle exposing it, the annotation above would normally be invisible because no color option was given to it.',
-               175, 150, {textBox: {width: 280, textAlign:'center'}})
+                175, 150, {textBox: {width: 280, textAlign:'center'}})
             .rectangle(290, 90, 50, 50, {fill:'red', opacity:.2})
             .comment('Feel free to open issues to help us!', 'center', 100, {
                 title: 'First Comment',
