@@ -95,7 +95,7 @@ pdfDoc
     .lineTo('center', 650)
     .lineTo(412, 600)
     .text('Welcome to Hummus-Recipe', 'center', 250, {
-        color: '066099',
+        color: '#066099',
         fontSize: 30,
         bold: true,
         font: 'Helvatica',
@@ -104,7 +104,7 @@ pdfDoc
         rotation: 180
     })
     .text('some text box', 450, 400, {
-        color: '066099',
+        color: '#066099',
         fontSize: 20,
         font: 'Courier New',
         strikeOut: true,
