@@ -25,7 +25,7 @@ faucibus orci luctus et ultrices posuere cubilia Curae;';
             .createPage('letter')
             .line([[540,10],[540,300]],{lineWidth:.5})
             .line([[72,72],[560,72]],{lineWidth:.5})
-            .text(lorem.slice(0, 500),{rotation:0,opacity:1,textBox:{textAlign:'left'}})
+            .text(lorem.slice(0, 500),{rotation:0,opacity:1,textBox:{textAlign:'justify'}})
             .text(lorem.slice(500,510),{color:'red', hilite:true})
             .text(lorem.slice(510),{color:'green',hilite:false})
             .text('',{flow:false})
