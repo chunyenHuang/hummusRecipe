@@ -90,15 +90,17 @@ describe('Text - Columns', () => {
             text: 'Name',
             name: 'name',
             width: 110,
-            // cell: {textAlign:'center'}
+            cell: {textAlign:'center center'}
         }, {
             text: 'Address',
             name: 'address',
-            width: 130
+            width: 130,
+            cell: {textAlign:'left center'}
         }, {
             text: 'City/Town',
             name: 'city',
-            width: 100
+            width: 100,
+            cell: {textAlign:'center center'}
         }, {
             text: 'State',
             name: 'state',
@@ -108,7 +110,9 @@ describe('Text - Columns', () => {
             name: 'job',
             width: 100,
             color: 'red',
-            size: 10
+            size: 10,
+            cell: {textAlign:'right bottom'},
+            hcell: {textAlign:'center center'}
         }];
 
         // const stop = () => { return true; };
@@ -135,7 +139,7 @@ describe('Text - Columns', () => {
             .text('Table with alternating row properties', 230, 30, { color: '#000000' })
             .table(x, y, contents, {
                 columns: columns,
-                header: { cell: { padding: [8, 2, 8, 2], textAlign: 'left' } },
+                header: { alignToData: true, cell: { padding: [8, 2, 8, 2], textAlign: 'left'} },
                 border: { stroke: '#dddddd' },
                 row: { nth: 'odd', cell: { style: { fill: '#dddddd' } } }
             })
