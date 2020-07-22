@@ -10,6 +10,15 @@ describe('Text - Centering', () => {
         recipe
             .createPage('letter-size')
             .circle(30,220,2,{stroke:'red'})
+            .text('NO_Space_Breaks_And_Wrap=false_gives_Ellipsis',350, 27, {
+                color: 'red',
+                size: 10,
+                font: 'arial',
+                textBox: {
+                  width: 215,
+                  wrap: false,
+                }
+            })
             .text('Crusty', 30, 220, {
                 color: '#000000',
                 font: 'Arial',
@@ -79,7 +88,6 @@ describe('Text - Centering', () => {
 
         let fs = 20;
         recipe
-            .text('<-- Note, using padding of 2\n      puts marker dots inside fill.', 340, 455)
             .text('<-- Text with line height applied\n            (1.16% font size).', 340, 490)
             .text('A\nAAA\nOOO\nVVV\n|', 30, 400, {
                 color: '#000000',
