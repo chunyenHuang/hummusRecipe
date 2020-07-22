@@ -139,7 +139,7 @@ describe('Text - Columns', () => {
             .text('Table with alternating row properties', 230, 30, { color: '#000000' })
             .table(x, y, contents, {
                 columns: columns,
-                header: { alignToData: true, cell: { padding: [18, 2, 18, 2], textAlign: 'left'} },
+                header: { alignToData: true, cell: { padding: [8, 2, 8, 2], textAlign: 'left'} },
                 border: { stroke: '#dddddd' },
                 row: { nth: 'odd', cell: { style: { fill: '#dddddd' } } }
             })
