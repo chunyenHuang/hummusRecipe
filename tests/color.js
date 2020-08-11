@@ -1,12 +1,12 @@
 const path = require('path');
 const HummusRecipe = require('../lib');
-const hummus = require('hummus');
+const muhammara = require('muhammara');
 
 describe('Color', () => {
     it('basic', (done) => {
         // Showing hummus colorspace (Gray, RGB, CMYK) ability upon which hummus-recipe is built
         const output = path.join(__dirname, 'output/hummus-new.pdf');
-        const pdfWriter = hummus.createWriter(output);
+        const pdfWriter = muhammara.createWriter(output);
         const page = pdfWriter.createPage(0, 0, 595, 842);
         const pageContext = pdfWriter.startPageContentContext(page);
         pageContext.drawCircle(149, 640, 40, {color: 0x0000FF00, colorspace: 'cmyk', type: 'fill' });
