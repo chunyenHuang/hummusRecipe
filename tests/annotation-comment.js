@@ -8,8 +8,14 @@ describe('Annotation: Comment', () => {
         recipe
             // 1st Page
             .createPage('letter-size')
+            .text('Click\nbelow', 298, 60)
+            .text('Except for the background rectangle exposing it, the annotation above would normally be invisible because no color option was given to it.',
+                175, 150, {textBox: {width: 280, textAlign:'center'}})
+            .rectangle(290, 90, 50, 50, {fill:'red', opacity:.2})
             .comment('Feel free to open issues to help us!', 'center', 100, {
-                flag: 'locked'
+                title: 'First Comment',
+                subject: 'Not Really Visible',
+                // flag: 'locked'
             })
             .endPage()
             .endPDF(done);
@@ -67,11 +73,11 @@ describe('Annotation: Comment', () => {
         recipe
             // 1st Page
             .createPage('letter-size')
-            .text('Trace-based Just-in-Time Type Specialization for Dynamic Languages', 'center', 'center')
-            .annot('center', 'center', 'Highlight', {
+            .text('Trace-based Just-in-Time Type Specialization for Dynamic Languages', 100, 'center')
+            .annot(100, 'center', 'Highlight', {
                 text: 'Oh~la',
                 width: 200,
-                height: 50
+                height: 14
             })
             .endPage()
             .endPDF(done);

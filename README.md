@@ -1,5 +1,5 @@
 # Hummus Recipe
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors)
 [![npm version](https://badge.fury.io/js/hummus-recipe.svg)](https://badge.fury.io/js/hummus-recipe)
 [![Build Status](https://travis-ci.org/chunyenHuang/hummusRecipe.svg?branch=master)](https://travis-ci.org/chunyenHuang/hummusRecipe)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VKYRPLFE2PT7L&source=url)
@@ -20,7 +20,7 @@ Feel free to open issues to help us!
 
 ## Documentation
 
-* [Hummus Recipe Documentation](https://chunyenhuang.github.io/hummusRecipe/Recipe.html)
+* [Hummus Recipe Documentation](https://hummus-recipe.s3.amazonaws.com/docs/Recipe.html)
 
 ## Instructions
 
@@ -59,7 +59,7 @@ pdfDoc
 
 ```javascript
 const HummusRecipe = require('hummus-recipe');
-const pdfDoc = new HummusRecipe('new', '/output.pdf',{
+const pdfDoc = new HummusRecipe('new', 'output.pdf',{
     version: 1.6,
     author: 'John Doe',
     title: 'Hummus Recipe',
@@ -95,7 +95,7 @@ pdfDoc
     .lineTo('center', 650)
     .lineTo(412, 600)
     .text('Welcome to Hummus-Recipe', 'center', 250, {
-        color: '066099',
+        color: '#066099',
         fontSize: 30,
         bold: true,
         font: 'Helvatica',
@@ -104,7 +104,7 @@ pdfDoc
         rotation: 180
     })
     .text('some text box', 450, 400, {
-        color: '066099',
+        color: '#066099',
         fontSize: 20,
         font: 'Courier New',
         strikeOut: true,
@@ -238,3 +238,15 @@ pdfDoc
     })
     .endPDF();
 ```
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table><tr><td align="center"><a href="https://github.com/thebenlamm"><img src="https://avatars2.githubusercontent.com/u/5175102?v=4" width="100px;" alt="thebenlamm"/><br /><sub><b>thebenlamm</b></sub></a><br /><a href="https://github.com/chunyenHuang/hummusRecipe/commits?author=thebenlamm" title="Code">💻</a></td><td align="center"><a href="https://www.bitfactory.io"><img src="https://avatars1.githubusercontent.com/u/510180?v=4" width="100px;" alt="Matthias Nagel"/><br /><sub><b>Matthias Nagel</b></sub></a><br /><a href="https://github.com/chunyenHuang/hummusRecipe/commits?author=matthiasnagel" title="Code">💻</a></td><td align="center"><a href="https://github.com/gios"><img src="https://avatars0.githubusercontent.com/u/6967294?v=4" width="100px;" alt="Pavlo Blazhchuk"/><br /><sub><b>Pavlo Blazhchuk</b></sub></a><br /><a href="https://github.com/chunyenHuang/hummusRecipe/commits?author=gios" title="Code">💻</a></td><td align="center"><a href="https://github.com/shaehn"><img src="https://avatars3.githubusercontent.com/u/13596544?v=4" width="100px;" alt="shaehn"/><br /><sub><b>shaehn</b></sub></a><br /><a href="https://github.com/chunyenHuang/hummusRecipe/commits?author=shaehn" title="Code">💻</a></td><td align="center"><a href="https://www.linkedin.com/in/johnhuangguo/"><img src="https://avatars1.githubusercontent.com/u/12788155?v=4" width="100px;" alt="John Huang"/><br /><sub><b>John Huang</b></sub></a><br /><a href="https://github.com/chunyenHuang/hummusRecipe/commits?author=chunyenHuang" title="Code">💻</a></td><td align="center"><a href="http://andrejsykora.com"><img src="https://avatars0.githubusercontent.com/u/821336?v=4" width="100px;" alt="Andrej Sýkora"/><br /><sub><b>Andrej Sýkora</b></sub></a><br /><a href="https://github.com/chunyenHuang/hummusRecipe/commits?author=neonerd" title="Code">💻</a></td><td align="center"><a href="http://soeyi.me"><img src="https://avatars1.githubusercontent.com/u/38489160?v=4" width="100px;" alt="soeyi"/><br /><sub><b>soeyi</b></sub></a><br /><a href="https://github.com/chunyenHuang/hummusRecipe/commits?author=soeyi" title="Code">💻</a></td></tr><tr><td align="center"><a href="https://dan.halliday.work/technology/"><img src="https://avatars3.githubusercontent.com/u/1068575?v=4" width="100px;" alt="Dan Halliday"/><br /><sub><b>Dan Halliday</b></sub></a><br /><a href="https://github.com/chunyenHuang/hummusRecipe/commits?author=danhalliday" title="Code">💻</a></td><td align="center"><a href="http://www.nikhilpi.com"><img src="https://avatars0.githubusercontent.com/u/5175964?v=4" width="100px;" alt="Nikhil Pai"/><br /><sub><b>Nikhil Pai</b></sub></a><br /><a href="https://github.com/chunyenHuang/hummusRecipe/commits?author=nikhilpi" title="Code">💻</a></td></tr></table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

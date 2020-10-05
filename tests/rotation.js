@@ -42,7 +42,7 @@ describe('Rotation', () => {
                     color: '066099',
                     fontSize: 100,
                     bold: true,
-                    font: 'Helvatica'
+                    font: 'Helvetica'
                 })
                 .comment('add comment', 0, 0)
                 .rectangle(0, 0, width / 2, height / 2, {

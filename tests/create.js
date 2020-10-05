@@ -71,7 +71,7 @@ describe('Create', () => {
                 color: '066099',
                 fontSize: 30,
                 bold: true,
-                font: 'Helvatica',
+                font: 'Helvetica',
                 align: 'center center'
             })
             .text('some text box', 450, 400, {
