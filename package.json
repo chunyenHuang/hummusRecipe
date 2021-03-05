@@ -27,6 +27,7 @@
   "bugs": {
     "url": "https://github.com/chunyenHuang/hummusRecipe/issues"
   },
+  "types": "./index.d.ts",
   "homepage": "https://github.com/chunyenHuang/hummusRecipe#readme",
   "dependencies": {
     "linebreak": "^0.3.0",
