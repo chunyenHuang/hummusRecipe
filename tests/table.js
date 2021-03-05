@@ -163,6 +163,15 @@ describe('Text - Columns', () => {
                 row: { size: 10 },
                 overflow: newPage,
                 order: 'first_name,last_name,email'
+            })
+            .endPage()
+            .createPage('letter')
+            .text('Table with less columns than fields in data', 230, 30, { color: '#000000' })
+            .table(x, y, contents, {
+                columns: columns.slice(0,4),
+                header: { alignToData: true, cell: { padding: [8, 2, 8, 2], textAlign: 'left'} },
+                border: { stroke: '#dddddd' },
+                row: { size: 10 }
             });
 
         recipe.endPage();
