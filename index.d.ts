@@ -237,6 +237,8 @@ declare class Recipe {
 
     createPage(pageWidth: number, pageHeight: number): Recipe;
 
+    createPage(pageSize: 'executive' |'folio' |'legal' |'letter' |'ledger' |'tabloid' |'a0-a10' |'b0-b10' |'c0-c10' |'ra0-ra4' |'sra0-ara4' = 'letter'): Recipe;
+
     endPage(): Recipe;
 
     editPage(pageNumber: number): Recipe;
