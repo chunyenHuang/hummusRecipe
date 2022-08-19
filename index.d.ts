@@ -110,6 +110,7 @@ declare namespace Recipe {
         dash?: number[];
         fill?: string | number[];
         opacity?: number;
+        borderRadius?: boolean|number|number[];
     }
 
     interface TextBox {
@@ -118,6 +119,7 @@ declare namespace Recipe {
         minHeight?: number;
         padding?: number | number[];
         lineHeight?: number;
+        wrap?: string|boolean;
         textAlign?: string;
         style?: TextBoxStyle;
     }
@@ -126,13 +128,21 @@ declare namespace Recipe {
         color?: string | number[];
         opacity?: number;
         rotation?: number;
-        rotationOrigin?: number[];
+        rotationOrigin?: [number, number];
         font?: string;
         size?: number;
+        charSpace?: number;
         align?: string;
         highlight?: boolean;
         underline?: boolean;
         strikeOut?: boolean;
+        flow?: boolean;
+        layout?: number|string;
+        overflow?: () => void
+        hilite?: boolean|{
+            color?: string;
+            opacity?: number;
+        };
         textBox?: TextBox;
     }
 
