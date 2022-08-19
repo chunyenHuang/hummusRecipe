@@ -139,7 +139,7 @@ declare namespace Recipe {
         layout?: number|string;
         overflow?: () => void
         hilite?: boolean|{
-            color?: string;
+            color?: string|number[];
             opacity?: number;
         };
         textBox?: TextBox;
