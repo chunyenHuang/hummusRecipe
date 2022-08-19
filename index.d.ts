@@ -133,7 +133,6 @@ declare namespace Recipe {
         size?: number;
         charSpace?: number;
         align?: string;
-        highlight?: boolean;
         underline?: boolean;
         strikeOut?: boolean;
         flow?: boolean;
