@@ -252,8 +252,15 @@ declare class Recipe {
 
     editPage(pageNumber: number): Recipe;
 
-    pageInfo(pageNumber: number): Recipe;
-
+    // pageInfo(pageNumber: number): Recipe;
+    
+    pageInfo(pageNumber: number): {
+        width: number
+        height: number
+        rotate: number
+        pageNumber: number
+    };
+    
     split(outputDir: string, prefix: string): Recipe;
 
     text(
