@@ -254,6 +254,8 @@ declare class Recipe {
 
     // pageInfo(pageNumber: number): Recipe;
     
+    getPageCount(): number;
+
     pageInfo(pageNumber: number): {
         width: number
         height: number
