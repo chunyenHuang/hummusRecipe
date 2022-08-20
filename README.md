@@ -156,11 +156,18 @@ pdfDoc
     .endPDF();
 ```
 
+## Page Count
+
+```javascript
+const pdfDoc = new HummusRecipe('input.pdf');
+console.log(pdfDoc.getPageCount());
+```
+
 ## Page Info
 
 ```javascript
 const pdfDoc = new HummusRecipe('input.pdf', 'output.pdf');
-console.log(pdfDoc.metadata);
+console.log(pdfDoc.pageInfo(1));
 ```
 
 ### Print the pdf structure

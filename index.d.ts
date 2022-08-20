@@ -98,6 +98,7 @@ declare namespace Recipe {
     }
 
     interface OverlayOptions {
+        page?: number;
         scale?: number;
         keepAspectRatio?: boolean;
         fitWidth?: boolean;
@@ -110,6 +111,7 @@ declare namespace Recipe {
         dash?: number[];
         fill?: string | number[];
         opacity?: number;
+        borderRadius?: boolean|number|number[];
     }
 
     interface TextBox {
@@ -118,6 +120,7 @@ declare namespace Recipe {
         minHeight?: number;
         padding?: number | number[];
         lineHeight?: number;
+        wrap?: string|boolean;
         textAlign?: string;
         style?: TextBoxStyle;
     }
@@ -126,13 +129,20 @@ declare namespace Recipe {
         color?: string | number[];
         opacity?: number;
         rotation?: number;
-        rotationOrigin?: number[];
+        rotationOrigin?: [number, number];
         font?: string;
         size?: number;
+        charSpace?: number;
         align?: string;
-        highlight?: boolean;
         underline?: boolean;
         strikeOut?: boolean;
+        flow?: boolean;
+        layout?: number|string;
+        overflow?: () => void
+        hilite?: boolean|{
+            color?: string|number[];
+            opacity?: number;
+        };
         textBox?: TextBox;
     }
 
@@ -187,7 +197,7 @@ declare namespace Recipe {
 }
 
 declare class Recipe {
-    constructor(src: string, output: string, options?: Recipe.RecipeOptions);
+    constructor(src: string, output?: string, options?: Recipe.RecipeOptions);
 
     constructor(buffer: Buffer, options?: Recipe.RecipeOptions);
 
@@ -237,12 +247,23 @@ declare class Recipe {
 
     createPage(pageWidth: number, pageHeight: number): Recipe;
 
+    createPage(pageSize: 'executive' |'folio' |'legal' |'letter' |'ledger' |'tabloid' |'a0' | 'a1' | 'a2' | 'a3' | 'a4' | 'a5' | 'a6' | 'a7' | 'a8' | 'a9' | 'a10' |'b0' | 'b1' | 'b2' | 'b3' | 'b4' | 'b5' | 'b6' | 'b7' | 'b8' | 'b9' | 'b10'  |'c0' | 'c1' | 'c2' | 'c3' | 'c4' | 'c5' | 'c6' | 'c7' | 'c8' | 'c9' | 'c10'  |'ra0' | 'ra1' | 'ra2' | 'ra3' | 'ra4' |'sra0-ara4' = 'letter'): Recipe;
+
     endPage(): Recipe;
 
     editPage(pageNumber: number): Recipe;
 
-    pageInfo(pageNumber: number): Recipe;
+    // pageInfo(pageNumber: number): Recipe;
+    
+    getPageCount(): number;
 
+    pageInfo(pageNumber: number): {
+        width: number
+        height: number
+        rotate: number
+        pageNumber: number
+    };
+    
     split(outputDir: string, prefix: string): Recipe;
 
     text(
