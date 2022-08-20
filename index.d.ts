@@ -98,6 +98,7 @@ declare namespace Recipe {
     }
 
     interface OverlayOptions {
+        page?: number;
         scale?: number;
         keepAspectRatio?: boolean;
         fitWidth?: boolean;
