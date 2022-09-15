@@ -54,6 +54,7 @@ declare namespace Recipe {
         title?: string;
         subject?: string;
         keywords?: string[];
+        [key: string]: unknown;
     }
 
     interface CommentOptions {
@@ -187,7 +188,7 @@ declare namespace Recipe {
 }
 
 declare class Recipe {
-    constructor(src: string, output: string, options?: Recipe.RecipeOptions);
+    constructor(src: string|Buffer, output: string, options?: Recipe.RecipeOptions);
 
     constructor(buffer: Buffer, options?: Recipe.RecipeOptions);
 
@@ -275,7 +276,7 @@ declare class Recipe {
         options?: Recipe.RectangleOptions
     ): Recipe;
 
-    endPDF(callback?: Recipe.EndPDFCallback): Recipe;
+    endPDF(callback?: Recipe.EndPDFCallback): Buffer|undefined;
 }
 
 export = Recipe;
