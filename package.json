@@ -1,12 +1,12 @@
 {
   "name": "hummus-recipe",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A powerful PDF tool for NodeJS based on HummusJS",
-  "author": "John Huang <little78926@gmail.com>",
+  "author": "Anshu Srivastava <anshusr94@gmail.com>",
   "license": "MIT",
   "main": "index.js",
   "engine": [
-    "node >= v6.9.0"
+    "node >= v18.8.0"
   ],
   "keywords": [
     "pdf",
@@ -22,13 +22,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chunyenHuang/hummusRecipe.git"
+    "url": "git+https://github.com/anshusr/hummusRecipe.git"
   },
   "bugs": {
-    "url": "https://github.com/chunyenHuang/hummusRecipe/issues"
+    "url": "https://github.com/anshusr/hummusRecipe/issues"
   },
   "types": "./index.d.ts",
-  "homepage": "https://github.com/chunyenHuang/hummusRecipe#readme",
+  "homepage": "https://github.com/anshusr/hummusRecipe#readme",
   "dependencies": {
     "linebreak": "^0.3.0",
     "memory-streams": "^0.1.3",
