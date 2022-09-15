@@ -135,6 +135,23 @@ pdfDoc
     .endPDF(()=>{ /* done! */ });
 ```
 
+### Create a new PDF as a Buffer 
+
+```javascript
+const HummusRecipe = require('hummus-recipe');
+const pdfDoc = new HummusRecipe(Buffer.from('new'), null, {
+    version: 1.6,
+    author: 'John Doe',
+    title: 'Hummus Recipe',
+    subject: 'A brand new PDF'
+});
+
+const pdfBuffer = pdfDoc
+    .createPage('letter-size')
+    .endPage()
+    .endPDF();
+```
+
 ## Modify an existing PDF
 
 ```javascript
